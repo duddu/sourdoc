@@ -1,7 +1,7 @@
 {
     "name": "sourdoc",
     "short_name": "sourdoc",
-    "start_url": "/sourdoc",
+    "start_url": "https://duddu.github.io/sourdoc",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
