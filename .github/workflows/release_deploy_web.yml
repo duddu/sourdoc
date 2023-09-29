@@ -1,0 +1,24 @@
+name: Deploy to web
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+permissions:
+    contents: write
+jobs:
+    build-and-deploy:
+        concurrency: deploy-web-${{ github.ref }}
+        runs-on: ubuntu-latest
+        steps:
+            - uses: subosito/flutter-action@v2
+              with:
+                flutter-version: '3.13.5'
+                channel: 'stable'
+            - run: flutter doctor -v
+            - uses: actions/checkout@v3
+            - run: flutter pub get
+            - run: flutter build -v web --release
+            - uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                folder: build/web
