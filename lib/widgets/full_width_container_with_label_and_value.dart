@@ -15,7 +15,7 @@ class FullWidthContainerWithLabelAndValue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 47,
+      height: 42,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -73,7 +73,7 @@ class InfoButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
                         child: Text(text)),
                   ],
                 ),

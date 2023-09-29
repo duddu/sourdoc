@@ -10,15 +10,17 @@ void main() {
 class Sourdoc extends StatelessWidget {
   const Sourdoc({super.key});
 
+  final String _title = 'Sourdoc 🧑‍🍳';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sourdoc',
+      title: _title,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Sourdoc'),
+      home: HomePage(title: _title),
     );
   }
 }
@@ -169,7 +171,6 @@ class _HomePageState extends State<HomePage> {
             children: <FullWidthHeaderWithPadding>[
               FullWidthHeaderWithPadding(
                 text: 'Ingredients',
-                paddingTop: 40,
               )
             ],
           ),

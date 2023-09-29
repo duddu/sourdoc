@@ -16,17 +16,19 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        border: const UnderlineInputBorder(),
-        prefixText: '$prefixText:',
-        suffixText: suffixText,
-      ),
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      keyboardType: TextInputType.number,
-      textAlign: TextAlign.end,
-      textInputAction: TextInputAction.done,
-    ));
+        child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+            child: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                prefixText: '$prefixText:',
+                suffixText: suffixText,
+              ),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.end,
+              textInputAction: TextInputAction.done,
+            )));
   }
 }
