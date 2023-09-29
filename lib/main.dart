@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
             children: <FullWidthHeaderWithPadding>[
               FullWidthHeaderWithPadding(
                 text: 'Ingredients',
-                paddingTop: 50,
+                paddingTop: 40,
               )
             ],
           ),

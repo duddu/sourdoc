@@ -4,7 +4,7 @@ class FullWidthHeaderWithPadding extends StatelessWidget {
   const FullWidthHeaderWithPadding({
     super.key,
     required this.text,
-    this.paddingTop = 35,
+    this.paddingTop = 30,
   });
 
   final String text;
@@ -14,7 +14,7 @@ class FullWidthHeaderWithPadding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Padding(
-      padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 15),
+      padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 5),
       child: Text(
         text,
         style: TextStyle(
