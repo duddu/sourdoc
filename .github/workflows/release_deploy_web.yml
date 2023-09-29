@@ -18,7 +18,7 @@ jobs:
             - run: flutter doctor -v
             - uses: actions/checkout@v3
             - run: flutter pub get
-            - run: flutter build -v web --release
+            - run: flutter build -v web --release --base-href=/sourdoc/
             - uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: build/web
