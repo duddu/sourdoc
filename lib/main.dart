@@ -121,13 +121,19 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
           child: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+        padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
         children: [
+          const Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: Text(
+                'Edit the following four parameters, the ingredients and fermentation values will update accordingly.',
+                textAlign: TextAlign.center,
+              )),
           Row(
             children: <FullWidthTextFieldWithAffixes>[
               FullWidthTextFieldWithAffixes(
                 controller: totalWeightController,
-                prefixText: 'Total weight',
+                prefixText: 'Target bread weight',
                 suffixText: 'g',
               ),
             ],
@@ -136,7 +142,7 @@ class _HomePageState extends State<HomePage> {
             children: <FullWidthTextFieldWithAffixes>[
               FullWidthTextFieldWithAffixes(
                 controller: hydrationController,
-                prefixText: 'Hydration',
+                prefixText: 'Hydration level',
                 suffixText: '%',
               ),
             ],
@@ -145,7 +151,7 @@ class _HomePageState extends State<HomePage> {
             children: <FullWidthTextFieldWithAffixes>[
               FullWidthTextFieldWithAffixes(
                 controller: saltController,
-                prefixText: 'Salt',
+                prefixText: 'Salt level',
                 suffixText: '%',
               ),
             ],
@@ -154,7 +160,7 @@ class _HomePageState extends State<HomePage> {
             children: <FullWidthTextFieldWithAffixes>[
               FullWidthTextFieldWithAffixes(
                 controller: temperatureController,
-                prefixText: 'Temperature',
+                prefixText: 'Ambient temperature',
                 suffixText: 'ºC',
               ),
             ],
@@ -183,9 +189,15 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           FullWidthContainerWithLabelAndValue(
-              label: 'Inoculation', value: '$_inoculation%'),
+              label: 'Inoculation',
+              value: '$_inoculation%',
+              additionalInfoText:
+                  'Inoculation measures the ratio between the levain and the total flour weight. The higher the value the stronger the fermentation. This value is directly affected by ambient temperature: a colder fermentation environment will require more levain to achieve the best results.'),
           FullWidthContainerWithLabelAndValue(
-              label: 'Bulk rise', value: '$_bulkRise%'),
+              label: 'Bulk rise',
+              value: '$_bulkRise%',
+              additionalInfoText:
+                  'This value indicates how much should the dough have risen, from the moment of mixing the levain, to consider the bulk fermentation phase completed. It is directly affected by the ambient temperature, as in a warmer environment the dough will need to rise less to be considered ready for the shaping phase.'),
         ],
       )),
     );

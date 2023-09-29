@@ -5,17 +5,18 @@ class FullWidthContainerWithLabelAndValue extends StatelessWidget {
     super.key,
     required this.label,
     required this.value,
+    this.additionalInfoText,
   });
 
   final String label;
   final String value;
+  final String? additionalInfoText;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 47,
       decoration: BoxDecoration(
-        // color: Colors.amber,
         border: Border(
           bottom: BorderSide(
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -32,15 +33,57 @@ class FullWidthContainerWithLabelAndValue extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
           ),
-          Expanded(
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.bodyLarge,
-              textAlign: TextAlign.end,
-            ),
+          if (additionalInfoText != null && additionalInfoText!.isNotEmpty)
+            Expanded(
+                flex: 0,
+                child: InfoButton(
+                  text: additionalInfoText!,
+                )),
+          Text(
+            value,
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.end,
           ),
         ],
       ),
+    );
+  }
+}
+
+class InfoButton extends StatelessWidget {
+  const InfoButton({
+    super.key,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => {
+        showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return SizedBox(
+              height: 200,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: Text(text)),
+                  ],
+                ),
+              ),
+            );
+          },
+        )
+      },
+      child:
+          Icon(Icons.info, color: Theme.of(context).colorScheme.inversePrimary),
     );
   }
 }
