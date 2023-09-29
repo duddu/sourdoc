@@ -4,35 +4,35 @@ import 'package:sourdoc/widgets/full_width_header_with_padding.dart';
 import 'package:sourdoc/widgets/full_width_text_field_with_affixes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Sourdoc());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Sourdoc extends StatelessWidget {
+  const Sourdoc({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Sourdoc',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Sourdoc'),
+      home: const HomePage(title: 'Sourdoc'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   double _inoculation = 0;
   double _bulkRise = 0;
   double _flour = 0;
