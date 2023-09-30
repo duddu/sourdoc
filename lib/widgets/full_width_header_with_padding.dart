@@ -4,7 +4,7 @@ class FullWidthHeaderWithPadding extends StatelessWidget {
   const FullWidthHeaderWithPadding({
     super.key,
     required this.text,
-    this.paddingTop = 30,
+    this.paddingTop = 25,
   });
 
   final String text;

@@ -10,7 +10,7 @@ void main() {
 class Sourdoc extends StatelessWidget {
   const Sourdoc({super.key});
 
-  final String _title = 'Sourdoc 🧑‍🍳';
+  final String _title = 'Sourdoc';
 
   @override
   Widget build(BuildContext context) {
@@ -118,87 +118,109 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(widget.title, style: const TextStyle(color: Colors.white)),
+          const Padding(
+              padding: EdgeInsets.only(left: 5),
+              child: Icon(
+                Icons.calculate_rounded,
+                color: Colors.white,
+              ))
+        ]),
       ),
       body: Center(
           child: ListView(
-        padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
+        padding: const EdgeInsets.only(bottom: 30),
         children: [
-          const Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: Text(
-                'Edit the following four parameters, the ingredients and fermentation values will update accordingly.',
-                textAlign: TextAlign.center,
-              )),
-          Row(
-            children: <FullWidthTextFieldWithAffixes>[
-              FullWidthTextFieldWithAffixes(
-                controller: totalWeightController,
-                prefixText: 'Target bread weight',
-                suffixText: 'g',
-              ),
-            ],
-          ),
-          Row(
-            children: <FullWidthTextFieldWithAffixes>[
-              FullWidthTextFieldWithAffixes(
-                controller: hydrationController,
-                prefixText: 'Hydration level',
-                suffixText: '%',
-              ),
-            ],
-          ),
-          Row(
-            children: <FullWidthTextFieldWithAffixes>[
-              FullWidthTextFieldWithAffixes(
-                controller: saltController,
-                prefixText: 'Salt level',
-                suffixText: '%',
-              ),
-            ],
-          ),
-          Row(
-            children: <FullWidthTextFieldWithAffixes>[
-              FullWidthTextFieldWithAffixes(
-                controller: temperatureController,
-                prefixText: 'Ambient temperature',
-                suffixText: 'ºC',
-              ),
-            ],
-          ),
-          const Row(
-            children: <FullWidthHeaderWithPadding>[
-              FullWidthHeaderWithPadding(
-                text: 'Ingredients',
-              )
-            ],
-          ),
-          FullWidthContainerWithLabelAndValue(
-              label: 'Flour', value: '${_flour.toStringAsFixed(1)}g'),
-          FullWidthContainerWithLabelAndValue(
-              label: 'Water', value: '${_water.toStringAsFixed(1)}g'),
-          FullWidthContainerWithLabelAndValue(
-              label: 'Levain', value: '${_levain.toStringAsFixed(1)}g'),
-          FullWidthContainerWithLabelAndValue(
-              label: 'Salt', value: '${_salt.toStringAsFixed(1)}g'),
-          const Row(
-            children: <FullWidthHeaderWithPadding>[
-              FullWidthHeaderWithPadding(
-                text: 'Fermentation',
-              )
-            ],
-          ),
-          FullWidthContainerWithLabelAndValue(
-              label: 'Inoculation',
-              value: '$_inoculation%',
-              additionalInfoText:
-                  'Inoculation measures the ratio between the levain and the total flour weight. The higher the value the stronger the fermentation. This value is directly affected by ambient temperature: a colder fermentation environment will require more levain to achieve the best results.'),
-          FullWidthContainerWithLabelAndValue(
-              label: 'Bulk rise',
-              value: '$_bulkRise%',
-              additionalInfoText:
-                  'This value indicates how much should the dough have risen, from the moment of mixing the levain, to consider the bulk fermentation phase completed. It is directly affected by the ambient temperature, as in a warmer environment the dough will need to rise less to be considered ready for the shaping phase.'),
+          Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary.withAlpha(20),
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 1, color: Colors.grey.shade300))),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 0, 25, 14),
+                  child: Column(children: [
+                    const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 12, 0, 10),
+                        child: Text(
+                          'Edit the following four parameters, the ingredients and fermentation values will update accordingly.',
+                          textAlign: TextAlign.center,
+                        )),
+                    Row(
+                      children: <FullWidthTextFieldWithAffixes>[
+                        FullWidthTextFieldWithAffixes(
+                          controller: totalWeightController,
+                          prefixText: 'Target bread weight',
+                          suffixText: 'g',
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <FullWidthTextFieldWithAffixes>[
+                        FullWidthTextFieldWithAffixes(
+                          controller: hydrationController,
+                          prefixText: 'Hydration level',
+                          suffixText: '%',
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <FullWidthTextFieldWithAffixes>[
+                        FullWidthTextFieldWithAffixes(
+                          controller: saltController,
+                          prefixText: 'Salt level',
+                          suffixText: '%',
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <FullWidthTextFieldWithAffixes>[
+                        FullWidthTextFieldWithAffixes(
+                          controller: temperatureController,
+                          prefixText: 'Ambient temperature',
+                          suffixText: 'ºC',
+                        ),
+                      ],
+                    )
+                  ]))),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+              child: Column(children: [
+                const Row(
+                  children: <FullWidthHeaderWithPadding>[
+                    FullWidthHeaderWithPadding(
+                      text: 'Ingredients',
+                    )
+                  ],
+                ),
+                FullWidthContainerWithLabelAndValue(
+                    label: 'Flour', value: '${_flour.toStringAsFixed(1)}g'),
+                FullWidthContainerWithLabelAndValue(
+                    label: 'Water', value: '${_water.toStringAsFixed(1)}g'),
+                FullWidthContainerWithLabelAndValue(
+                    label: 'Levain', value: '${_levain.toStringAsFixed(1)}g'),
+                FullWidthContainerWithLabelAndValue(
+                    label: 'Salt', value: '${_salt.toStringAsFixed(1)}g'),
+                const Row(
+                  children: <FullWidthHeaderWithPadding>[
+                    FullWidthHeaderWithPadding(
+                      text: 'Fermentation',
+                    )
+                  ],
+                ),
+                FullWidthContainerWithLabelAndValue(
+                    label: 'Inoculation',
+                    value: '$_inoculation%',
+                    additionalInfoText:
+                        'Inoculation measures the ratio between the levain and the total flour weight. The higher the value the stronger the fermentation. This value is directly affected by ambient temperature: a colder fermentation environment will require more levain to achieve the best results.'),
+                FullWidthContainerWithLabelAndValue(
+                    label: 'Bulk rise',
+                    value: '$_bulkRise%',
+                    additionalInfoText:
+                        'This value indicates how much should the dough have risen, from the moment of mixing the levain, to consider the bulk fermentation phase completed. It is directly affected by the ambient temperature, as in a warmer environment the dough will need to rise less to be considered ready for the shaping phase.'),
+              ]))
         ],
       )),
     );
