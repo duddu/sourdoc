@@ -1,0 +1,15 @@
+name: Test
+on:
+    workflow_dispatch:
+    push:
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: subosito/flutter-action@v2
+              with:
+                flutter-version: '3.13.5'
+                channel: 'stable'
+            - run: flutter doctor
+            - uses: actions/checkout@v3
+            - run: flutter test --coverage -r github

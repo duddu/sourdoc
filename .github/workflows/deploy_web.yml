@@ -1,4 +1,4 @@
-name: Deploy to web
+name: Build and deploy to web
 on:
     workflow_dispatch:
     push:
@@ -15,7 +15,7 @@ jobs:
               with:
                 flutter-version: '3.13.5'
                 channel: 'stable'
-            - run: flutter doctor -v
+            - run: flutter doctor
             - uses: actions/checkout@v3
             - run: flutter pub get
             - run: flutter build -v web --release --base-href=/sourdoc/

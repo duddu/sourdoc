@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sourdoc/methods/get_fermentation_values.dart';
+import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/widgets/full_width_container_with_label_and_value.dart';
 import 'package:sourdoc/widgets/full_width_header_with_padding.dart';
 import 'package:sourdoc/widgets/full_width_text_field_with_affixes.dart';
@@ -50,16 +52,8 @@ class _HomePageState extends State<HomePage> {
   void _updateFermentationValues() {
     final temperature = double.parse(temperatureController.text);
 
-    _inoculation = 20 + 21 - temperature;
-    if (temperature > 20) {
-      if (temperature > 25) {
-        _bulkRise = 25;
-      } else {
-        _bulkRise = 50;
-      }
-    } else {
-      _bulkRise = 100;
-    }
+    _inoculation = getInoculationValue(temperature);
+    _bulkRise = getBulkRiseValue(temperature);
   }
 
   void _updateFermentationState() {
@@ -70,15 +64,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _updateIngredientsValues() {
-    final hydrationPercent = double.parse(hydrationController.text) / 100;
-    final saltPercent = double.parse(saltController.text) / 100;
-    final inoculationPercent = _inoculation / 100;
+    final totalWeight = double.parse(totalWeightController.text);
+    final hydration = double.parse(hydrationController.text);
+    final saltLevel = double.parse(saltController.text);
 
-    _flour = double.parse(totalWeightController.text) /
-        (1 + hydrationPercent + saltPercent + inoculationPercent);
-    _water = _flour * hydrationPercent;
-    _levain = _flour * inoculationPercent;
-    _salt = _flour * saltPercent;
+    _flour = getFlourValue(totalWeight, hydration, saltLevel, _inoculation);
+    _water = getNonFlourIngredientValue(_flour, hydration);
+    _levain = getNonFlourIngredientValue(_flour, _inoculation);
+    _salt = getNonFlourIngredientValue(_flour, saltLevel);
   }
 
   void _updateIngredientsState() {
