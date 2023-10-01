@@ -7,18 +7,20 @@ on:
 permissions:
     contents: write
 jobs:
+    trigger-test:
+        uses: ./.github/workflows/test.yml
     build-and-deploy:
         concurrency: deploy-web-${{ github.ref }}
         runs-on: ubuntu-latest
+        needs: trigger-test
         steps:
             - uses: subosito/flutter-action@v2
               with:
-                flutter-version: '3.13.5'
-                channel: 'stable'
-            - run: flutter doctor
-            - uses: actions/checkout@v3
+                flutter-version: ${{ vars.FLUTTER_VERSION }}
+                channel: ${{ vars.FLUTTER_CHANNEL }}
+            - uses: actions/checkout@v4
             - run: flutter pub get
-            - run: flutter build -v web --release --base-href=/sourdoc/
+            - run: flutter build -v web --release --base-href=/${{ github.event.repository.name }}/
             - uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: build/web
