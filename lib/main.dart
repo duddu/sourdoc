@@ -49,8 +49,11 @@ class _HomePageState extends State<HomePage> {
   final saltController = TextEditingController();
   final temperatureController = TextEditingController();
 
+  double _parseValue(TextEditingController controller) =>
+      double.parse(controller.value.text);
+
   void _updateFermentationValues() {
-    final temperature = double.parse(temperatureController.text);
+    final temperature = _parseValue(temperatureController);
 
     _inoculation = getInoculationValue(temperature);
     _bulkRise = getBulkRiseValue(temperature);
@@ -64,9 +67,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _updateIngredientsValues() {
-    final totalWeight = double.parse(totalWeightController.text);
-    final hydration = double.parse(hydrationController.text);
-    final saltLevel = double.parse(saltController.text);
+    final totalWeight = _parseValue(totalWeightController);
+    final hydration = _parseValue(hydrationController);
+    final saltLevel = _parseValue(saltController);
 
     _flour = getFlourValue(totalWeight, hydration, saltLevel, _inoculation);
     _water = getNonFlourIngredientValue(_flour, hydration);
