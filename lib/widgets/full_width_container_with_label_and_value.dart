@@ -60,7 +60,7 @@ class InfoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return IconButton(
       onPressed: () => {
         showModalBottomSheet<void>(
           context: context,
@@ -83,7 +83,7 @@ class InfoButton extends StatelessWidget {
           },
         )
       },
-      child:
+      icon:
           Icon(Icons.info, color: Theme.of(context).colorScheme.inversePrimary),
     );
   }
