@@ -64,16 +64,17 @@ class InfoButton extends StatelessWidget {
       onPressed: () => {
         showModalBottomSheet<void>(
           context: context,
+          showDragHandle: true,
           builder: (BuildContext context) {
             return SizedBox(
-              height: 200,
+              height: 180,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                        padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                        padding: const EdgeInsets.fromLTRB(25, 0, 25, 20),
                         child: Text(text)),
                   ],
                 ),
