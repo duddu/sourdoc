@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sourdoc/constants/style.dart' as style;
 
 class FullWidthContainerWithLabelAndValue extends StatelessWidget {
   const FullWidthContainerWithLabelAndValue({
@@ -74,7 +75,11 @@ class InfoButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                        padding: const EdgeInsets.fromLTRB(25, 0, 25, 20),
+                        padding: const EdgeInsets.fromLTRB(
+                            style.viewLateralPadding,
+                            0,
+                            style.viewLateralPadding,
+                            20),
                         child: Text(text)),
                   ],
                 ),

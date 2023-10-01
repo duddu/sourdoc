@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sourdoc/constants/defaults.dart' as defaults;
+import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/widgets/full_width_container_with_label_and_value.dart';
@@ -91,10 +94,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    totalWeightController.text = '700';
-    hydrationController.text = '70';
-    saltController.text = '2';
-    temperatureController.text = '22';
+    totalWeightController.text = defaults.totalWeight;
+    hydrationController.text = defaults.hydration;
+    saltController.text = defaults.saltLevel;
+    temperatureController.text = defaults.temperature;
 
     _updateFermentationValues();
     _updateIngredientsValues();
@@ -140,20 +143,21 @@ class _HomePageState extends State<HomePage> {
                       bottom:
                           BorderSide(width: 1, color: Colors.grey.shade300))),
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 0, 25, 14),
+                  padding: const EdgeInsets.fromLTRB(style.viewLateralPadding,
+                      0, style.viewLateralPadding, 14),
                   child: Column(children: [
                     const Padding(
                         padding: EdgeInsets.fromLTRB(0, 12, 0, 10),
                         child: Text(
-                          'Edit the following four parameters, the ingredients and fermentation values will update accordingly.',
+                          locale.formIntro,
                           textAlign: TextAlign.start,
                         )),
                     Row(
                       children: <FullWidthTextFieldWithAffixes>[
                         FullWidthTextFieldWithAffixes(
                           controller: totalWeightController,
-                          prefixText: 'Target bread weight',
-                          suffixText: 'g',
+                          prefixText: locale.inputPrefixWeight,
+                          suffixText: locale.unitGrams,
                         ),
                       ],
                     ),
@@ -161,8 +165,8 @@ class _HomePageState extends State<HomePage> {
                       children: <FullWidthTextFieldWithAffixes>[
                         FullWidthTextFieldWithAffixes(
                           controller: hydrationController,
-                          prefixText: 'Hydration level',
-                          suffixText: '%',
+                          prefixText: locale.inputPrefixHydration,
+                          suffixText: locale.unitPercent,
                         ),
                       ],
                     ),
@@ -170,8 +174,8 @@ class _HomePageState extends State<HomePage> {
                       children: <FullWidthTextFieldWithAffixes>[
                         FullWidthTextFieldWithAffixes(
                           controller: saltController,
-                          prefixText: 'Salt level',
-                          suffixText: '%',
+                          prefixText: locale.inputPrefixSalt,
+                          suffixText: locale.unitPercent,
                         ),
                       ],
                     ),
@@ -179,47 +183,50 @@ class _HomePageState extends State<HomePage> {
                       children: <FullWidthTextFieldWithAffixes>[
                         FullWidthTextFieldWithAffixes(
                           controller: temperatureController,
-                          prefixText: 'Ambient temperature',
-                          suffixText: 'ºC',
+                          prefixText: locale.inputPrefixTemperature,
+                          suffixText: locale.unitDegreesCelsius,
                         ),
                       ],
                     )
                   ]))),
           Padding(
-              padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+              padding: const EdgeInsets.fromLTRB(
+                  style.viewLateralPadding, 0, style.viewLateralPadding, 0),
               child: Column(children: [
                 const Row(
                   children: <FullWidthHeaderWithPadding>[
                     FullWidthHeaderWithPadding(
-                      text: 'Ingredients',
+                      text: locale.headerIngredients,
                     )
                   ],
                 ),
                 FullWidthContainerWithLabelAndValue(
-                    label: 'Flour', value: '${_flour.toStringAsFixed(1)}g'),
+                    label: locale.labelFlour,
+                    value: '${_flour.toStringAsFixed(1)}${locale.unitGrams}'),
                 FullWidthContainerWithLabelAndValue(
-                    label: 'Water', value: '${_water.toStringAsFixed(1)}g'),
+                    label: locale.labelWater,
+                    value: '${_water.toStringAsFixed(1)}${locale.unitGrams}'),
                 FullWidthContainerWithLabelAndValue(
-                    label: 'Levain', value: '${_levain.toStringAsFixed(1)}g'),
+                    label: locale.labelLevain,
+                    value: '${_levain.toStringAsFixed(1)}${locale.unitGrams}'),
                 FullWidthContainerWithLabelAndValue(
-                    label: 'Salt', value: '${_salt.toStringAsFixed(1)}g'),
+                    label: locale.labelSalt,
+                    value: '${_salt.toStringAsFixed(1)}${locale.unitGrams}'),
                 const Row(
                   children: <FullWidthHeaderWithPadding>[
                     FullWidthHeaderWithPadding(
-                      text: 'Fermentation',
+                      text: locale.headerFermentation,
                     )
                   ],
                 ),
                 FullWidthContainerWithLabelAndValue(
-                    label: 'Inoculation',
-                    value: '$_inoculation%',
-                    additionalInfoText:
-                        'Inoculation measures the ratio between the levain and the total flour weight. The higher the value the stronger the fermentation. This value is directly affected by ambient temperature: a colder fermentation environment will require more levain to achieve the best results.'),
+                    label: locale.labelInoculation,
+                    value: '$_inoculation${locale.unitPercent}',
+                    additionalInfoText: locale.additionalInfoInoculation),
                 FullWidthContainerWithLabelAndValue(
-                    label: 'Bulk rise',
-                    value: '$_bulkRise%',
-                    additionalInfoText:
-                        'This value indicates how much should the dough have risen, from the moment of mixing the levain, to consider the bulk fermentation phase completed. It is directly affected by the ambient temperature, as in a warmer environment the dough will need to rise less to be considered ready for the shaping phase.'),
+                    label: locale.labelBulkRise,
+                    value: '$_bulkRise${locale.unitPercent}',
+                    additionalInfoText: locale.additionalInfoBulkRise),
               ]))
         ],
       )),
