@@ -49,8 +49,12 @@ class _HomePageState extends State<HomePage> {
   final saltController = TextEditingController();
   final temperatureController = TextEditingController();
 
-  double _parseValue(TextEditingController controller) =>
-      double.parse(controller.value.text);
+  double _parseValue(TextEditingController controller) {
+    if (controller.value.text.isEmpty) {
+      return 0;
+    }
+    return double.parse(controller.value.text);
+  }
 
   void _updateFermentationValues() {
     final temperature = _parseValue(temperatureController);
@@ -127,7 +131,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
           child: ListView(
-        padding: const EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.only(bottom: 90),
         children: [
           Container(
               decoration: BoxDecoration(

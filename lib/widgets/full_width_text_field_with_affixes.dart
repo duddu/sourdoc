@@ -13,6 +13,17 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
   final String prefixText;
   final String suffixText;
 
+  void _onChanged(String text) {
+    if (text.isEmpty) {
+      controller.text = '0';
+    }
+  }
+
+  void _onTap() {
+    controller.selection = TextSelection(
+        baseOffset: 0, extentOffset: controller.value.text.length);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -22,6 +33,7 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
               controller: controller,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
+                isDense: true,
                 prefixText: '$prefixText:',
                 suffixText: suffixText,
               ),
@@ -29,10 +41,8 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
               keyboardType: TextInputType.number,
               textAlign: TextAlign.end,
               textInputAction: TextInputAction.done,
-              onTap: () {
-                controller.selection = TextSelection(
-                    baseOffset: 0, extentOffset: controller.value.text.length);
-              },
+              onTap: _onTap,
+              onChanged: _onChanged,
             )));
   }
 }
