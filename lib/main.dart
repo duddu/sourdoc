@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.fromLTRB(0, 12, 0, 10),
                         child: Text(
                           'Edit the following four parameters, the ingredients and fermentation values will update accordingly.',
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                         )),
                     Row(
                       children: <FullWidthTextFieldWithAffixes>[

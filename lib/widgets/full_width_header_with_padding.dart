@@ -19,7 +19,7 @@ class FullWidthHeaderWithPadding extends StatelessWidget {
         text,
         style: TextStyle(
             fontSize: 20, color: Theme.of(context).colorScheme.primary),
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
       ),
     ));
   }
