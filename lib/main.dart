@@ -196,7 +196,8 @@ class _HomePageState extends State<HomePage> {
                                             fontSize: 16,
                                             color: Colors.grey.shade800)),
                                     UnitChoice(
-                                        unitList: temperatureUnitList,
+                                        unitList:
+                                            temperatureUnitMap.values.toList(),
                                         onSelectionChanged:
                                             _updateTemperatureUnit),
                                   ]),

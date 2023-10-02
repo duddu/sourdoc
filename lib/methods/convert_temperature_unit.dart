@@ -7,18 +7,11 @@ const Map<TemperatureUnit, String> temperatureUnitMap = {
   TemperatureUnit.farenheit: locale.unitDegreesFarenheit
 };
 
-final List<String> temperatureUnitList = [
-  temperatureUnitMap[TemperatureUnit.celsius]!,
-  temperatureUnitMap[TemperatureUnit.farenheit]!
-];
+final Map<TemperatureUnit, double Function(double)>
+    _temperatureToUnitConversionMap = {
+  TemperatureUnit.celsius: (double temperature) => 5 / 9 * (temperature - 32),
+  TemperatureUnit.farenheit: (double temperature) => 9 / 5 * temperature + 32,
+};
 
-double convertTemperatureUnit(double temperature, TemperatureUnit toUnit) {
-  switch (toUnit) {
-    case TemperatureUnit.farenheit:
-      return 9 / 5 * temperature + 32;
-    case TemperatureUnit.celsius:
-      return 5 / 9 * (temperature - 32);
-    default:
-      return 0;
-  }
-}
+double convertTemperatureUnit(double temperature, TemperatureUnit toUnit) =>
+    _temperatureToUnitConversionMap[toUnit]!(temperature);
