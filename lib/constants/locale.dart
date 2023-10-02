@@ -1,6 +1,6 @@
 const String title = 'Sourdoc';
 const String formIntro =
-    'Change these settings, and the ingredients and fermentation values will update for you.';
+    'Change these settings, and the ingredients and fermentation values will automatically update.';
 const String headerIngredients = 'Ingredients';
 const String headerFermentation = 'Fermentation';
 const String inputPrefixWeight = 'Target bread weight';
