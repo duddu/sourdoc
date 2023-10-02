@@ -1,3 +1,4 @@
+const String title = 'Sourdoc';
 const String formIntro =
     'Change these settings, and the ingredients and fermentation values will update for you.';
 const String headerIngredients = 'Ingredients';

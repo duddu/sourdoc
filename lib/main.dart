@@ -17,17 +17,15 @@ void main() {
 class Sourdoc extends StatelessWidget {
   const Sourdoc({super.key});
 
-  final String _title = 'Sourdoc';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
+      title: locale.title,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: HomePage(title: _title),
+      home: const HomePage(title: locale.title),
     );
   }
 }
