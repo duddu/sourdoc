@@ -5,7 +5,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Sourdoc">
 
   <meta name="theme-color" content="#3F51B5"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,7 +19,7 @@
   <link rel="manifest" href="manifest.json">
 
   <script>
-    const serviceWorkerVersion = "594143171";
+    const serviceWorkerVersion = "3189391117";
   </script>
   <script src="flutter.js" defer></script>
 </head>
@@ -32,7 +32,7 @@
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+          engineInitializer.initializeEngine({renderer: "html"}).then(function(appRunner) {
             appRunner.runApp();
           });
         }
