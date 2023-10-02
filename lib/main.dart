@@ -27,7 +27,7 @@ class Sourdoc extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const HomePage(title: _title),
+      home: HomePage(title: _title),
     );
   }
 }
