@@ -1,5 +1,5 @@
 const String formIntro =
-    'Edit the following four parameters, the ingredients and fermentation values will update accordingly.';
+    'Change these settings, and the ingredients and fermentation values will update for you.';
 const String headerIngredients = 'Ingredients';
 const String headerFermentation = 'Fermentation';
 const String inputPrefixWeight = 'Target bread weight';
