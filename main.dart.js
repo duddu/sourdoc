@@ -73294,20 +73294,17 @@ r=s.at
 r.N$=q
 r.L$=0
 s.aP()},
-K(a){var s,r,q,p,o,n,m=this,l=null,k=A.N(a),j=t.F,i=A.kH(A.a([A.f0(m.a.c,l,l,l,B.Ne,l,l),B.Hp],j),B.au,B.rf,B.aY),h=A.N(a).ax.b
-h=A.K(20,h.gl()>>>16&255,h.gl()>>>8&255,h.gl()&255)
-s=A.kH(A.a([B.ON,new A.q7($.aoF(),m.ga6j(),l,t.V0)],j),B.au,B.FO,B.aY)
-r=t.r7
-q=A.kH(A.a([new A.iC(m.z,"Target bread weight","g",l)],r),B.au,B.aK,B.aY)
-p=A.kH(A.a([new A.iC(m.Q,"Hydration level","%",l)],r),B.au,B.aK,B.aY)
-o=A.kH(A.a([new A.iC(m.as,"Salt level","%",l)],r),B.au,B.aK,B.aY)
-n=B.rg.h(0,m.y)
-n.toString
-j=A.a([A.oe(l,new A.c8(B.BF,A.CO(A.a([B.Ho,new A.c8(B.Bp,s,l),q,p,o,A.kH(A.a([new A.iC(m.at,"Ambient temperature",n,l)],r),B.au,B.aK,B.aY)],j),B.au,B.aK,B.aY),l),B.A,l,new A.cA(h,l,new A.cF(B.p,B.p,new A.aC(B.l6,1,B.C,-1),B.p),l,l,l,B.aG),l,l,l,l),new A.c8(B.BE,A.CO(A.a([B.Ix,new A.iB("Flour",B.c.X(m.f,1)+"g",l,l),new A.iB("Water",B.c.X(m.r,1)+"g",l,l),new A.iB("Levain",B.c.X(m.w,1)+"g",l,l),new A.iB("Salt",B.c.X(m.x,1)+"g",l,l),B.Iy,new A.iB("Inoculation",B.c.X(m.d,0)+"%","Inoculation measures the ratio between the levain and the total flour weight. The higher the value the stronger the fermentation. This value is directly affected by ambient temperature: a colder fermentation environment will require more levain to achieve the best results.",l),new A.iB("Bulk rise",""+m.e+"%","This value indicates how much should the dough have risen, from the moment of mixing the levain, to consider the bulk fermentation phase completed. It is directly affected by the ambient temperature, as in a warmer environment the dough will need to rise less to be considered ready for the shaping phase.",l)],j),B.au,B.aK,B.aY),l)],j)
-h=A.av([null,0],t.LO,t.S)
+K(a){var s,r,q,p=this,o=null,n=A.N(a),m=t.F,l=A.kH(A.a([A.f0(p.a.c,o,o,o,B.Ne,o,o),B.Hp],m),B.au,B.rf,B.aY),k=A.N(a).ax.b
+k=A.K(20,k.gl()>>>16&255,k.gl()>>>8&255,k.gl()&255)
+s=A.kH(A.a([B.ON,new A.q7($.aoF(),p.ga6j(),o,t.V0)],m),B.au,B.FO,B.aY)
+r=B.rg.h(0,p.y)
+r.toString
+q=t.r7
+m=A.a([A.oe(o,new A.c8(B.BF,A.CO(A.a([B.Ho,new A.c8(B.Bp,s,o),A.kH(A.a([new A.iC(p.at,"Ambient temperature",r,o)],q),B.au,B.aK,B.aY),A.kH(A.a([new A.iC(p.z,"Target bread weight","g",o)],q),B.au,B.aK,B.aY),A.kH(A.a([new A.iC(p.Q,"Hydration level","%",o)],q),B.au,B.aK,B.aY),A.kH(A.a([new A.iC(p.as,"Salt level","%",o)],q),B.au,B.aK,B.aY)],m),B.au,B.aK,B.aY),o),B.A,o,new A.cA(k,o,new A.cF(B.p,B.p,new A.aC(B.l6,1,B.C,-1),B.p),o,o,o,B.aG),o,o,o,o),new A.c8(B.BE,A.CO(A.a([B.Ix,new A.iB("Flour",B.c.X(p.f,1)+"g",o,o),new A.iB("Water",B.c.X(p.r,1)+"g",o,o),new A.iB("Levain",B.c.X(p.w,1)+"g",o,o),new A.iB("Salt",B.c.X(p.x,1)+"g",o,o),B.Iy,new A.iB("Inoculation",B.c.X(p.d,0)+"%","Inoculation measures the ratio between the levain and the total flour weight. The higher the value the stronger the fermentation. This value is directly affected by ambient temperature: a colder fermentation environment will require more levain to achieve the best results.",o),new A.iB("Bulk rise",""+p.e+"%","This value indicates how much should the dough have risen, from the moment of mixing the levain, to consider the bulk fermentation phase completed. It is directly affected by the ambient temperature, as in a warmer environment the dough will need to rise less to be considered ready for the shaping phase.",o)],m),B.au,B.aK,B.aY),o)],m)
+k=A.av([null,0],t.LO,t.S)
 s=!0
-s=s?B.y1:l
-return new A.wc(new A.rA(i,k.ax.b,new A.Mw(l,l,1/0,56),l),A.o0(new A.EI(new A.a20(!0,!0,!0,j,h),B.Bq,B.bi,!1,l,l,s,!1,l,2,B.aE,B.IH,l,B.an,l),l,l),l)}}
+s=s?B.y1:o
+return new A.wc(new A.rA(l,n.ax.b,new A.Mw(o,o,1/0,56),o),A.o0(new A.EI(new A.a20(!0,!0,!0,m,k),B.Bq,B.bi,!1,o,o,s,!1,o,2,B.aE,B.IH,o,B.an,o),o,o),o)}}
 A.a70.prototype={
 $0(){var s=this.a
 s.L_()
