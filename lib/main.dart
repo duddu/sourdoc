@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sourdoc/constants/defaults.dart' as defaults;
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/style.dart' as style;
+import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/widgets/full_width_container_with_label_and_value.dart';
 import 'package:sourdoc/widgets/full_width_header_with_padding.dart';
 import 'package:sourdoc/widgets/full_width_text_field_with_affixes.dart';
+import 'package:sourdoc/widgets/unit_choice_segmented_button.dart';
 
 void main() {
   runApp(const Sourdoc());
@@ -46,6 +48,7 @@ class _HomePageState extends State<HomePage> {
   double _water = 0;
   double _levain = 0;
   double _salt = 0;
+  TemperatureUnit _temperatureUnit = TemperatureUnit.celsius;
 
   final totalWeightController = TextEditingController();
   final hydrationController = TextEditingController();
@@ -62,8 +65,8 @@ class _HomePageState extends State<HomePage> {
   void _updateFermentationValues() {
     final temperature = _parseValue(temperatureController);
 
-    _inoculation = getInoculationValue(temperature);
-    _bulkRise = getBulkRiseValue(temperature);
+    _inoculation = getInoculationValue(temperature, _temperatureUnit);
+    _bulkRise = getBulkRiseValue(temperature, _temperatureUnit);
   }
 
   void _updateFermentationState() {
@@ -90,6 +93,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _updateTemperatureUnit(selection) {
+    setState(() {
+      _temperatureUnit = temperatureUnitMap.entries
+          .firstWhere((element) => element.value == selection)
+          .key;
+      temperatureController.text = convertTemperatureUnit(
+              _parseValue(temperatureController), _temperatureUnit)
+          .toStringAsFixed(0);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -97,7 +111,7 @@ class _HomePageState extends State<HomePage> {
     totalWeightController.text = defaults.totalWeight;
     hydrationController.text = defaults.hydration;
     saltController.text = defaults.saltLevel;
-    temperatureController.text = defaults.temperature;
+    temperatureController.text = defaults.temperatureMap[_temperatureUnit]!;
 
     _updateFermentationValues();
     _updateIngredientsValues();
@@ -152,6 +166,29 @@ class _HomePageState extends State<HomePage> {
                           locale.formIntro,
                           textAlign: TextAlign.start,
                         )),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('${locale.labelTemperatureUnit}:',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.grey.shade800)),
+                            UnitChoice(
+                                unitList: temperatureUnitList,
+                                onSelectionChanged: _updateTemperatureUnit),
+                          ]),
+                    ),
+                    Row(
+                      children: <FullWidthTextFieldWithAffixes>[
+                        FullWidthTextFieldWithAffixes(
+                          controller: temperatureController,
+                          prefixText: locale.inputPrefixTemperature,
+                          suffixText: temperatureUnitMap[_temperatureUnit]!,
+                        ),
+                      ],
+                    ),
                     Row(
                       children: <FullWidthTextFieldWithAffixes>[
                         FullWidthTextFieldWithAffixes(
@@ -176,15 +213,6 @@ class _HomePageState extends State<HomePage> {
                           controller: saltController,
                           prefixText: locale.inputPrefixSalt,
                           suffixText: locale.unitPercent,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <FullWidthTextFieldWithAffixes>[
-                        FullWidthTextFieldWithAffixes(
-                          controller: temperatureController,
-                          prefixText: locale.inputPrefixTemperature,
-                          suffixText: locale.unitDegreesCelsius,
                         ),
                       ],
                     )
@@ -221,7 +249,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 FullWidthContainerWithLabelAndValue(
                     label: locale.labelInoculation,
-                    value: '$_inoculation${locale.unitPercent}',
+                    value:
+                        '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
                     additionalInfoText: locale.additionalInfoInoculation),
                 FullWidthContainerWithLabelAndValue(
                     label: locale.labelBulkRise,

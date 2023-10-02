@@ -35,7 +35,10 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
                 border: const OutlineInputBorder(),
                 isDense: true,
                 prefixText: '$prefixText:',
+                prefixStyle:
+                    TextStyle(fontSize: 16, color: Colors.grey.shade800),
                 suffixText: suffixText,
+                suffixStyle: const TextStyle(fontSize: 16, color: Colors.black),
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
