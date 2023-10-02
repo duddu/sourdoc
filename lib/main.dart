@@ -27,7 +27,7 @@ class Sourdoc extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: HomePage(title: _title),
+      home: const HomePage(title: _title),
     );
   }
 }
@@ -285,7 +285,8 @@ class _HomePageState extends State<HomePage> {
                                 locale.additionalInfoInoculation),
                         FullWidthContainerWithLabelAndValue(
                             label: locale.labelBulkRise,
-                            value: '$_bulkRise${locale.unitPercent}',
+                            value:
+                                '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
                             additionalInfoText: locale.additionalInfoBulkRise),
                       ]))
                 ],
