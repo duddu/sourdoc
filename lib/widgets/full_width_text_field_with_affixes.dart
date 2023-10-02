@@ -43,7 +43,8 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
               ],
-              keyboardType: TextInputType.number,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               textAlign: TextAlign.end,
               textInputAction: TextInputAction.done,
               onTap: _onTap,
