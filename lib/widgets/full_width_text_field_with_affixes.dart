@@ -37,7 +37,9 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
                 prefixText: '$prefixText:',
                 suffixText: suffixText,
               ),
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+              ],
               keyboardType: TextInputType.number,
               textAlign: TextAlign.end,
               textInputAction: TextInputAction.done,
