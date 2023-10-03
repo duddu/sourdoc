@@ -4,10 +4,12 @@ class UnitChoice<T extends Enum> extends StatefulWidget {
   const UnitChoice({
     super.key,
     required this.unitList,
+    required this.initialUnitValue,
     required this.onSelectionChanged,
   });
 
   final List<String> unitList;
+  final String initialUnitValue;
   final Function(String) onSelectionChanged;
 
   @override
@@ -19,7 +21,7 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
 
   @override
   void initState() {
-    unit = widget.unitList[0];
+    unit = widget.initialUnitValue;
     super.initState();
   }
 

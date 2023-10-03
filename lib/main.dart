@@ -5,6 +5,7 @@ import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
+import 'package:sourdoc/methods/persist_default_values.dart';
 import 'package:sourdoc/widgets/full_width_container_with_label_and_value.dart';
 import 'package:sourdoc/widgets/full_width_header_with_padding.dart';
 import 'package:sourdoc/widgets/full_width_text_field_with_affixes.dart';
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
   double _water = 0;
   double _levain = 0;
   double _salt = 0;
-  TemperatureUnit _temperatureUnit = TemperatureUnit.celsius;
+  TemperatureUnit _temperatureUnit = defaults.temperatureUnit;
 
   final totalWeightController = TextEditingController();
   final hydrationController = TextEditingController();
@@ -99,25 +100,58 @@ class _HomePageState extends State<HomePage> {
       temperatureController.text = convertTemperatureUnit(
               _parseValue(temperatureController), _temperatureUnit)
           .toStringAsFixed(0);
+      _storeTemperatureUnit();
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
+  void _storeTemperatureUnit() => storeDefaultValue(
+      temperatureUnitKey, temperatureUnitMap[_temperatureUnit]!);
 
-    totalWeightController.text = defaults.totalWeight;
-    hydrationController.text = defaults.hydration;
-    saltController.text = defaults.saltLevel;
-    temperatureController.text = defaults.temperatureMap[_temperatureUnit]!;
+  void _storeTemperatureValue() =>
+      storeDefaultValue(temperatureKey, temperatureController.text);
+
+  void _storeTotalWeightValue() =>
+      storeDefaultValue(totalWeightKey, totalWeightController.text);
+
+  void _storeHydrationValue() =>
+      storeDefaultValue(hydrationKey, hydrationController.text);
+
+  void _storeSaltLevelValue() =>
+      storeDefaultValue(saltLevelKey, saltController.text);
+
+  Future<void> _loadStoredValuesOrDefaults() async {
+    final String defaultTemperatureUnitValue = await getDefaultValue(
+        temperatureUnitKey, defaults.temperatureUnitValue);
+    _temperatureUnit = temperatureUnitMap.entries
+        .firstWhere((element) => element.value == defaultTemperatureUnitValue)
+        .key;
+    temperatureController.text = await getDefaultValue(
+        temperatureKey, defaults.temperatureMap[_temperatureUnit]!);
+    totalWeightController.text =
+        await getDefaultValue(totalWeightKey, defaults.totalWeight);
+    hydrationController.text =
+        await getDefaultValue(hydrationKey, defaults.hydration);
+    saltController.text =
+        await getDefaultValue(saltLevelKey, defaults.saltLevel);
 
     _updateFermentationValues();
     _updateIngredientsValues();
+  }
 
-    totalWeightController.addListener(_updateIngredientsState);
-    hydrationController.addListener(_updateIngredientsState);
-    saltController.addListener(_updateIngredientsState);
+  @override
+  initState() {
+    super.initState();
+
+    _loadStoredValuesOrDefaults();
+
     temperatureController.addListener(_updateFermentationState);
+    temperatureController.addListener(_storeTemperatureValue);
+    totalWeightController.addListener(_updateIngredientsState);
+    totalWeightController.addListener(_storeTotalWeightValue);
+    hydrationController.addListener(_updateIngredientsState);
+    hydrationController.addListener(_storeHydrationValue);
+    saltController.addListener(_updateIngredientsState);
+    saltController.addListener(_storeSaltLevelValue);
   }
 
   @override
@@ -196,6 +230,8 @@ class _HomePageState extends State<HomePage> {
                                     UnitChoice(
                                         unitList:
                                             temperatureUnitMap.values.toList(),
+                                        initialUnitValue: temperatureUnitMap[
+                                            _temperatureUnit]!,
                                         onSelectionChanged:
                                             _updateTemperatureUnit),
                                   ]),
