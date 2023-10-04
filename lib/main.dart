@@ -14,7 +14,7 @@ class Sourdoc extends StatelessWidget {
     return MaterialApp(
       title: locale.title,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const HomePage(title: locale.title),
