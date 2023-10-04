@@ -6,12 +6,12 @@ const totalWeightKey = 'totalWeight';
 const hydrationKey = 'hydration';
 const saltLevelKey = 'saltLevel';
 
-Future<String> getDefaultValue(String key, String defaultValue) async {
+Future<String> getInitialOrDefaultValue(String key, String defaultValue) async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getString(key) ?? defaultValue;
 }
 
-Future<void> storeDefaultValue(String key, String value) async {
+Future<bool> storeInitialValue(String key, String value) async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString(key, value);
+  return await prefs.setString(key, value);
 }

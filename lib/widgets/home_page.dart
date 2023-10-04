@@ -5,7 +5,7 @@ import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
-import 'package:sourdoc/methods/persist_default_values.dart';
+import 'package:sourdoc/methods/persist_initial_values.dart';
 import 'package:sourdoc/widgets/full_width_container_with_label_and_value.dart';
 import 'package:sourdoc/widgets/full_width_header_with_padding.dart';
 import 'package:sourdoc/widgets/full_width_text_field_with_affixes.dart';
@@ -84,35 +84,35 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _storeTemperatureUnit() => storeDefaultValue(
+  void _storeTemperatureUnit() => storeInitialValue(
       temperatureUnitKey, temperatureUnitMap[_temperatureUnit]!);
 
   void _storeTemperatureValue() =>
-      storeDefaultValue(temperatureKey, temperatureController.text);
+      storeInitialValue(temperatureKey, temperatureController.text);
 
   void _storeTotalWeightValue() =>
-      storeDefaultValue(totalWeightKey, totalWeightController.text);
+      storeInitialValue(totalWeightKey, totalWeightController.text);
 
   void _storeHydrationValue() =>
-      storeDefaultValue(hydrationKey, hydrationController.text);
+      storeInitialValue(hydrationKey, hydrationController.text);
 
   void _storeSaltLevelValue() =>
-      storeDefaultValue(saltLevelKey, saltController.text);
+      storeInitialValue(saltLevelKey, saltController.text);
 
-  Future<void> _loadStoredValuesOrDefaults() async {
-    final String defaultTemperatureUnitValue = await getDefaultValue(
+  Future<void> _loadInitialValues() async {
+    final String defaultTemperatureUnitValue = await getInitialOrDefaultValue(
         temperatureUnitKey, defaults.temperatureUnitValue);
     _temperatureUnit = temperatureUnitMap.entries
         .firstWhere((element) => element.value == defaultTemperatureUnitValue)
         .key;
-    temperatureController.text = await getDefaultValue(
+    temperatureController.text = await getInitialOrDefaultValue(
         temperatureKey, defaults.temperatureMap[_temperatureUnit]!);
     totalWeightController.text =
-        await getDefaultValue(totalWeightKey, defaults.totalWeight);
+        await getInitialOrDefaultValue(totalWeightKey, defaults.totalWeight);
     hydrationController.text =
-        await getDefaultValue(hydrationKey, defaults.hydration);
+        await getInitialOrDefaultValue(hydrationKey, defaults.hydration);
     saltController.text =
-        await getDefaultValue(saltLevelKey, defaults.saltLevel);
+        await getInitialOrDefaultValue(saltLevelKey, defaults.saltLevel);
 
     _updateFermentationValues();
     _updateIngredientsValues();
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
   initState() {
     super.initState();
 
-    _loadStoredValuesOrDefaults();
+    _loadInitialValues();
 
     temperatureController.addListener(_updateFermentationState);
     temperatureController.addListener(_storeTemperatureValue);
