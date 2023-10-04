@@ -20,7 +20,7 @@ jobs:
                 channel: ${{ vars.FLUTTER_CHANNEL }}
             - uses: actions/checkout@v4
             - run: flutter pub get
-            - run: flutter build -v web --release --base-href=/${{ github.event.repository.name }}/
+            - run: flutter build -v web --release
             - uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: build/web
