@@ -6,7 +6,8 @@
 
 The user provides ambient temperature, final bread desired weight, hydration and salt levels, and gets in return all the relevant data automatically calculated: all the ingredients quantities, the recommended inoculation level and how much should the dough rise during fermentation.
 
-![Home page screenshot](https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot.png)
+![Sourdoc sample screenshot 1](https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot_1.png)&nbsp;&nbsp;&nbsp;
+![Sourdoc sample screenshot 2](https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot_2.png)
 
 ### Notes about the calculation
 
