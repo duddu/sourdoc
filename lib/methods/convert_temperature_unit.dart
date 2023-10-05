@@ -2,9 +2,18 @@ import 'package:sourdoc/constants/locale.dart' as locale;
 
 enum TemperatureUnit { celsius, farenheit }
 
-const Map<TemperatureUnit, String> temperatureUnitMap = {
-  TemperatureUnit.celsius: locale.unitDegreesCelsius,
-  TemperatureUnit.farenheit: locale.unitDegreesFarenheit
+class TemperatureUnitDescriptor {
+  TemperatureUnitDescriptor({required this.unit, required this.description});
+
+  final String unit;
+  final String description;
+}
+
+final Map<TemperatureUnit, TemperatureUnitDescriptor> temperatureUnitMap = {
+  TemperatureUnit.celsius: TemperatureUnitDescriptor(
+      unit: locale.unitDegreesCelsius, description: locale.degreesCelsius),
+  TemperatureUnit.farenheit: TemperatureUnitDescriptor(
+      unit: locale.unitDegreesFarenheit, description: locale.degreesFarenheit)
 };
 
 final Map<TemperatureUnit, double Function(double)>

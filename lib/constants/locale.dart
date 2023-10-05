@@ -15,6 +15,8 @@ const String additionalInfoBulkRise =
     '''Indicates how much should the dough should rise, compared to its original volume at the moment of mixing the starter, in order to consider the bulk fermentation phase completed. Once your dough reaches the target level, you can begin the shaping phase.
 It is recommended to avoid basing the bulk fermentation duration on time, as it depends on too many variables; instead, the percentage of volume rise is a more reliable way to measure that that produces more consistent results.
 This percentage is directly affected by the ambient temperature; for example, in a warmer environment the dough will need to rise less to be considered ready for shaping.''';
+const String degreesCelsius = 'Celsius';
+const String degreesFarenheit = 'Farenheit';
 const String labelTemperatureUnit = 'Temperature unit';
 const String labelFlour = 'Flour';
 const String labelWater = 'Water';
@@ -26,3 +28,7 @@ const String unitGrams = 'g';
 const String unitPercent = '%';
 const String unitDegreesCelsius = 'ºC';
 const String unitDegreesFarenheit = 'ºF';
+
+// Accessibility
+const String a11yTemperatureUnitChoice =
+    'A toggle to choose your temperature unit of measure';

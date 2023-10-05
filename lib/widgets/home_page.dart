@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
   void _updateTemperatureUnit(selection) {
     setState(() {
       _temperatureUnit = temperatureUnitMap.entries
-          .firstWhere((element) => element.value == selection)
+          .firstWhere((element) => element.value.unit == selection)
           .key;
       temperatureController.text = convertTemperatureUnit(
               _parseValue(temperatureController), _temperatureUnit)
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _storeTemperatureUnit() => storeInitialValue(
-      temperatureUnitKey, temperatureUnitMap[_temperatureUnit]!);
+      temperatureUnitKey, temperatureUnitMap[_temperatureUnit]!.unit);
 
   void _storeTemperatureValue() =>
       storeInitialValue(temperatureKey, temperatureController.text);
@@ -104,7 +104,8 @@ class _HomePageState extends State<HomePage> {
     final String defaultTemperatureUnitValue = await getInitialOrDefaultValue(
         temperatureUnitKey, defaults.temperatureUnitValue);
     _temperatureUnit = temperatureUnitMap.entries
-        .firstWhere((element) => element.value == defaultTemperatureUnitValue)
+        .firstWhere(
+            (element) => element.value.unit == defaultTemperatureUnitValue)
         .key;
     temperatureController.text = await getInitialOrDefaultValue(
         temperatureKey, defaults.temperatureMap[_temperatureUnit]!);
@@ -209,10 +210,18 @@ class _HomePageState extends State<HomePage> {
                                             fontSize: 16,
                                             color: Colors.grey.shade800)),
                                     UnitChoice(
-                                        unitList:
-                                            temperatureUnitMap.values.toList(),
+                                        a11yLabel:
+                                            locale.a11yTemperatureUnitChoice,
+                                        unitList: temperatureUnitMap.values
+                                            .map((element) =>
+                                                UnitSingleChoiceDescriptor(
+                                                    value: element.unit,
+                                                    tooltip:
+                                                        element.description))
+                                            .toList(),
                                         initialUnitValue: temperatureUnitMap[
-                                            _temperatureUnit]!,
+                                                _temperatureUnit]!
+                                            .unit,
                                         onSelectionChanged:
                                             _updateTemperatureUnit),
                                   ]),
@@ -223,7 +232,8 @@ class _HomePageState extends State<HomePage> {
                                   controller: temperatureController,
                                   prefixText: locale.inputPrefixTemperature,
                                   suffixText:
-                                      temperatureUnitMap[_temperatureUnit]!,
+                                      temperatureUnitMap[_temperatureUnit]!
+                                          .unit,
                                 ),
                               ],
                             ),

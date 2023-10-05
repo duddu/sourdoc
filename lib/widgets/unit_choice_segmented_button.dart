@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
+class UnitSingleChoiceDescriptor {
+  UnitSingleChoiceDescriptor({required this.value, required this.tooltip});
+
+  final String value;
+  final String tooltip;
+}
+
 class UnitChoice<T extends Enum> extends StatefulWidget {
   const UnitChoice({
     super.key,
+    required this.a11yLabel,
     required this.unitList,
     required this.initialUnitValue,
     required this.onSelectionChanged,
   });
 
-  final List<String> unitList;
+  final String a11yLabel;
+  final List<UnitSingleChoiceDescriptor> unitList;
   final String initialUnitValue;
   final Function(String) onSelectionChanged;
 
@@ -27,20 +36,31 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton(
-      segments: <ButtonSegment>[
-        ButtonSegment(
-            value: widget.unitList[0], label: Text(widget.unitList[0])),
-        ButtonSegment(
-            value: widget.unitList[1], label: Text(widget.unitList[1])),
-      ],
-      selected: {unit},
-      onSelectionChanged: (Set newSelection) {
-        setState(() {
-          unit = newSelection.first;
-          widget.onSelectionChanged(unit);
-        });
-      },
-    );
+    return Semantics(
+        focusable: true,
+        inMutuallyExclusiveGroup: true,
+        label: widget.a11yLabel,
+        value: unit,
+        child: SegmentedButton(
+          multiSelectionEnabled: false,
+          showSelectedIcon: true,
+          segments: <ButtonSegment<String>>[
+            ButtonSegment(
+                value: widget.unitList.first.value,
+                label: Text(widget.unitList.first.value),
+                tooltip: widget.unitList.first.tooltip),
+            ButtonSegment(
+                value: widget.unitList.last.value,
+                label: Text(widget.unitList.last.value),
+                tooltip: widget.unitList.last.tooltip),
+          ],
+          selected: {unit},
+          onSelectionChanged: (Set newSelection) {
+            setState(() {
+              unit = newSelection.first;
+              widget.onSelectionChanged(unit);
+            });
+          },
+        ));
   }
 }

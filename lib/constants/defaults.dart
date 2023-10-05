@@ -1,7 +1,7 @@
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
 
 const TemperatureUnit temperatureUnit = TemperatureUnit.celsius;
-final String temperatureUnitValue = temperatureUnitMap[temperatureUnit]!;
+final String temperatureUnitValue = temperatureUnitMap[temperatureUnit]!.unit;
 
 const Map<TemperatureUnit, String> temperatureMap = {
   TemperatureUnit.celsius: '22',
