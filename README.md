@@ -1,6 +1,7 @@
 # [Sourdoc](https://sourdoc.duddu.dev) 
 
-[Sourdoc](https://sourdoc.duddu.dev) is a tool for sourdough bakers to calculate all the variables needed for a perfect dough, from mixing to fermentation.
+Sourdoc: Your ultimate companion for perfect sourdough - Calculate every essential variable from mixing to fermentation for the ideal sourdough baking experience.  
+Available to all web browsers at: [sourdoc.duddu.dev](https://sourdoc.duddu.dev).
 
 ## How it works
 

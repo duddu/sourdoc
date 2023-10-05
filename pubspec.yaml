@@ -1,5 +1,5 @@
 name: sourdoc
-description: A tool for sourdough bakers to calculate all the variables needed for a perfect dough, from mixing to fermentation..
+description: 'Sourdoc: Your ultimate companion for perfect sourdough - Calculate every essential variable from mixing to fermentation for the ideal sourdough baking experience.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
