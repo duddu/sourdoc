@@ -79,7 +79,8 @@ class _HomePageState extends State<HomePage> {
           .key;
       temperatureController.text = convertTemperatureUnit(
               _parseValue(temperatureController), _temperatureUnit)
-          .toStringAsFixed(0);
+          .toStringAsFixed(1)
+          .replaceFirst('.0', '');
       _storeTemperatureUnit();
     });
   }
