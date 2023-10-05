@@ -1,6 +1,6 @@
 # [Sourdoc](https://sourdoc.duddu.dev) 
 
-Sourdoc: Your ultimate companion for perfect sourdough - Calculate every essential variable from mixing to fermentation for the ideal sourdough baking experience.  
+Sourdoc: Your ultimate companion for perfect sourdough - Calculate every variable from mixing to fermentation for the ideal sourdough baking experience.  
 Available to all web browsers at: [sourdoc.duddu.dev](https://sourdoc.duddu.dev).
 
 ## How it works
