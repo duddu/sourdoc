@@ -1,2 +1,2 @@
-const double viewLateralPadding = 25;
-const double bodyContainerMaxWidth = 600;
+const double contentLateralPadding = 25;
+const double contentMaxWidth = 680;

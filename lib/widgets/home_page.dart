@@ -6,9 +6,9 @@ import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
-import 'package:sourdoc/widgets/full_width_container_with_label_and_value.dart';
-import 'package:sourdoc/widgets/full_width_header_with_padding.dart';
-import 'package:sourdoc/widgets/full_width_text_field_with_affixes.dart';
+import 'package:sourdoc/widgets/variable_with_label.dart';
+import 'package:sourdoc/widgets/header.dart';
+import 'package:sourdoc/widgets/text_field_with_affixes.dart';
 import 'package:sourdoc/widgets/unit_choice_segmented_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -160,47 +160,48 @@ class _HomePageState extends State<HomePage> {
               ))
         ]),
       ),
-      body: Center(
-          child: ConstrainedBox(
-              constraints:
-                  const BoxConstraints(maxWidth: style.bodyContainerMaxWidth),
-              child: ListView(
-                primary: true,
-                padding: const EdgeInsets.only(bottom: 25),
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .inversePrimary
-                              .withAlpha(170)),
-                      child: const Padding(
-                          padding: EdgeInsets.fromLTRB(style.viewLateralPadding,
-                              10, style.viewLateralPadding, 11),
+      body: ListView(
+        primary: true,
+        padding: const EdgeInsets.only(bottom: 25),
+        children: <Container>[
+          Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .inversePrimary
+                      .withAlpha(170)),
+              child: const Center(
+                  child: SizedBox(
+                      width: style.contentMaxWidth,
+                      child: Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              style.contentLateralPadding,
+                              10,
+                              style.contentLateralPadding,
+                              11),
                           child: Text(
                             locale.formIntro,
                             textAlign: TextAlign.start,
-                          ))),
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withAlpha(20),
-                          border: Border(
-                              bottom: BorderSide(
-                                  width: 1, color: Colors.grey.shade300))),
+                          ))))),
+          Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary.withAlpha(20),
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 1, color: Colors.grey.shade300))),
+              child: Center(
+                  child: SizedBox(
+                      width: style.contentMaxWidth,
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(
-                              style.viewLateralPadding,
+                              style.contentLateralPadding,
                               12,
-                              style.viewLateralPadding,
+                              style.contentLateralPadding,
                               12),
-                          child:
-                              Column(mainAxisSize: MainAxisSize.min, children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6),
-                              child: Row(
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Row>[
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -224,98 +225,113 @@ class _HomePageState extends State<HomePage> {
                                             .unit,
                                         onSelectionChanged:
                                             _updateTemperatureUnit),
-                                  ]),
-                            ),
-                            Row(
-                              children: <FullWidthTextFieldWithAffixes>[
-                                FullWidthTextFieldWithAffixes(
-                                  controller: temperatureController,
-                                  prefixText: locale.inputPrefixTemperature,
-                                  suffixText:
-                                      temperatureUnitMap[_temperatureUnit]!
-                                          .unit,
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: <FullWidthTextFieldWithAffixes>[
-                                FullWidthTextFieldWithAffixes(
-                                  controller: totalWeightController,
-                                  prefixText: locale.inputPrefixWeight,
-                                  suffixText: locale.unitGrams,
+                                Row(
+                                  children: <TextFieldWithAffixes>[
+                                    TextFieldWithAffixes(
+                                      paddingTop: 10,
+                                      controller: temperatureController,
+                                      prefixText: locale.inputPrefixTemperature,
+                                      suffixText:
+                                          temperatureUnitMap[_temperatureUnit]!
+                                              .unit,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: <FullWidthTextFieldWithAffixes>[
-                                FullWidthTextFieldWithAffixes(
-                                  controller: hydrationController,
-                                  prefixText: locale.inputPrefixHydration,
-                                  suffixText: locale.unitPercent,
+                                Row(
+                                  children: <TextFieldWithAffixes>[
+                                    TextFieldWithAffixes(
+                                      controller: totalWeightController,
+                                      prefixText: locale.inputPrefixWeight,
+                                      suffixText: locale.unitGrams,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: <FullWidthTextFieldWithAffixes>[
-                                FullWidthTextFieldWithAffixes(
-                                  controller: saltController,
-                                  prefixText: locale.inputPrefixSalt,
-                                  suffixText: locale.unitPercent,
+                                Row(
+                                  children: <TextFieldWithAffixes>[
+                                    TextFieldWithAffixes(
+                                      controller: hydrationController,
+                                      prefixText: locale.inputPrefixHydration,
+                                      suffixText: locale.unitPercent,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            )
-                          ]))),
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                          style.viewLateralPadding,
-                          0,
-                          style.viewLateralPadding,
-                          0),
-                      child: Column(children: [
-                        const Row(
-                          children: <FullWidthHeaderWithPadding>[
-                            FullWidthHeaderWithPadding(
-                              text: locale.headerIngredients,
-                            )
-                          ],
-                        ),
-                        FullWidthContainerWithLabelAndValue(
-                            label: locale.labelFlour,
-                            value:
-                                '${_flour.toStringAsFixed(1)}${locale.unitGrams}'),
-                        FullWidthContainerWithLabelAndValue(
-                            label: locale.labelWater,
-                            value:
-                                '${_water.toStringAsFixed(1)}${locale.unitGrams}'),
-                        FullWidthContainerWithLabelAndValue(
-                            label: locale.labelLevain,
-                            value:
-                                '${_levain.toStringAsFixed(1)}${locale.unitGrams}'),
-                        FullWidthContainerWithLabelAndValue(
-                            label: locale.labelSalt,
-                            value:
-                                '${_salt.toStringAsFixed(1)}${locale.unitGrams}'),
-                        const Row(
-                          children: <FullWidthHeaderWithPadding>[
-                            FullWidthHeaderWithPadding(
-                              text: locale.headerFermentation,
-                            )
-                          ],
-                        ),
-                        FullWidthContainerWithLabelAndValue(
-                            label: locale.labelInoculation,
-                            value:
-                                '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
-                            additionalInfoText:
-                                locale.additionalInfoInoculation),
-                        FullWidthContainerWithLabelAndValue(
-                            label: locale.labelBulkRise,
-                            value:
-                                '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
-                            additionalInfoText: locale.additionalInfoBulkRise),
-                      ]))
-                ],
-              ))),
+                                Row(
+                                  children: <TextFieldWithAffixes>[
+                                    TextFieldWithAffixes(
+                                      controller: saltController,
+                                      prefixText: locale.inputPrefixSalt,
+                                      suffixText: locale.unitPercent,
+                                    ),
+                                  ],
+                                )
+                              ]))))),
+          Container(
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Center(
+                  child: SizedBox(
+                      width: style.contentMaxWidth,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                              style.contentLateralPadding,
+                              0,
+                              style.contentLateralPadding,
+                              0),
+                          child: Column(children: <Row>[
+                            const Row(children: <Header>[
+                              Header(
+                                text: locale.headerIngredients,
+                              )
+                            ]),
+                            Row(children: <VariableWithLabel>[
+                              VariableWithLabel(
+                                  label: locale.labelFlour,
+                                  value:
+                                      '${_flour.toStringAsFixed(1)}${locale.unitGrams}')
+                            ]),
+                            Row(children: <VariableWithLabel>[
+                              VariableWithLabel(
+                                  label: locale.labelWater,
+                                  value:
+                                      '${_water.toStringAsFixed(1)}${locale.unitGrams}')
+                            ]),
+                            Row(children: <VariableWithLabel>[
+                              VariableWithLabel(
+                                  label: locale.labelLevain,
+                                  value:
+                                      '${_levain.toStringAsFixed(1)}${locale.unitGrams}')
+                            ]),
+                            Row(children: <VariableWithLabel>[
+                              VariableWithLabel(
+                                  label: locale.labelSalt,
+                                  value:
+                                      '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
+                            ]),
+                            const Row(children: <Header>[
+                              Header(
+                                text: locale.headerFermentation,
+                              )
+                            ]),
+                            Row(children: <VariableWithLabel>[
+                              VariableWithLabel(
+                                  label: locale.labelInoculation,
+                                  value:
+                                      '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
+                                  additionalInfoText:
+                                      locale.additionalInfoInoculation)
+                            ]),
+                            Row(children: <VariableWithLabel>[
+                              VariableWithLabel(
+                                  label: locale.labelBulkRise,
+                                  value:
+                                      '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
+                                  additionalInfoText:
+                                      locale.additionalInfoBulkRise)
+                            ]),
+                          ])))))
+        ],
+      ),
     );
   }
 }

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FullWidthTextFieldWithAffixes extends StatelessWidget {
-  const FullWidthTextFieldWithAffixes({
+class TextFieldWithAffixes extends StatelessWidget {
+  const TextFieldWithAffixes({
     super.key,
     required this.controller,
     required this.prefixText,
     required this.suffixText,
+    this.paddingTop = 5,
   });
 
   final TextEditingController controller;
   final String prefixText;
   final String suffixText;
+  final double paddingTop;
 
   void _onChanged(String text) {
     if (text.isEmpty) {
@@ -28,7 +30,7 @@ class FullWidthTextFieldWithAffixes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+            padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 5),
             child: TextField(
               controller: controller,
               decoration: InputDecoration(

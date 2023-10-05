@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FullWidthHeaderWithPadding extends StatelessWidget {
-  const FullWidthHeaderWithPadding({
+class Header extends StatelessWidget {
+  const Header({
     super.key,
     required this.text,
-    this.paddingTop = 25,
+    this.paddingTop = 20,
   });
 
   final String text;
