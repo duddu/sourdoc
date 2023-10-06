@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sourdoc/constants/locale.dart' as locale;
 
 class TextFieldWithAffixes extends StatelessWidget {
   const TextFieldWithAffixes({
@@ -31,26 +32,33 @@ class TextFieldWithAffixes extends StatelessWidget {
     return Expanded(
         child: Padding(
             padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 5),
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                isDense: true,
-                prefixText: '$prefixText:',
-                prefixStyle:
-                    TextStyle(fontSize: 16, color: Colors.grey.shade800),
-                suffixText: suffixText,
-                suffixStyle: const TextStyle(fontSize: 16, color: Colors.black),
-              ),
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
-              ],
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              textAlign: TextAlign.end,
-              textInputAction: TextInputAction.done,
-              onTap: _onTap,
-              onChanged: _onChanged,
-            )));
+            child: Semantics(
+                textField: true,
+                focusable: true,
+                label: locale.getA11yTextFieldLabel(prefixText),
+                value: '${controller.text} $suffixText',
+                hint: locale.a11yTextFieldHint,
+                child: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    isDense: true,
+                    prefixText: '$prefixText:',
+                    prefixStyle:
+                        TextStyle(fontSize: 16, color: Colors.grey.shade800),
+                    suffixText: suffixText,
+                    suffixStyle:
+                        const TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                  ],
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  textAlign: TextAlign.end,
+                  textInputAction: TextInputAction.done,
+                  onTap: _onTap,
+                  onChanged: _onChanged,
+                ))));
   }
 }

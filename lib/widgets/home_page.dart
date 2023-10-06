@@ -170,19 +170,21 @@ class _HomePageState extends State<HomePage> {
                       .colorScheme
                       .inversePrimary
                       .withAlpha(170)),
-              child: const Center(
+              child: Center(
                   child: SizedBox(
                       width: style.contentMaxWidth,
                       child: Padding(
-                          padding: EdgeInsets.fromLTRB(
+                          padding: const EdgeInsets.fromLTRB(
                               style.contentLateralPadding,
                               10,
                               style.contentLateralPadding,
                               11),
-                          child: Text(
-                            locale.formIntro,
-                            textAlign: TextAlign.start,
-                          ))))),
+                          child: Semantics(
+                              label: locale.a11yFormIntroLabel,
+                              child: const Text(
+                                locale.formIntro,
+                                textAlign: TextAlign.start,
+                              )))))),
           Container(
               decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary.withAlpha(20),
@@ -211,8 +213,8 @@ class _HomePageState extends State<HomePage> {
                                             fontSize: 16,
                                             color: Colors.grey.shade800)),
                                     UnitChoice(
-                                        a11yLabel:
-                                            locale.a11yTemperatureUnitChoice,
+                                        a11yLabel: locale
+                                            .a11yTemperatureUnitChoiceLabel,
                                         unitList: temperatureUnitMap.values
                                             .map((element) =>
                                                 UnitSingleChoiceDescriptor(
@@ -286,25 +288,25 @@ class _HomePageState extends State<HomePage> {
                             ]),
                             Row(children: <VariableWithLabel>[
                               VariableWithLabel(
-                                  label: locale.labelFlour,
+                                  label: locale.variableLabelFlour,
                                   value:
                                       '${_flour.toStringAsFixed(1)}${locale.unitGrams}')
                             ]),
                             Row(children: <VariableWithLabel>[
                               VariableWithLabel(
-                                  label: locale.labelWater,
+                                  label: locale.variableLabelWater,
                                   value:
                                       '${_water.toStringAsFixed(1)}${locale.unitGrams}')
                             ]),
                             Row(children: <VariableWithLabel>[
                               VariableWithLabel(
-                                  label: locale.labelLevain,
+                                  label: locale.variableLabelLevain,
                                   value:
                                       '${_levain.toStringAsFixed(1)}${locale.unitGrams}')
                             ]),
                             Row(children: <VariableWithLabel>[
                               VariableWithLabel(
-                                  label: locale.labelSalt,
+                                  label: locale.variableLabelSalt,
                                   value:
                                       '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
                             ]),
@@ -315,7 +317,7 @@ class _HomePageState extends State<HomePage> {
                             ]),
                             Row(children: <VariableWithLabel>[
                               VariableWithLabel(
-                                  label: locale.labelInoculation,
+                                  label: locale.variableLabelInoculation,
                                   value:
                                       '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
                                   additionalInfoText:
@@ -323,7 +325,7 @@ class _HomePageState extends State<HomePage> {
                             ]),
                             Row(children: <VariableWithLabel>[
                               VariableWithLabel(
-                                  label: locale.labelBulkRise,
+                                  label: locale.variableLabelDoughRise,
                                   value:
                                       '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
                                   additionalInfoText:

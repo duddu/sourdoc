@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/widgets/header.dart';
 
@@ -31,25 +32,34 @@ class VariableWithLabel extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Text(
-                  '$label:',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.start,
-                ),
+                Semantics(
+                    label: locale.a11yVariableLabelLabel,
+                    child: Text(
+                      '$label:',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      textAlign: TextAlign.start,
+                    )),
                 if (additionalInfoText != null &&
                     additionalInfoText!.isNotEmpty)
                   Expanded(
                       flex: 0,
-                      child: InfoButton(
-                        title: label,
-                        text: additionalInfoText!,
-                      )),
+                      child: Semantics(
+                          button: true,
+                          focusable: true,
+                          label: locale.a11yVariableInfoButtonLabel,
+                          hint: locale.a11yVariableInfoButtonHint,
+                          child: InfoButton(
+                            title: label,
+                            text: additionalInfoText!,
+                          ))),
                 Expanded(
-                    child: Text(
-                  value,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.end,
-                )),
+                    child: Semantics(
+                        label: locale.a11yVariableValueLabel,
+                        child: Text(
+                          value,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          textAlign: TextAlign.end,
+                        ))),
               ],
             )
           ])),
@@ -118,7 +128,9 @@ class InfoBottomSheet extends StatelessWidget {
               Expanded(
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                      child: Text(text)))
+                      child: Semantics(
+                          label: locale.a11yVariableLabelLabel,
+                          child: Text(text))))
             ])
           ]),
         ]),
