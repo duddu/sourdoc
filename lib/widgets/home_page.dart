@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sourdoc/constants/defaults.dart' as defaults;
+import 'package:sourdoc/constants/form.dart' as form;
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   double _water = 0;
   double _levain = 0;
   double _salt = 0;
-  TemperatureUnit _temperatureUnit = defaults.temperatureUnit;
+  TemperatureUnit _temperatureUnit = form.defaultTemperatureUnit;
 
   final totalWeightController = TextEditingController();
   final hydrationController = TextEditingController();
@@ -102,19 +102,19 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _loadInitialValues() async {
     final String defaultTemperatureUnitValue = await getInitialOrDefaultValue(
-        temperatureUnitKey, defaults.temperatureUnitValue);
+        temperatureUnitKey, form.defaultTemperatureUnitValue);
     _temperatureUnit = temperatureUnitMap.entries
         .firstWhere(
             (element) => element.value.unit == defaultTemperatureUnitValue)
         .key;
     temperatureController.text = await getInitialOrDefaultValue(
-        temperatureKey, defaults.temperatureMap[_temperatureUnit]!);
+        temperatureKey, form.defaultTemperatureMap[_temperatureUnit]!);
     totalWeightController.text =
-        await getInitialOrDefaultValue(totalWeightKey, defaults.totalWeight);
+        await getInitialOrDefaultValue(totalWeightKey, form.defaultTotalWeight);
     hydrationController.text =
-        await getInitialOrDefaultValue(hydrationKey, defaults.hydration);
+        await getInitialOrDefaultValue(hydrationKey, form.defaultHydration);
     saltController.text =
-        await getInitialOrDefaultValue(saltLevelKey, defaults.saltLevel);
+        await getInitialOrDefaultValue(saltLevelKey, form.defaultSaltLevel);
 
     _updateFermentationValues();
     _updateIngredientsValues();
@@ -238,7 +238,8 @@ class _HomePageState extends State<HomePage> {
                                       suffixText:
                                           temperatureUnitMap[_temperatureUnit]!
                                               .unit,
-                                      maxValue: 40,
+                                      maxValue: form.maxValueTemperatureMap[
+                                          _temperatureUnit]!,
                                     ),
                                   ],
                                 ),
@@ -248,7 +249,7 @@ class _HomePageState extends State<HomePage> {
                                       controller: totalWeightController,
                                       prefixText: locale.inputPrefixWeight,
                                       suffixText: locale.unitGrams,
-                                      maxValue: 100000,
+                                      maxValue: form.maxValueTotalWeight,
                                     ),
                                   ],
                                 ),
@@ -258,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                                       controller: hydrationController,
                                       prefixText: locale.inputPrefixHydration,
                                       suffixText: locale.unitPercent,
-                                      maxValue: 99,
+                                      maxValue: form.maxValueHydration,
                                     ),
                                   ],
                                 ),
@@ -268,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                                       controller: saltController,
                                       prefixText: locale.inputPrefixSalt,
                                       suffixText: locale.unitPercent,
-                                      maxValue: 10,
+                                      maxValue: form.maxValueSaltLevel,
                                     ),
                                   ],
                                 )
