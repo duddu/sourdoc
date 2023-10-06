@@ -7,6 +7,8 @@ const String inputPrefixWeight = 'Target bread weight';
 const String inputPrefixHydration = 'Hydration level';
 const String inputPrefixSalt = 'Salt level';
 const String inputPrefixTemperature = 'Ambient temperature';
+String getInputErrorMessage(double maxValue) =>
+    'The maximum value supported by this field is $maxValue';
 const String additionalInfoInoculation =
     '''Refers to the proportion of sourdough starter (or levain) you use in relation to the total amount of flour in your dough.
 It's a key factor that influences the fermentation process and the characteristics of your bread. The inoculation level percentage affects the fermentation rate, flavor profile, and texture of your sourdough bread. Higher percentages result in a faster and more pronounced fermentation, which can lead to a stronger sour flavor and more open crumb structure. Lower percentages result in a milder flavor and a slower fermentation.
@@ -37,6 +39,7 @@ String getA11yTextFieldLabel(String fieldName) =>
     'Input field for the $fieldName';
 const String a11yTextFieldHint =
     'When this value is changed, all variables depending on it are automatically updated';
+const String a11yTextFieldErrorLabel = 'Error message for the input field';
 String getA11yHeaderLabel(String headerText) => '$headerText section header';
 const String a11yVariableLabelLabel = 'Name of this variable';
 const String a11yVariableValueLabel = 'Value of this variable';

@@ -238,6 +238,7 @@ class _HomePageState extends State<HomePage> {
                                       suffixText:
                                           temperatureUnitMap[_temperatureUnit]!
                                               .unit,
+                                      maxValue: 40,
                                     ),
                                   ],
                                 ),
@@ -247,6 +248,7 @@ class _HomePageState extends State<HomePage> {
                                       controller: totalWeightController,
                                       prefixText: locale.inputPrefixWeight,
                                       suffixText: locale.unitGrams,
+                                      maxValue: 100000,
                                     ),
                                   ],
                                 ),
@@ -256,6 +258,7 @@ class _HomePageState extends State<HomePage> {
                                       controller: hydrationController,
                                       prefixText: locale.inputPrefixHydration,
                                       suffixText: locale.unitPercent,
+                                      maxValue: 99,
                                     ),
                                   ],
                                 ),
@@ -265,6 +268,7 @@ class _HomePageState extends State<HomePage> {
                                       controller: saltController,
                                       prefixText: locale.inputPrefixSalt,
                                       suffixText: locale.unitPercent,
+                                      maxValue: 10,
                                     ),
                                   ],
                                 )

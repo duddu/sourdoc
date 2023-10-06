@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/constants/style.dart' as style;
 
 class TextFieldWithAffixes extends StatelessWidget {
   const TextFieldWithAffixes({
@@ -8,17 +9,39 @@ class TextFieldWithAffixes extends StatelessWidget {
     required this.controller,
     required this.prefixText,
     required this.suffixText,
+    required this.maxValue,
     this.paddingTop = 5,
   });
 
   final TextEditingController controller;
   final String prefixText;
   final String suffixText;
+  final double maxValue;
   final double paddingTop;
 
-  void _onChanged(String text) {
+  void _showErrorSnackBar(context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Center(
+            child: SizedBox(
+                width: style.contentMaxWidth,
+                child: Semantics(
+                    label: locale.a11yTextFieldErrorLabel,
+                    child: Text(locale.getInputErrorMessage(maxValue),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.error))))),
+        backgroundColor: Theme.of(context).colorScheme.errorContainer,
+      ),
+    );
+  }
+
+  void _onChanged(String text, BuildContext context) {
     if (text.isEmpty) {
       controller.text = '0';
+    } else if (double.parse(text) > maxValue) {
+      controller.text = '$maxValue';
+      _showErrorSnackBar(context);
     }
   }
 
@@ -58,7 +81,9 @@ class TextFieldWithAffixes extends StatelessWidget {
                   textAlign: TextAlign.end,
                   textInputAction: TextInputAction.done,
                   onTap: _onTap,
-                  onChanged: _onChanged,
+                  onChanged: (text) {
+                    _onChanged(text, context);
+                  },
                 ))));
   }
 }
