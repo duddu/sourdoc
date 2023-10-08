@@ -6,6 +6,7 @@ import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
+import 'package:sourdoc/widgets/help_page.dart';
 import 'package:sourdoc/widgets/variable_with_label.dart';
 import 'package:sourdoc/widgets/header.dart';
 import 'package:sourdoc/widgets/text_field_with_affixes.dart';
@@ -145,20 +146,70 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  Route _createHelpRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const HelpPage(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+        final tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(widget.title, style: const TextStyle(color: Colors.white)),
-          const Padding(
-              padding: EdgeInsets.only(left: 5),
-              child: Icon(
-                Icons.calculate_rounded,
-                color: Colors.white,
-              ))
-        ]),
+        title: Padding(
+            padding:
+                const EdgeInsets.only(left: style.contentLateralPadding + 44),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Semantics(
+                  label: locale.a11yAppBarHomeTitleLabel,
+                  child: Text(widget.title,
+                      style: const TextStyle(color: Colors.white))),
+              const Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: Icon(
+                    Icons.calculate_rounded,
+                    color: Colors.white,
+                    semanticLabel: locale.a11yAppBarHomeTitleIconLabel,
+                  )),
+            ])),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: style.contentLateralPadding),
+            child: Semantics(
+                button: true,
+                label: locale.a11yAppBarHomeHelpButtonLabel,
+                hint: locale.a11yAppBarHomeHelpButtonHint,
+                tooltip: locale.appBarHomeHelpButtonTooltip,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.question_mark_rounded,
+                    semanticLabel: locale.a11yAppBarHomeHelpButtonIconLabel,
+                    color: Colors.white,
+                  ),
+                  color: Colors.white,
+                  tooltip: locale.appBarHomeHelpButtonTooltip,
+                  onPressed: () {
+                    Navigator.of(context).push(_createHelpRoute());
+                  },
+                  style: ButtonStyle(
+                      side: MaterialStateProperty.all(
+                          const BorderSide(color: Colors.white, width: 2))),
+                )),
+          )
+        ],
       ),
       body: ListView(
         primary: true,

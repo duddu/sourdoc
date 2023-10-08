@@ -19,8 +19,10 @@ jobs:
                 flutter-version: ${{ vars.FLUTTER_VERSION }}
                 channel: ${{ vars.FLUTTER_CHANNEL }}
             - uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
             - run: flutter pub get
-            - run: flutter build -v web --release
+            - run: flutter build -v web --release --build-name=$(cat VERSION) --build-number=${{ github.sha }} --dart-define=VERSION=$(cat VERSION) --dart-define=COMMIT_SHA=${{ github.sha }}
             - uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: build/web

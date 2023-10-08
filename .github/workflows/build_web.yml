@@ -13,4 +13,6 @@ jobs:
                 flutter-version: ${{ vars.FLUTTER_VERSION }}
                 channel: ${{ vars.FLUTTER_CHANNEL }}
             - uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
             - run: flutter build -v web

@@ -1,4 +1,5 @@
 const String title = 'Sourdoc';
+const String appBarHomeHelpButtonTooltip = 'Open help page';
 const String formIntro =
     'Change these settings, and the ingredients and fermentation values will automatically update.';
 const String headerIngredients = 'Ingredients';
@@ -30,8 +31,18 @@ const String unitGrams = 'g';
 const String unitPercent = '%';
 const String unitDegreesCelsius = 'ºC';
 const String unitDegreesFarenheit = 'ºF';
+const String helpPageTitle = 'Help';
+const String appBarHelpCloseButtonTooltip = 'Close help page';
+const String labelVersion = 'Version';
+const String labelCommit = 'Commit';
 
 // Accessibility
+const String a11yAppBarHomeTitleLabel = 'Sourdoc home page title';
+const String a11yAppBarHomeTitleIconLabel =
+    'Sourdoc home page title calculator icon';
+const String a11yAppBarHomeHelpButtonLabel = 'Help page button';
+const String a11yAppBarHomeHelpButtonHint = 'When pressed opens the help page';
+const String a11yAppBarHomeHelpButtonIconLabel = 'Question mark icon';
 const String a11yFormIntroLabel = 'Instructions on how to use this page';
 const String a11yTemperatureUnitChoiceLabel =
     'A toggle to choose your temperature unit of measure';
@@ -48,3 +59,8 @@ const String a11yVariableInfoButtonHint =
     'When pressed opens an overlay with the explanation of this variable';
 const String a11yVariableInfotTextLabel =
     'Additional information about this variable';
+const String a11yAppBarHelpTitleLabel = 'Sourdoc help page title';
+const String a11yAppBarHelpCloseButtonLabel = 'Close help page button';
+const String a11yAppBarHelpCloseButtonHint =
+    'When pressed closes the help page';
+const String a11yAppBarHelpCloseButtonIconLabel = 'Close icon';
