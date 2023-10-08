@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sourdoc/constants/environment.dart' as environment;
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/style.dart' as style;
+import 'package:sourdoc/widgets/version_info.dart';
 
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
@@ -47,20 +47,7 @@ class HelpPage extends StatelessWidget {
       body: ListView(
         primary: true,
         padding: const EdgeInsets.all(style.contentLateralPadding),
-        children: const <Column>[
-          Column(children: <Row>[
-            Row(children: [
-              Expanded(
-                  child: Text('${locale.labelVersion}: ${environment.version}',
-                      textAlign: TextAlign.center))
-            ]),
-            Row(children: [
-              Expanded(
-                  child: Text('${locale.labelCommit}: ${environment.commitSha}',
-                      textAlign: TextAlign.center)),
-            ])
-          ])
-        ],
+        children: const <VersionInfo>[VersionInfo()],
       ),
     );
   }
