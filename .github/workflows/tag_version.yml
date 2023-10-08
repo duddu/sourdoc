@@ -12,6 +12,6 @@ jobs:
             - uses: actions/checkout@v4
               with:
                 fetch-tags: true
-            - run: git push origin :refs/tags/v${cat VERSION}
-            - run: git tag -fa v${cat VERSION}
+            - run: git push origin :refs/tags/v$(cat VERSION)
+            - run: git tag -fa v$(cat VERSION)
             - run: git push origin --tags
