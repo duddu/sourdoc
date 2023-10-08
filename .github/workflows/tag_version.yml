@@ -5,13 +5,14 @@ on:
             - main
         paths:
             - VERSION
+permissions:
+    contents: write
 jobs:
-    test:
+    tag-version:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
               with:
                 fetch-tags: true
-            - run: git push origin :refs/tags/v$(cat VERSION)
-            - run: git tag -fa v$(cat VERSION)
+            - run: git tag v$(cat VERSION)
             - run: git push origin --tags
