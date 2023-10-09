@@ -6,6 +6,7 @@ import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
+import 'package:sourdoc/widgets/app_bar_title.dart';
 import 'package:sourdoc/widgets/help_page.dart';
 import 'package:sourdoc/widgets/variable_with_label.dart';
 import 'package:sourdoc/widgets/header.dart';
@@ -168,49 +169,39 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Padding(
-            padding:
-                const EdgeInsets.only(left: style.contentLateralPadding + 44),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Semantics(
-                  label: locale.a11yAppBarHomeTitleLabel,
-                  child: Text(widget.title,
-                      style: const TextStyle(color: Colors.white))),
-              const Padding(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Icon(
-                    Icons.calculate_rounded,
-                    color: Colors.white,
-                    semanticLabel: locale.a11yAppBarHomeTitleIconLabel,
-                  )),
-            ])),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: style.contentLateralPadding),
-            child: Semantics(
-                button: true,
-                label: locale.a11yAppBarHomeHelpButtonLabel,
-                hint: locale.a11yAppBarHomeHelpButtonHint,
-                tooltip: locale.appBarHomeHelpButtonTooltip,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.question_mark_rounded,
-                    semanticLabel: locale.a11yAppBarHomeHelpButtonIconLabel,
-                    color: Colors.white,
-                  ),
-                  color: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          centerTitle: true,
+          titleSpacing: 0,
+          title: AppBarTitle(
+              titleWidgets: [
+                Semantics(
+                    label: locale.a11yAppBarHomeTitleLabel,
+                    child: Text(widget.title,
+                        style: const TextStyle(color: Colors.white))),
+                const Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: Icon(
+                      Icons.calculate_rounded,
+                      color: Colors.white,
+                      semanticLabel: locale.a11yAppBarHomeTitleIconLabel,
+                    ))
+              ],
+              actionWidget: Semantics(
+                  button: true,
+                  label: locale.a11yAppBarHomeHelpButtonLabel,
+                  hint: locale.a11yAppBarHomeHelpButtonHint,
                   tooltip: locale.appBarHomeHelpButtonTooltip,
-                  onPressed: () {
-                    Navigator.of(context).push(_createHelpRoute());
-                  },
-                  style: ButtonStyle(
-                      side: MaterialStateProperty.all(
-                          const BorderSide(color: Colors.white, width: 2))),
-                )),
-          )
-        ],
-      ),
+                  child: IconButton(
+                      icon: const Icon(
+                        Icons.question_mark_rounded,
+                        semanticLabel: locale.a11yAppBarHomeHelpButtonIconLabel,
+                        color: Colors.white,
+                      ),
+                      color: Colors.white,
+                      tooltip: locale.appBarHomeHelpButtonTooltip,
+                      onPressed: () {
+                        Navigator.of(context).push(_createHelpRoute());
+                      })))),
       body: ListView(
         primary: true,
         padding: const EdgeInsets.only(bottom: 25),
