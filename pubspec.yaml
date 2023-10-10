@@ -34,11 +34,12 @@ dependencies:
   url_launcher: ^6.1.14
 
 dev_dependencies:
+  args: ^2.4.2
+  flutter_lints: ^2.0.3
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.3
+  git: ^2.2.1
   version: ^3.0.0
-  args: ^2.4.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

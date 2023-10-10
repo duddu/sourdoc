@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:args/args.dart';
+import 'package:git/git.dart';
 import 'package:version/version.dart';
 
 const String versionPath = 'VERSION';
@@ -38,7 +39,8 @@ Future<void> writeNewVersion(String increment) async {
 Future<void> main(List<String> arguments) async {
   try {
     final increment = getIncrementArgument(arguments);
-    return await writeNewVersion(increment);
+    await writeNewVersion(increment);
+    await runGit(['stage', versionPath]);
   } catch (e) {
     stderr.writeln('🛑 $e');
     exit(1);
