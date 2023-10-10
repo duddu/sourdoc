@@ -14,9 +14,7 @@ import 'package:sourdoc/widgets/text_field_with_affixes.dart';
 import 'package:sourdoc/widgets/unit_choice_segmented_button.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -175,8 +173,8 @@ class _HomePageState extends State<HomePage> {
           title: AppBarTitle(
               title: Semantics(
                   label: locale.a11yAppBarHomeTitleLabel,
-                  child: Text(widget.title,
-                      style: const TextStyle(color: Colors.white))),
+                  child: const Text(locale.title,
+                      style: TextStyle(color: Colors.white))),
               icon: const Icon(
                 Icons.calculate_rounded,
                 color: Colors.white,
