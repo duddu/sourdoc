@@ -173,20 +173,16 @@ class _HomePageState extends State<HomePage> {
           centerTitle: true,
           titleSpacing: 0,
           title: AppBarTitle(
-              titleWidgets: [
-                Semantics(
-                    label: locale.a11yAppBarHomeTitleLabel,
-                    child: Text(widget.title,
-                        style: const TextStyle(color: Colors.white))),
-                const Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: Icon(
-                      Icons.calculate_rounded,
-                      color: Colors.white,
-                      semanticLabel: locale.a11yAppBarHomeTitleIconLabel,
-                    ))
-              ],
-              actionWidget: Semantics(
+              title: Semantics(
+                  label: locale.a11yAppBarHomeTitleLabel,
+                  child: Text(widget.title,
+                      style: const TextStyle(color: Colors.white))),
+              icon: const Icon(
+                Icons.calculate_rounded,
+                color: Colors.white,
+                semanticLabel: locale.a11yAppBarHomeTitleIconLabel,
+              ),
+              action: Semantics(
                   button: true,
                   label: locale.a11yAppBarHomeHelpButtonLabel,
                   hint: locale.a11yAppBarHomeHelpButtonHint,

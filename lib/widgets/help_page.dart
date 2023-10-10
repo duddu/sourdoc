@@ -16,13 +16,11 @@ class HelpPage extends StatelessWidget {
           centerTitle: true,
           titleSpacing: 0,
           title: AppBarTitle(
-              titleWidgets: [
-                Semantics(
-                    label: locale.a11yAppBarHelpTitleLabel,
-                    child: const Text(locale.helpPageTitle,
-                        style: TextStyle(color: Colors.white)))
-              ],
-              actionWidget: Semantics(
+              title: Semantics(
+                  label: locale.a11yAppBarHelpTitleLabel,
+                  child: const Text(locale.helpPageTitle,
+                      style: TextStyle(color: Colors.white))),
+              action: Semantics(
                   button: true,
                   label: locale.a11yAppBarHelpCloseButtonLabel,
                   hint: locale.a11yAppBarHelpCloseButtonHint,
