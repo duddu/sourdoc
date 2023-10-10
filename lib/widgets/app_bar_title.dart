@@ -12,7 +12,7 @@ class AppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(style.contentLateralPadding + 30, 0,
+        padding: const EdgeInsets.fromLTRB(style.contentLateralPadding + 29, 0,
             style.contentLateralPadding - 15, 0),
         child: Row(children: [
           Expanded(
