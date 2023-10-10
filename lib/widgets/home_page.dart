@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sourdoc/constants/form.dart' as form;
 import 'package:sourdoc/constants/locale.dart' as locale;
-import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
 import 'package:sourdoc/widgets/app_bar_title.dart';
+import 'package:sourdoc/widgets/centered_container.dart';
 import 'package:sourdoc/widgets/help_page.dart';
 import 'package:sourdoc/widgets/variable_with_label.dart';
 import 'package:sourdoc/widgets/header.dart';
@@ -201,180 +201,137 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         primary: true,
         padding: const EdgeInsets.only(bottom: 25),
-        children: <Container>[
-          Container(
+        children: <CenteredContainer>[
+          CenteredContainer(
               decoration: BoxDecoration(
                   color: Theme.of(context)
                       .colorScheme
                       .inversePrimary
                       .withAlpha(170)),
-              child: Center(
-                  child: SizedBox(
-                      width: style.contentMaxWidth,
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              style.contentLateralPadding,
-                              10,
-                              style.contentLateralPadding,
-                              11),
-                          child: Semantics(
-                              label: locale.a11yFormIntroLabel,
-                              child: const Text(
-                                locale.formIntro,
-                                textAlign: TextAlign.start,
-                              )))))),
-          Container(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 11),
+              child: Semantics(
+                  label: locale.a11yFormIntroLabel,
+                  child: const Text(
+                    locale.formIntro,
+                    textAlign: TextAlign.start,
+                  ))),
+          CenteredContainer(
               decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary.withAlpha(20),
                   border: Border(
                       bottom:
                           BorderSide(width: 1, color: Colors.grey.shade300))),
-              child: Center(
-                  child: SizedBox(
-                      width: style.contentMaxWidth,
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              style.contentLateralPadding,
-                              12,
-                              style.contentLateralPadding,
-                              12),
-                          child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Row>[
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text('${locale.labelTemperatureUnit}:',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.grey.shade800)),
-                                    UnitChoice(
-                                        a11yLabel: locale
-                                            .a11yTemperatureUnitChoiceLabel,
-                                        unitList: temperatureUnitMap.values
-                                            .map((element) =>
-                                                UnitSingleChoiceDescriptor(
-                                                    value: element.unit,
-                                                    tooltip:
-                                                        element.description))
-                                            .toList(),
-                                        initialUnitValue: temperatureUnitMap[
-                                                _temperatureUnit]!
-                                            .unit,
-                                        onSelectionChanged:
-                                            _updateTemperatureUnit),
-                                  ],
-                                ),
-                                Row(
-                                  children: <TextFieldWithAffixes>[
-                                    TextFieldWithAffixes(
-                                      paddingTop: 10,
-                                      controller: temperatureController,
-                                      prefixText: locale.inputPrefixTemperature,
-                                      suffixText:
-                                          temperatureUnitMap[_temperatureUnit]!
-                                              .unit,
-                                      maxValue: form.maxValueTemperatureMap[
-                                          _temperatureUnit]!,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: <TextFieldWithAffixes>[
-                                    TextFieldWithAffixes(
-                                      controller: totalWeightController,
-                                      prefixText: locale.inputPrefixWeight,
-                                      suffixText: locale.unitGrams,
-                                      maxValue: form.maxValueTotalWeight,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: <TextFieldWithAffixes>[
-                                    TextFieldWithAffixes(
-                                      controller: hydrationController,
-                                      prefixText: locale.inputPrefixHydration,
-                                      suffixText: locale.unitPercent,
-                                      maxValue: form.maxValueHydration,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: <TextFieldWithAffixes>[
-                                    TextFieldWithAffixes(
-                                      controller: saltController,
-                                      prefixText: locale.inputPrefixSalt,
-                                      suffixText: locale.unitPercent,
-                                      maxValue: form.maxValueSaltLevel,
-                                    ),
-                                  ],
-                                )
-                              ]))))),
-          Container(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Column(mainAxisSize: MainAxisSize.min, children: <Row>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('${locale.labelTemperatureUnit}:',
+                        style: TextStyle(
+                            fontSize: 16, color: Colors.grey.shade800)),
+                    UnitChoice(
+                        a11yLabel: locale.a11yTemperatureUnitChoiceLabel,
+                        unitList: temperatureUnitMap.values
+                            .map((element) => UnitSingleChoiceDescriptor(
+                                value: element.unit,
+                                tooltip: element.description))
+                            .toList(),
+                        initialUnitValue:
+                            temperatureUnitMap[_temperatureUnit]!.unit,
+                        onSelectionChanged: _updateTemperatureUnit),
+                  ],
+                ),
+                Row(
+                  children: <TextFieldWithAffixes>[
+                    TextFieldWithAffixes(
+                      paddingTop: 10,
+                      controller: temperatureController,
+                      prefixText: locale.inputPrefixTemperature,
+                      suffixText: temperatureUnitMap[_temperatureUnit]!.unit,
+                      maxValue: form.maxValueTemperatureMap[_temperatureUnit]!,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <TextFieldWithAffixes>[
+                    TextFieldWithAffixes(
+                      controller: totalWeightController,
+                      prefixText: locale.inputPrefixWeight,
+                      suffixText: locale.unitGrams,
+                      maxValue: form.maxValueTotalWeight,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <TextFieldWithAffixes>[
+                    TextFieldWithAffixes(
+                      controller: hydrationController,
+                      prefixText: locale.inputPrefixHydration,
+                      suffixText: locale.unitPercent,
+                      maxValue: form.maxValueHydration,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <TextFieldWithAffixes>[
+                    TextFieldWithAffixes(
+                      controller: saltController,
+                      prefixText: locale.inputPrefixSalt,
+                      suffixText: locale.unitPercent,
+                      maxValue: form.maxValueSaltLevel,
+                    ),
+                  ],
+                )
+              ])),
+          CenteredContainer(
               decoration: const BoxDecoration(color: Colors.white),
-              child: Center(
-                  child: SizedBox(
-                      width: style.contentMaxWidth,
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              style.contentLateralPadding,
-                              0,
-                              style.contentLateralPadding,
-                              0),
-                          child: Column(children: <Row>[
-                            const Row(children: <Header>[
-                              Header(
-                                text: locale.headerIngredients,
-                              )
-                            ]),
-                            Row(children: <VariableWithLabel>[
-                              VariableWithLabel(
-                                  label: locale.variableLabelFlour,
-                                  value:
-                                      '${_flour.toStringAsFixed(1)}${locale.unitGrams}')
-                            ]),
-                            Row(children: <VariableWithLabel>[
-                              VariableWithLabel(
-                                  label: locale.variableLabelWater,
-                                  value:
-                                      '${_water.toStringAsFixed(1)}${locale.unitGrams}')
-                            ]),
-                            Row(children: <VariableWithLabel>[
-                              VariableWithLabel(
-                                  label: locale.variableLabelLevain,
-                                  value:
-                                      '${_levain.toStringAsFixed(1)}${locale.unitGrams}')
-                            ]),
-                            Row(children: <VariableWithLabel>[
-                              VariableWithLabel(
-                                  label: locale.variableLabelSalt,
-                                  value:
-                                      '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
-                            ]),
-                            const Row(children: <Header>[
-                              Header(
-                                text: locale.headerFermentation,
-                              )
-                            ]),
-                            Row(children: <VariableWithLabel>[
-                              VariableWithLabel(
-                                  label: locale.variableLabelInoculation,
-                                  value:
-                                      '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
-                                  additionalInfoText:
-                                      locale.additionalInfoInoculation)
-                            ]),
-                            Row(children: <VariableWithLabel>[
-                              VariableWithLabel(
-                                  label: locale.variableLabelDoughRise,
-                                  value:
-                                      '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
-                                  additionalInfoText:
-                                      locale.additionalInfoBulkRise)
-                            ]),
-                          ])))))
+              child: Column(children: <Row>[
+                const Row(children: <Header>[
+                  Header(
+                    text: locale.headerIngredients,
+                  )
+                ]),
+                Row(children: <VariableWithLabel>[
+                  VariableWithLabel(
+                      label: locale.variableLabelFlour,
+                      value: '${_flour.toStringAsFixed(1)}${locale.unitGrams}')
+                ]),
+                Row(children: <VariableWithLabel>[
+                  VariableWithLabel(
+                      label: locale.variableLabelWater,
+                      value: '${_water.toStringAsFixed(1)}${locale.unitGrams}')
+                ]),
+                Row(children: <VariableWithLabel>[
+                  VariableWithLabel(
+                      label: locale.variableLabelLevain,
+                      value: '${_levain.toStringAsFixed(1)}${locale.unitGrams}')
+                ]),
+                Row(children: <VariableWithLabel>[
+                  VariableWithLabel(
+                      label: locale.variableLabelSalt,
+                      value: '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
+                ]),
+                const Row(children: <Header>[
+                  Header(
+                    text: locale.headerFermentation,
+                  )
+                ]),
+                Row(children: <VariableWithLabel>[
+                  VariableWithLabel(
+                      label: locale.variableLabelInoculation,
+                      value:
+                          '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
+                      additionalInfoText: locale.additionalInfoInoculation)
+                ]),
+                Row(children: <VariableWithLabel>[
+                  VariableWithLabel(
+                      label: locale.variableLabelDoughRise,
+                      value:
+                          '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
+                      additionalInfoText: locale.additionalInfoBulkRise)
+                ]),
+              ]))
         ],
       ),
     );
