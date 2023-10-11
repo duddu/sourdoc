@@ -207,12 +207,10 @@ class _HomePageState extends State<HomePage> {
                       .inversePrimary
                       .withAlpha(170)),
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 11),
-              child: Semantics(
-                  label: locale.a11yFormIntroLabel,
-                  child: const Text(
-                    locale.formIntro,
-                    textAlign: TextAlign.start,
-                  ))),
+              child: const Text(
+                locale.formIntro,
+                textAlign: TextAlign.start,
+              )),
           CenteredContainer(
               decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary.withAlpha(20),
@@ -283,12 +281,15 @@ class _HomePageState extends State<HomePage> {
                 )
               ])),
           CenteredContainer(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 1, color: Colors.grey.shade300))),
+              padding: const EdgeInsets.only(bottom: 30),
               child: Column(children: <Row>[
                 const Row(children: <Header>[
-                  Header(
-                    text: locale.headerIngredients,
-                  )
+                  Header(text: locale.headerIngredients, colorPrimary: true)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
@@ -311,9 +312,7 @@ class _HomePageState extends State<HomePage> {
                       value: '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
                 ]),
                 const Row(children: <Header>[
-                  Header(
-                    text: locale.headerFermentation,
-                  )
+                  Header(text: locale.headerFermentation, colorPrimary: true)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
@@ -328,6 +327,73 @@ class _HomePageState extends State<HomePage> {
                       value:
                           '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
                       additionalInfoText: locale.additionalInfoDoughRise)
+                ]),
+              ])),
+          CenteredContainer(
+              decoration:
+                  BoxDecoration(color: Colors.grey.shade100.withAlpha(100)),
+              child: const Column(children: <Row>[
+                Row(children: <Header>[
+                  Header(
+                    text: locale.headerHowItWorks,
+                  )
+                ]),
+                Row(children: <Expanded>[
+                  Expanded(
+                      child: Text(
+                    locale.appendixHowItWorks,
+                  ))
+                ]),
+                Row(children: <Expanded>[
+                  Expanded(
+                      child: Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            locale.appendixHowItWorksFormula,
+                            semanticsLabel:
+                                locale.a11yAppendixHowItWorksFormula,
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          )))
+                ]),
+                Row(children: <Header>[
+                  Header(
+                    text: locale.headerBakerFormulaDifference,
+                  )
+                ]),
+                Row(children: <Expanded>[
+                  Expanded(
+                      child: Text(
+                    locale.appendixBakerFormulaDifference,
+                  ))
+                ]),
+                Row(children: <Header>[
+                  Header(
+                    text: locale.headerGlossary,
+                  )
+                ]),
+                Row(children: <Header>[
+                  Header(
+                      text: locale.variableLabelInoculation,
+                      small: true,
+                      paddingTop: 5)
+                ]),
+                Row(children: <Expanded>[
+                  Expanded(
+                      child: Text(
+                    locale.additionalInfoInoculation,
+                  ))
+                ]),
+                Row(children: <Header>[
+                  Header(
+                      text: locale.variableLabelDoughRise,
+                      small: true,
+                      paddingTop: 15)
+                ]),
+                Row(children: <Expanded>[
+                  Expanded(
+                      child: Text(
+                    locale.additionalInfoDoughRise,
+                  ))
                 ]),
               ]))
         ],

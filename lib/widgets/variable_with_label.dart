@@ -32,13 +32,11 @@ class VariableWithLabel extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Semantics(
-                    label: locale.a11yVariableLabelLabel,
-                    child: Text(
-                      '$label:',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      textAlign: TextAlign.start,
-                    )),
+                Text(
+                  '$label:',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  textAlign: TextAlign.start,
+                ),
                 if (additionalInfoText != null &&
                     additionalInfoText!.isNotEmpty)
                   Expanded(
@@ -53,13 +51,11 @@ class VariableWithLabel extends StatelessWidget {
                             text: additionalInfoText!,
                           ))),
                 Expanded(
-                    child: Semantics(
-                        label: locale.a11yVariableValueLabel,
-                        child: Text(
-                          value,
-                          style: Theme.of(context).textTheme.bodyLarge,
-                          textAlign: TextAlign.end,
-                        ))),
+                    child: Text(
+                  value,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  textAlign: TextAlign.end,
+                )),
               ],
             )
           ])),
@@ -128,9 +124,7 @@ class InfoBottomSheet extends StatelessWidget {
               Expanded(
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                      child: Semantics(
-                          label: locale.a11yVariableLabelLabel,
-                          child: Text(text))))
+                      child: Text(text)))
             ])
           ]),
         ]),
