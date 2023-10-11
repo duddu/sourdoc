@@ -1,0 +1,21 @@
+name: Build for macOS
+on:
+    workflow_dispatch:
+    push:
+        branches-ignore:
+            - main
+jobs:
+    test:
+        runs-on: macos-latest
+        steps:
+            - name: Prepare flutter
+              uses: subosito/flutter-action@v2
+              with:
+                flutter-version: ${{ vars.FLUTTER_VERSION }}
+                channel: ${{ vars.FLUTTER_CHANNEL }}
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            - name: Build
+              run: flutter build -v macOS

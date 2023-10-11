@@ -1,0 +1,82 @@
+name: Release
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+permissions:
+    contents: write
+jobs:
+    trigger-test:
+        uses: ./.github/workflows/test.yml
+    build-and-deploy-web:
+        concurrency: deploy-web-${{ github.ref }}
+        runs-on: ubuntu-latest
+        needs: trigger-test
+        steps:
+            - name: Prepare flutter
+              uses: subosito/flutter-action@v2
+              with:
+                flutter-version: ${{ vars.FLUTTER_VERSION }}
+                channel: ${{ vars.FLUTTER_CHANNEL }}
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            - name: Build release
+              run: flutter build -v web --release --build-name=$(cat VERSION) --build-number=${{ github.sha }} --dart-define=VERSION=$(cat VERSION) --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
+            - name: Deploy github pages
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                folder: build/web
+    build-macos-release:
+      concurrency: deploy-macos-${{ github.ref }}
+      runs-on: macos-latest
+      needs: trigger-test
+      steps:
+          - name: Prepare flutter
+            uses: subosito/flutter-action@v2
+            with:
+              flutter-version: ${{ vars.FLUTTER_VERSION }}
+              channel: ${{ vars.FLUTTER_CHANNEL }}
+          - name: Checkout
+            uses: actions/checkout@v4
+            with:
+              fetch-depth: 1
+          - name: Set version environment variable
+            run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
+          - name: Build release
+            run: flutter build -v macos --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
+          - name: Compress build
+            run: |
+              cd build/macos/Build/Products/Release
+              tar -czf sourdoc.app.tgz sourdoc.app
+          - name: Upload macOS app artifact
+            uses: actions/upload-artifact@v3
+            with:
+              name: sourdoc.app
+              path: build/macos/Build/Products/Release/sourdoc.app.tgz
+    create-release:
+      concurrency: release-${{ github.ref }}
+      runs-on: ubuntu-latest
+      needs:
+          - build-and-deploy-web
+          - build-macos-release
+      steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+            with:
+              fetch-depth: 1
+          - name: Set version environment variable
+            run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV   
+          - name: Download artifacts
+            uses: actions/download-artifact@v3
+            with:
+              name: sourdoc.app
+              path: .
+          - name: Create release
+            uses: softprops/action-gh-release@v1
+            with:
+              tag_name: v${{ env.VERSION }}
+              files: |
+                sourdoc.app.tgz
