@@ -11,8 +11,11 @@ jobs:
     tag-version:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v4
               with:
-                fetch-tags: true
-            - run: git tag v$(cat VERSION)
-            - run: git push origin --tags
+                fetch-depth: 1
+            - name: Tag
+              run: git tag v$(cat VERSION)
+            - name: Push
+              run: git push origin --tags
