@@ -77031,7 +77031,7 @@ r.toString
 o=t.Xh
 n=t.hP
 m=t.js
-return A.anW(i,A.aiJ(A.a([new A.mB(g,new A.cB(h,k,k,k,k,k,B.aF),B.BO,k),new A.mB(A.mF(A.a([p,A.di(A.a([new A.jY(l.at,"Ambient temperature",q,r,10,k)],o),B.G,B.P,B.Q),A.di(A.a([new A.jY(l.z,"Target bread weight","g",1e5,5,k)],o),B.G,B.P,B.Q),A.di(A.a([new A.jY(l.Q,"Hydration level","%",99,5,k)],o),B.G,B.P,B.Q),A.di(A.a([new A.jY(l.as,"Salt level","%",10,5,k)],o),B.G,B.P,B.Q)],n),B.G,B.P,B.dO),new A.cB(s,k,new A.d0(B.o,B.o,new A.aR(B.lk,1,B.x,-1),B.o),k,k,k,B.aF),B.lP,k),new A.mB(A.mF(A.a([B.Jb,A.di(A.a([new A.iP("Flour",B.c.a0(l.f,1)+"g",k,k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Water",B.c.a0(l.r,1)+"g",k,k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Levain",B.c.a0(l.w,1)+"g",k,k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Salt",B.c.a0(l.x,1)+"g",k,k)],m),B.G,B.P,B.Q),B.J9,A.di(A.a([new A.iP("Inoculation level",B.c.a0(l.d,0)+"%","Refers to the proportion of sourdough starter (or levain) you use in relation to the total amount of flour in your dough.\nIt's a key factor that influences the fermentation process and the characteristics of your bread. The inoculation level percentage affects the fermentation rate, flavor profile, and texture of your sourdough bread. Higher percentages result in a faster and more pronounced fermentation, which can lead to a stronger sour flavor and more open crumb structure. Lower percentages result in a milder flavor and a slower fermentation.\nThis value is directly affected by ambient temperature; for example, a colder environment will require a stronger fermantation and so a higher inoculation level.",k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Dough rise",B.h.a0(l.e,0)+"%","Indicates how much should the dough should rise, compared to its original volume at the moment of mixing the starter, in order to consider the bulk fermentation phase completed. Once your dough reaches the target level, you can begin the shaping phase.\nIt is recommended to avoid basing the bulk fermentation duration on time, as it depends on too many variables; instead, the percentage of volume rise is a more reliable way to measure that that produces more consistent results.\nThis percentage is directly affected by the ambient temperature; for example, in a warmer environment the dough will need to rise less to be considered ready for shaping.",k)],m),B.G,B.P,B.Q)],n),B.G,B.P,B.Q),B.yM,k,k)],t.gG),B.BN,!0))}}
+return A.anW(i,A.aiJ(A.a([new A.mB(g,new A.cB(h,k,k,k,k,k,B.aF),B.BO,k),new A.mB(A.mF(A.a([p,A.di(A.a([new A.jY(l.at,"Ambient temperature",q,r,10,k)],o),B.G,B.P,B.Q),A.di(A.a([new A.jY(l.z,"Target bread weight","g",1e5,5,k)],o),B.G,B.P,B.Q),A.di(A.a([new A.jY(l.Q,"Hydration level","%",99,5,k)],o),B.G,B.P,B.Q),A.di(A.a([new A.jY(l.as,"Salt level","%",10,5,k)],o),B.G,B.P,B.Q)],n),B.G,B.P,B.dO),new A.cB(s,k,new A.d0(B.o,B.o,new A.aR(B.lk,1,B.x,-1),B.o),k,k,k,B.aF),B.lP,k),new A.mB(A.mF(A.a([B.Jb,A.di(A.a([new A.iP("Flour",B.c.a0(l.f,1)+"g",k,k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Water",B.c.a0(l.r,1)+"g",k,k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Levain",B.c.a0(l.w,1)+"g",k,k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Salt",B.c.a0(l.x,1)+"g",k,k)],m),B.G,B.P,B.Q),B.J9,A.di(A.a([new A.iP("Inoculation level",B.c.a0(l.d,0)+"%","Refers to the proportion of sourdough starter (or levain) you use in relation to the total amount of flour in your dough.\nIt's a key factor that influences the fermentation process and the characteristics of your bread. The inoculation level percentage affects the fermentation rate, flavor profile, and texture of your sourdough bread. Higher percentages result in a faster and more pronounced fermentation, which can lead to a stronger sour flavor and more open crumb structure. Lower percentages result in a milder flavor and a slower fermentation.\nThis value is directly affected by ambient temperature; for example, a colder environment will require a stronger fermantation and so a higher inoculation level.",k)],m),B.G,B.P,B.Q),A.di(A.a([new A.iP("Target dough rise",B.h.a0(l.e,0)+"%","Indicates how much should the dough should rise, compared to its original volume at the moment of mixing the starter, in order to consider the bulk fermentation phase completed. Once your dough reaches the target level, you can begin the shaping phase.\nIt is recommended to avoid basing the bulk fermentation duration on time, as it depends on too many variables; instead, the percentage of volume rise is a more reliable way to measure that that produces more consistent results.\nThis percentage is directly affected by the ambient temperature; for example, in a warmer environment the dough will need to rise less to be considered ready for shaping.",k)],m),B.G,B.P,B.Q)],n),B.G,B.P,B.Q),B.yM,k,k)],t.gG),B.BN,!0))}}
 A.ab6.prototype={
 $0(){var s=this.a
 s.LS()
@@ -77160,7 +77160,7 @@ return A.a0(A.akn(q,B.Dd),$async$ui)
 case 2:if(!b)throw A.e(A.cu("Could not launch "+q.k(0)))
 return A.U(null,r)}})
 return A.V($async$ui,r)},
-K(a){var s=null,r=A.eV(s,s,A.S(a).ax.b,s,B.jN,A.S(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),q=B.d.a5("d56490b6ecb3fa8b1ca69fdcdee58266bc5e56fc",0,7),p=A.a6k(s,s)
+K(a){var s=null,r=A.eV(s,s,A.S(a).ax.b,s,B.jN,A.S(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),q=B.d.a5("3e73b0715730ada1f0534aeb437211e27126142a",0,7),p=A.a6k(s,s)
 p.bt=new A.a8f(this)
 return A.mF(A.a([B.Ja,A.di(A.a([A.kW(A.aor(A.cb(A.a([B.Lq,A.cb(s,p,r,q)],t.VO),s,s,s),s,B.d1),1)],t.i_),B.G,B.P,B.Q)],t.hP),B.G,B.P,B.Q)}}
 A.a8f.prototype={
@@ -81765,7 +81765,7 @@ B.bH=new A.KB(1,"down")
 B.CA=new A.n6("Fermentation",20,null)
 B.DT=A.a(s([B.CA]),t.YZ)
 B.J9=new A.lE(B.ah,B.P,B.Q,B.G,null,B.bH,null,B.DT,null)
-B.PB=new A.jX("Version: 1.2.5",null,null,B.d1,null,null,null,null,null)
+B.PB=new A.jX("Version: 1.2.6",null,null,B.d1,null,null,null,null,null)
 B.Cf=new A.pA(1,B.ip,B.PB,null)
 B.DV=A.a(s([B.Cf]),t.i_)
 B.Ja=new A.lE(B.ah,B.P,B.Q,B.G,null,B.bH,null,B.DV,null)
@@ -83107,7 +83107,7 @@ return q})
 s($,"aId","aty",()=>$.TM().h(0,B.bZ).a)
 s($,"aIw","TM",()=>A.aC([B.bZ,A.aoq("Celsius","\xbaC"),B.d0,A.aoq("Farenheit","\xbaF")],A.a9("iK"),A.a9("lQ")))
 s($,"aI3","ahC",()=>A.aC([B.bZ,new A.agv(),B.d0,new A.agw()],A.a9("iK"),A.a9("M(M)")))
-s($,"aH3","asL",()=>A.k5("https://github.com/duddu/sourdoc/tree/d56490b6ecb3fa8b1ca69fdcdee58266bc5e56fc",0,null))
+s($,"aH3","asL",()=>A.k5("https://github.com/duddu/sourdoc/tree/3e73b0715730ada1f0534aeb437211e27126142a",0,null))
 s($,"aGf","akO",()=>new A.K())
 r($,"azU","asj",()=>{var q=new A.a0z()
 q.Gr($.akO())
