@@ -327,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                       label: locale.variableLabelDoughRise,
                       value:
                           '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
-                      additionalInfoText: locale.additionalInfoBulkRise)
+                      additionalInfoText: locale.additionalInfoDoughRise)
                 ]),
               ]))
         ],
