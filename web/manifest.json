@@ -1,11 +1,11 @@
 {
-    "name": "sourdoc",
-    "short_name": "sourdoc",
+    "name": "Sourdoc",
+    "short_name": "Sourdoc",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FFFFFF",
+    "theme_color": "#6B41C8",
+    "description": "Sourdoc: Your ultimate companion for perfect sourdough - Calculate every variable from mixing to fermentation for the ideal sourdough baking experience.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
