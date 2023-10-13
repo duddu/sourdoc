@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sourdoc/constants/form.dart' as form;
 import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/constants/routes.dart';
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
-import 'package:sourdoc/widgets/app_bar_title.dart';
+import 'package:sourdoc/widgets/app_bar_with_actions.dart';
 import 'package:sourdoc/widgets/centered_container.dart';
-import 'package:sourdoc/widgets/help_page.dart';
 import 'package:sourdoc/widgets/variable_with_label.dart';
 import 'package:sourdoc/widgets/header.dart';
 import 'package:sourdoc/widgets/text_field_with_affixes.dart';
@@ -145,32 +145,12 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  Route _createHelpRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const HelpPage(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
-        final tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          centerTitle: true,
-          titleSpacing: 0,
-          title: AppBarTitle(
+      appBar: getAppBarWithTitle(
+          context,
+          AppBarTitleWithAction(
               title: Semantics(
                   label: locale.a11yAppBarHomeTitleLabel,
                   child: const Text(locale.title,
@@ -182,19 +162,20 @@ class _HomePageState extends State<HomePage> {
               ),
               action: Semantics(
                   button: true,
-                  label: locale.a11yAppBarHomeHelpButtonLabel,
-                  hint: locale.a11yAppBarHomeHelpButtonHint,
-                  tooltip: locale.appBarHomeHelpButtonTooltip,
+                  label: locale.a11yAppBarHomeActionButtonLabel,
+                  hint: locale.a11yAppBarHomeActionButtonHint,
+                  tooltip: locale.appBarHomeActionButtonTooltip,
                   child: IconButton(
                       icon: const Icon(
                         Icons.question_mark_rounded,
-                        semanticLabel: locale.a11yAppBarHomeHelpButtonIconLabel,
+                        semanticLabel:
+                            locale.a11yAppBarHomeActionButtonIconLabel,
                         color: Colors.white,
                       ),
                       color: Colors.white,
-                      tooltip: locale.appBarHomeHelpButtonTooltip,
+                      tooltip: locale.appBarHomeActionButtonTooltip,
                       onPressed: () {
-                        Navigator.of(context).push(_createHelpRoute());
+                        Navigator.pushNamed(context, helpPagePath);
                       })))),
       body: ListView(
         primary: true,
@@ -281,16 +262,10 @@ class _HomePageState extends State<HomePage> {
                 )
               ])),
           CenteredContainer(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(
-                      bottom:
-                          BorderSide(width: 1, color: Colors.grey.shade300))),
-              padding: const EdgeInsets.only(bottom: 30),
+              decoration: const BoxDecoration(color: Colors.white),
               child: Column(children: <Row>[
-                const Row(children: <Header>[
-                  Header(text: locale.headerIngredients, colorPrimary: true)
-                ]),
+                const Row(
+                    children: <Header>[Header(text: locale.headerIngredients)]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelFlour,
@@ -312,7 +287,7 @@ class _HomePageState extends State<HomePage> {
                       value: '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
                 ]),
                 const Row(children: <Header>[
-                  Header(text: locale.headerFermentation, colorPrimary: true)
+                  Header(text: locale.headerFermentation)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
@@ -329,73 +304,6 @@ class _HomePageState extends State<HomePage> {
                       additionalInfoText: locale.additionalInfoDoughRise)
                 ]),
               ])),
-          CenteredContainer(
-              decoration:
-                  BoxDecoration(color: Colors.grey.shade100.withAlpha(100)),
-              child: const Column(children: <Row>[
-                Row(children: <Header>[
-                  Header(
-                    text: locale.headerHowItWorks,
-                  )
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(
-                    locale.appendixHowItWorks,
-                  ))
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            locale.appendixHowItWorksFormula,
-                            semanticsLabel:
-                                locale.a11yAppendixHowItWorksFormula,
-                            style: TextStyle(fontStyle: FontStyle.italic),
-                          )))
-                ]),
-                Row(children: <Header>[
-                  Header(
-                    text: locale.headerBakerFormulaDifference,
-                  )
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(
-                    locale.appendixBakerFormulaDifference,
-                  ))
-                ]),
-                Row(children: <Header>[
-                  Header(
-                    text: locale.headerGlossary,
-                  )
-                ]),
-                Row(children: <Header>[
-                  Header(
-                      text: locale.variableLabelInoculation,
-                      small: true,
-                      paddingTop: 5)
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(
-                    locale.additionalInfoInoculation,
-                  ))
-                ]),
-                Row(children: <Header>[
-                  Header(
-                      text: locale.variableLabelDoughRise,
-                      small: true,
-                      paddingTop: 15)
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(
-                    locale.additionalInfoDoughRise,
-                  ))
-                ]),
-              ]))
         ],
       ),
     );

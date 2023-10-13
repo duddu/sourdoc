@@ -46,16 +46,6 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('should not apply primary color by default', (tester) async {
-      await tester
-          .pumpWidget(getWidgetWithTestScaffold(const Header(text: text)));
-
-      expect(
-          find.byWidgetPredicate(
-              (Widget widget) => widget is Text && widget.style?.color == null),
-          findsOneWidget);
-    });
-
     group('if small is true', () {
       testWidgets('should have font size 16', (tester) async {
         await tester.pumpWidget(
@@ -64,18 +54,6 @@ void main() {
         expect(
             find.byWidgetPredicate((Widget widget) =>
                 widget is Text && widget.style?.fontSize == 16),
-            findsOneWidget);
-      });
-    });
-
-    group('if colorPrimary is true', () {
-      testWidgets('should apply primary color', (tester) async {
-        await tester.pumpWidget(getWidgetWithTestScaffold(
-            const Header(text: text, colorPrimary: true)));
-
-        expect(
-            find.byWidgetPredicate((Widget widget) =>
-                widget is Text && widget.style?.color != null),
             findsOneWidget);
       });
     });

@@ -6,12 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 final Uri _commitUrl =
     Uri.parse('${environment.repoUrl}/tree/${environment.commitSha}');
+final Uri _openIssueUrl = Uri.parse('${environment.repoUrl}/issues/new/choose');
 
 class VersionInfo extends StatelessWidget {
   const VersionInfo({super.key});
 
-  Future<void> _launchCommitUrl() async {
-    if (!await launchUrl(_commitUrl, mode: LaunchMode.externalApplication)) {
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $_commitUrl');
     }
   }
@@ -19,6 +20,11 @@ class VersionInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Row>[
+      Row(children: <Expanded>[
+        Expanded(
+            child: Text('${locale.title} ©${DateTime.now().year.toString()}',
+                textAlign: TextAlign.center)),
+      ]),
       const Row(children: <Expanded>[
         Expanded(
             child: Text('${locale.labelVersion}: ${environment.version}',
@@ -30,18 +36,28 @@ class VersionInfo extends StatelessWidget {
           TextSpan(children: [
             const TextSpan(text: '${locale.labelCommit}: '),
             TextSpan(
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Theme.of(context).colorScheme.primary),
                 text: environment.commitSha.length > 7
                     ? environment.commitSha.substring(0, 7)
                     : environment.commitSha,
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () async {
-                    _launchCommitUrl();
+                    _launchUrl(_commitUrl);
                   })
           ]),
+          textAlign: TextAlign.center,
+        ))
+      ]),
+      Row(children: <Expanded>[
+        Expanded(
+            child: Text.rich(
+          TextSpan(
+              text: locale.reportIssue,
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  _launchUrl(_openIssueUrl);
+                }),
           textAlign: TextAlign.center,
         ))
       ])
