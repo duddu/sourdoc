@@ -5,7 +5,9 @@ flutter_launcher_icons:
   remove_alpha_ios: true
   web:
     generate: true
+    image_path: "assets/icon/icon-web.png"
   macos:
     generate: true
+    image_path: "assets/icon/icon-macos.png"
   windows:
     generate: true
