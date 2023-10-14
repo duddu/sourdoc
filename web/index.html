@@ -36,10 +36,12 @@
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
-          timeoutMillis: 2500,
+          timeoutMillis: 2000,
         },
-        onEntrypointLoaded: async function(engineInitializer) {
-          await engineInitializer.autoStart();
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine({renderer: "html"}).then(function(appRunner) {
+            appRunner.runApp();
+          });
         }
       });
     });
