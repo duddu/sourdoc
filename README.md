@@ -13,10 +13,24 @@ Your ultimate companion for perfect sourdough - Calculate every variable from mi
 
 ## How it works
 
-The user provides ambient temperature, final bread desired weight, hydration and salt levels, and gets in return all the relevant data automatically calculated: all the ingredients quantities, the recommended inoculation level and how much should the dough rise during fermentation.
+The user provides ambient temperature, final bread desired weight, hydration and salt levels, and gets in return all the relevant data automatically calculated: all the ingredients quantities, the recommended inoculation level and how much should the dough rise during bulk fermentation.
 
-![Sourdoc sample screenshot 1](https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot_1.png)&emsp;
-![Sourdoc sample screenshot 2](https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot_2.png)
+<img alt="Sourdoc sample screenshot 1" src="https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot_1.png" width=360>&emsp;
+<img alt="Sourdoc sample screenshot 2" src="https://raw.githubusercontent.com/duddu/sourdoc/main/docs/assets/web-home-screenshot_2.png" width=360>
+
+### Notes about the calculation
+
+Sourdoc doesn't simply use the baker's formula to calculate the ingredients quantities, assince that doesn't take into account the ambient temperature; we use instead a more appropriate formula specific to sourdough baking: 
+
+```bash
+b = f - f * h - f * i - f * s
+# b: desired bread loaf weight
+# f: flour weight
+# h: hydration level (percentage of flour)
+# s: salt level (percentage of flour)
+```
+
+For a detailed explanation, see [here](https://sourdoc.duddu.dev/help).
 
 ## CLI
 
@@ -32,14 +46,8 @@ dart run cli/bump_version.dart --increment patch
 
 ## Tech 
 
-Made with Dart and Flutter.  
-Built as native app for iOS and Android as well, but not published to the stores yet.
+Made with Dart and Flutter, supporting multi-platform build. Will likely be released on the iOS and Android stores in the future. 
 
 ## Contribution
 
 Feel free to raise an issue if you have any question or suggestions, or open a PR if you want to propose any change.
-
-## License
-
-Mozilla Public License 2.0  
-© Davide Doronzo
