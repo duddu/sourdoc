@@ -25,6 +25,8 @@ jobs:
                 fetch-depth: 1
             - name: Build release
               run: flutter build -v web --release --build-name=$(cat VERSION) --build-number=${{ github.sha }} --dart-define=VERSION=$(cat VERSION) --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
+            - name: Generate 404 page
+              run: cp build/web/index.html build/web/404.html
             - name: Deploy github pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
