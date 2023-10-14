@@ -25,7 +25,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS2J7KXZ0Q"></script>
   <script defer src="gtm-gtag.js"></script>
   <script>
-    const serviceWorkerVersion = "2066379775";
+    const serviceWorkerVersion = "213520673";
   </script>
   <script defer src="flutter.js"></script>
 </head>
@@ -36,11 +36,10 @@
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
+          timeoutMillis: 2500,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({renderer: "html"}).then(function(appRunner) {
-            appRunner.runApp();
-          });
+        onEntrypointLoaded: async function(engineInitializer) {
+          await engineInitializer.autoStart();
         }
       });
     });
