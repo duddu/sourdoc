@@ -15,9 +15,12 @@ jobs:
                 include:
                     - platform: web
                       os: ubuntu-latest
+                      build-folder: build/web
                       environment: onrender
                     - platform: macos
                       os: macos-latest
+                      build-folder: build/macos/Build/Products/Release
+                      build-artifact: sourdoc.app
         name: build-${{ matrix.platform }}-release
         concurrency: build-${{ github.ref }}-${{ matrix.platform }}
         runs-on: ${{ matrix.os }}
@@ -41,22 +44,23 @@ jobs:
               if: ${{ matrix.platform == 'web' }}
               uses: JamesIves/github-pages-deploy-action@v4
               with:
-                folder: build/web
+                folder: ${{ matrix.build-folder }}
                 branch: onrender
             - name: '[web] Print Render dashboard link'
               if: ${{ matrix.platform == 'web' }}
               run: echo "Follow the deploy pipeline at https://dashboard.render.com/static/srv-ckkutdqv7m0s73cts10g/events"
             - name: '[macos] Compress build'
-              if: ${{ matrix.platform == 'macos' }}
+              if: ${{ matrix.build-artifact }}
               run: |
-                cd build/macos/Build/Products/Release
-                tar -czf sourdoc.app.tgz sourdoc.app
-            - name: '[macos] Upload app artifact'
-              if: ${{ matrix.platform == 'macos' }}
+                cd ${{ matrix.build-folder }}
+                tar -czf ${{ matrix.build-artifact }}.tgz ${{ matrix.build-artifact }}
+            - name: '[macos] Upload build artifact'
+              if: ${{ matrix.build-artifact }}
               uses: actions/upload-artifact@v3
               with:
-                name: sourdoc.app
-                path: build/macos/Build/Products/Release/sourdoc.app.tgz
+                name: ${{ matrix.platform }}-${{ matrix.build-artifact }}
+                path: ${{ matrix.build-folder }}/${{ matrix.build-artifact }}.tgz
+                if-no-files-found: error
     create-github-release:
       concurrency: release-${{ github.ref }}
       runs-on: ubuntu-latest
@@ -68,10 +72,10 @@ jobs:
               fetch-depth: 1
           - name: Set version environment variable
             run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV   
-          - name: Download artifacts
+          - name: Download macos artifact
             uses: actions/download-artifact@v3
             with:
-              name: sourdoc.app
+              name: macos-sourdoc.app
               path: .
           - name: Create release
             uses: softprops/action-gh-release@v1
@@ -79,3 +83,4 @@ jobs:
               tag_name: v${{ env.VERSION }}
               files: |
                 sourdoc.app.tgz
+              fail_on_unmatched_files: true
