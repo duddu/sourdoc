@@ -45,6 +45,9 @@ jobs:
               run: |
                 echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
                 echo "ARTIFACT_NAME=${{ matrix.platform }}-sourdoc-v$(cat VERSION)" >> $GITHUB_ENV
+            - name: '[linux] Install dependencies'
+              if: ${{ matrix.platform == 'linux' }}
+              run: sudo apt-get install ninja-build
             - name: Build release
               run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
             - name: '[web] Trigger deploy on Render'
