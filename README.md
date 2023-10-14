@@ -22,12 +22,12 @@ The user provides ambient temperature, final bread desired weight, hydration and
 
 Sourdoc doesn't simply use the baker's formula to calculate the ingredients quantities, assince that doesn't take into account the ambient temperature; we use instead a more appropriate formula specific to sourdough baking: 
 
-```bash
+```go
 b = f - f * h - f * i - f * s
-# b: desired bread loaf weight
-# f: flour weight
-# h: hydration level (percentage of flour)
-# s: salt level (percentage of flour)
+// b: desired bread loaf weight
+// f: flour weight
+// h: hydration level (percentage of flour)
+// s: salt level (percentage of flour)
 ```
 
 For a detailed explanation, see [here](https://sourdoc.duddu.dev/help).
