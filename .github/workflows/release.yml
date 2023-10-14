@@ -15,7 +15,8 @@ jobs:
                 include:
                     - platform: web
                       os: ubuntu-latest
-                      build-folder: build/web
+                      build-folder: build
+                      build-artifact: web
                       environment: onrender
                     - platform: macos
                       os: macos-latest
@@ -44,15 +45,13 @@ jobs:
               if: ${{ matrix.platform == 'web' }}
               uses: JamesIves/github-pages-deploy-action@v4
               with:
-                folder: ${{ matrix.build-folder }}
+                folder: ${{ matrix.build-folder }}/${{ matrix.build-artifact }}
                 branch: onrender
-            - name: '[macos] Compress build'
-              if: ${{ matrix.build-artifact }}
+            - name: 'Compress build'
               run: |
                 cd ${{ matrix.build-folder }}
                 tar -czf ${{ matrix.platform }}-${{ matrix.build-artifact }}.tgz ${{ matrix.build-artifact }}
-            - name: '[macos] Upload build artifact'
-              if: ${{ matrix.build-artifact }}
+            - name: 'Upload build artifact'
               uses: actions/upload-artifact@v3
               with:
                 name: ${{ matrix.platform }}-${{ matrix.build-artifact }}
