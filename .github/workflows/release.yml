@@ -53,13 +53,13 @@ jobs:
               if: ${{ matrix.build-artifact }}
               run: |
                 cd ${{ matrix.build-folder }}
-                tar -czf ${{ matrix.build-artifact }}.tgz ${{ matrix.build-artifact }}
+                tar -czf ${{ matrix.platform }}-${{ matrix.build-artifact }}.tgz ${{ matrix.build-artifact }}
             - name: '[macos] Upload build artifact'
               if: ${{ matrix.build-artifact }}
               uses: actions/upload-artifact@v3
               with:
                 name: ${{ matrix.platform }}-${{ matrix.build-artifact }}
-                path: ${{ matrix.build-folder }}/${{ matrix.build-artifact }}.tgz
+                path: ${{ matrix.build-folder }}/${{ matrix.platform }}-${{ matrix.build-artifact }}.tgz
                 if-no-files-found: error
     create-github-release:
       concurrency: release-${{ github.ref }}
@@ -72,15 +72,14 @@ jobs:
               fetch-depth: 1
           - name: Set version environment variable
             run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV   
-          - name: Download macos artifact
+          - name: Download all artifacts
             uses: actions/download-artifact@v3
             with:
-              name: macos-sourdoc.app
-              path: .
+              path: artifacts
           - name: Create release
             uses: softprops/action-gh-release@v1
             with:
               tag_name: v${{ env.VERSION }}
               files: |
-                sourdoc.app.tgz
+                artifacts/**/*
               fail_on_unmatched_files: true
