@@ -28,7 +28,7 @@ jobs:
                       build-artifact: bundle
                     - platform: windows
                       os: windows-latest
-                      build-folder: build/windows/runner
+                      build-folder: build/windows/x64/runner
                       build-artifact: release
         name: release-${{ matrix.platform }}
         concurrency: build-${{ github.ref }}-${{ matrix.platform }}
