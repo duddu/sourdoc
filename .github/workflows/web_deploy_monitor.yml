@@ -1,0 +1,20 @@
+name: Web deploy monitor
+on:
+    push:
+        branches:
+            - onrender
+env:
+    RAW_GITHUB_PATH: https://raw.githubusercontent.com/${{ github.repository }}
+    MONITOR_SCRIPT_PATH: cli/web_deploy_monitor.sh
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            - name: Check deployment status
+              run: |
+                COMMIT=$(cut -c 44-83 <<< $(git log -1 --pretty=%B))
+                bash <(curl -s ${{ env.RAW_GITHUB_PATH }}/$COMMIT/${{ env.MONITOR_SCRIPT_PATH }})
