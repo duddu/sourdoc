@@ -4,7 +4,11 @@ import 'package:git/git.dart';
 import 'package:version/version.dart';
 
 const String versionPath = 'VERSION';
-const String downloadReleaseAssetPath = 'web/download-release-asset.html';
+const List<String> updateableFilesPaths = [
+  versionPath,
+  'web/index.html',
+  'web/download-release-asset.html',
+];
 
 String getIncrementArgument(List<String> arguments) {
   final parser = ArgParser()
@@ -12,6 +16,12 @@ String getIncrementArgument(List<String> arguments) {
         abbr: 'i', mandatory: true, allowed: ['patch', 'minor', 'major']);
   ArgResults argResults = parser.parse(arguments);
   return argResults['increment'];
+}
+
+Future<Version> getCurrentVersion() async {
+  final File versionFile = File(versionPath);
+  final String versionFileContent = await versionFile.readAsString();
+  return Version.parse(versionFileContent);
 }
 
 Version getNewVersion(Version currentVersion, String increment) {
@@ -28,15 +38,14 @@ Version getNewVersion(Version currentVersion, String increment) {
 }
 
 Future<void> writeNewVersion(String increment) async {
-  final File versionFile = File(versionPath);
-  final File downloadFile = File(downloadReleaseAssetPath);
-  final String versionFileContent = await versionFile.readAsString();
-  final String downloadFileContent = await downloadFile.readAsString();
-  final Version currentVersion = Version.parse(versionFileContent);
+  final Version currentVersion = await getCurrentVersion();
   final Version newVersion = getNewVersion(currentVersion, increment);
-  await versionFile.writeAsString(newVersion.toString());
-  await downloadFile.writeAsString(downloadFileContent.replaceAll(
-      currentVersion.toString(), newVersion.toString()));
+  for (var filePath in updateableFilesPaths) {
+    final File file = File(filePath);
+    final String fileContent = await file.readAsString();
+    await file.writeAsString(fileContent.replaceAll(
+        currentVersion.toString(), newVersion.toString()));
+  }
   stdout.writeln(
       '✔️ Updated version from ${currentVersion.toString()} to ${newVersion.toString()}');
 }
@@ -45,7 +54,7 @@ Future<void> main(List<String> arguments) async {
   try {
     final increment = getIncrementArgument(arguments);
     await writeNewVersion(increment);
-    await runGit(['stage', versionPath, downloadReleaseAssetPath]);
+    await runGit(['stage', ...updateableFilesPaths]);
   } catch (e) {
     stderr.writeln('🛑 $e');
     exit(1);
