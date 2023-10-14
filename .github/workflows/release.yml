@@ -13,6 +13,7 @@ jobs:
         concurrency: deploy-web-${{ github.ref }}
         runs-on: ubuntu-latest
         needs: trigger-test
+        environment: onrender
         steps:
             - name: Prepare flutter
               uses: subosito/flutter-action@v2
@@ -30,6 +31,8 @@ jobs:
               with:
                 folder: build/web
                 branch: onrender
+            - name: Print onrender dashboard link
+              run: echo "Follow the deploy pipeline at https://dashboard.render.com/static/srv-ckkutdqv7m0s73cts10g/events"
     build-macos-release:
       concurrency: deploy-macos-${{ github.ref }}
       runs-on: macos-latest
