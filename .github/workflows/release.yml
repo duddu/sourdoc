@@ -9,11 +9,19 @@ permissions:
 jobs:
     trigger-test:
         uses: ./.github/workflows/test.yml
-    build-and-deploy-web:
-        concurrency: deploy-web-${{ github.ref }}
-        runs-on: ubuntu-latest
+    build:
+        strategy:
+            matrix:
+                include:
+                    - platform: web
+                      os: ubuntu-latest
+                      environment: onrender
+                    - platform: macos
+                      os: macos-latest
+        concurrency: build-${{ github.ref }}-${{ matrix.platform }}
+        runs-on: ${{ matrix.os }}
         needs: trigger-test
-        environment: onrender
+        environment: ${{ matrix.environment }}
         steps:
             - name: Prepare flutter
               uses: subosito/flutter-action@v2
@@ -24,48 +32,34 @@ jobs:
               uses: actions/checkout@v4
               with:
                 fetch-depth: 1
+            - name: Set version environment variable
+              run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
             - name: Build release
-              run: flutter build -v web --release --build-name=$(cat VERSION) --build-number=${{ github.sha }} --dart-define=VERSION=$(cat VERSION) --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
-            - name: Commit build to onrender branch
+              run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
+            - if: ${{ matrix.platform == 'web' }}
+              name: Commit build to onrender branch
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: build/web
                 branch: onrender
-            - name: Print onrender dashboard link
+            - if: ${{ matrix.platform == 'web' }}
+              name: Print onrender dashboard link
               run: echo "Follow the deploy pipeline at https://dashboard.render.com/static/srv-ckkutdqv7m0s73cts10g/events"
-    build-macos-release:
-      concurrency: deploy-macos-${{ github.ref }}
-      runs-on: macos-latest
-      needs: trigger-test
-      steps:
-          - name: Prepare flutter
-            uses: subosito/flutter-action@v2
-            with:
-              flutter-version: ${{ vars.FLUTTER_VERSION }}
-              channel: ${{ vars.FLUTTER_CHANNEL }}
-          - name: Checkout
-            uses: actions/checkout@v4
-            with:
-              fetch-depth: 1
-          - name: Set version environment variable
-            run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
-          - name: Build release
-            run: flutter build -v macos --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
-          - name: Compress build
-            run: |
-              cd build/macos/Build/Products/Release
-              tar -czf sourdoc.app.tgz sourdoc.app
-          - name: Upload macOS app artifact
-            uses: actions/upload-artifact@v3
-            with:
-              name: sourdoc.app
-              path: build/macos/Build/Products/Release/sourdoc.app.tgz
-    create-release:
+            - if: ${{ matrix.platform == 'macos' }}
+              name: Compress build
+              run: |
+                cd build/macos/Build/Products/Release
+                tar -czf sourdoc.app.tgz sourdoc.app
+            - if: ${{ matrix.platform == 'macos' }}
+              name: Upload macOS app artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: sourdoc.app
+                path: build/macos/Build/Products/Release/sourdoc.app.tgz
+    create-github-release:
       concurrency: release-${{ github.ref }}
       runs-on: ubuntu-latest
-      needs:
-          - build-and-deploy-web
-          - build-macos-release
+      needs: build
       steps:
           - name: Checkout
             uses: actions/checkout@v4
