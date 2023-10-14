@@ -40,22 +40,17 @@ jobs:
               run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
             - name: Build release
               run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
-            - name: '[web] Copy deploy monitor workflow'
-              if: ${{ matrix.platform == 'web' }}
-              env:
-                WORKFLOW: web_deploy_monitor.yml
-              run: |
-                mkdir -p ${{ matrix.build-folder }}/.github/workflows
-                cp .github/workflows/${{ env.WORKFLOW }} ${{ matrix.build-folder }}/.github/workflows/${{ env.WORKFLOW }}
             - name: '[web] Commit build to onrender branch'
               if: ${{ matrix.platform == 'web' }}
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: ${{ matrix.build-folder }}
                 branch: onrender
-            - name: '[web] Print Render dashboard link'
+            - name: '[web] Monitor deploy status'
               if: ${{ matrix.platform == 'web' }}
-              run: echo "Follow the deploy pipeline at https://dashboard.render.com/static/srv-ckkutdqv7m0s73cts10g/events"
+              run: |
+                echo "Follow the deploy pipeline at https://dashboard.render.com/static/srv-ckkutdqv7m0s73cts10g/events"
+                COMMIT=$(git rev-parse HEAD) bash cli/web_deploy_monitor.sh
             - name: '[macos] Compress build'
               if: ${{ matrix.build-artifact }}
               run: |
