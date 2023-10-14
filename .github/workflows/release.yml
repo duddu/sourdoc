@@ -24,7 +24,7 @@ jobs:
                       build-artifact: sourdoc.app
                     - platform: linux
                       os: ubuntu-latest
-                      build-folder: build/linux/release
+                      build-folder: build/linux/x64/release
                       build-artifact: bundle
         name: release-${{ matrix.platform }}
         concurrency: build-${{ github.ref }}-${{ matrix.platform }}
