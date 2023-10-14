@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Sourdoc release asset</title>
+    <script>
+        var version = 'v1.4.15';
+        var platform = new URLSearchParams(window.location.search).get('platform');
+        window.location.href = 'https://github.com/duddu/sourdoc/releases/download/' + version + '/' + platform + '-sourdoc-' + version + '.tgz';
+    </script>
+</head>
+</html>

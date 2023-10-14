@@ -4,7 +4,7 @@ import 'package:git/git.dart';
 import 'package:version/version.dart';
 
 const String versionPath = 'VERSION';
-const String readmePath = 'README.md';
+const String downloadReleaseAssetPath = 'web/download-release-asset.html';
 
 String getIncrementArgument(List<String> arguments) {
   final parser = ArgParser()
@@ -29,13 +29,13 @@ Version getNewVersion(Version currentVersion, String increment) {
 
 Future<void> writeNewVersion(String increment) async {
   final File versionFile = File(versionPath);
-  final File readmeFile = File(readmePath);
+  final File downloadFile = File(downloadReleaseAssetPath);
   final String versionFileContent = await versionFile.readAsString();
-  final String readmeFileContent = await readmeFile.readAsString();
+  final String downloadFileContent = await downloadFile.readAsString();
   final Version currentVersion = Version.parse(versionFileContent);
   final Version newVersion = getNewVersion(currentVersion, increment);
   await versionFile.writeAsString(newVersion.toString());
-  await readmeFile.writeAsString(readmeFileContent.replaceAll(
+  await downloadFile.writeAsString(downloadFileContent.replaceAll(
       currentVersion.toString(), newVersion.toString()));
   stdout.writeln(
       '✔️ Updated version from ${currentVersion.toString()} to ${newVersion.toString()}');
@@ -45,7 +45,7 @@ Future<void> main(List<String> arguments) async {
   try {
     final increment = getIncrementArgument(arguments);
     await writeNewVersion(increment);
-    await runGit(['stage', versionPath, readmePath]);
+    await runGit(['stage', versionPath, downloadReleaseAssetPath]);
   } catch (e) {
     stderr.writeln('🛑 $e');
     exit(1);
