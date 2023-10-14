@@ -47,7 +47,7 @@ jobs:
                 echo "ARTIFACT_NAME=${{ matrix.platform }}-sourdoc-v$(cat VERSION)" >> $GITHUB_ENV
             - name: '[linux] Install dependencies'
               if: ${{ matrix.platform == 'linux' }}
-              run: sudo apt-get install ninja-build
+              run: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
             - name: Build release
               run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
             - name: '[web] Trigger deploy on Render'
