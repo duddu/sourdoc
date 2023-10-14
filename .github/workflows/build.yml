@@ -1,12 +1,20 @@
-name: Build for macOS
+name: Build
 on:
     workflow_dispatch:
     push:
         branches-ignore:
             - main
 jobs:
-    test:
-        runs-on: macos-latest
+    build:
+        strategy:
+            matrix:
+                include:
+                    - platform: web
+                      os: ubuntu-latest
+                    - platform: macos
+                      os: macos-latest
+        name: build-${{ matrix.platform }}
+        runs-on: ${{ matrix.os }}
         steps:
             - name: Prepare flutter
               uses: subosito/flutter-action@v2
@@ -18,4 +26,4 @@ jobs:
               with:
                 fetch-depth: 1
             - name: Build
-              run: flutter build -v macOS
+              run: flutter build -v ${{ matrix.platform }}
