@@ -79312,7 +79312,7 @@ K(a){var s=null
 return A.la(s,A.l6(A.f3(new A.c5(B.Cj,this.c,s),s,680),s,s),B.w,s,this.d,s,s,this.e,s)}}
 A.GT.prototype={
 K(a){var s=null,r="Back to calculator",q=A.bo(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,"Sourdoc glossary page title",s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s),p=A.qb(B.i,B.Df,s,new A.a_E(a),s,r)
-return A.ale(A.amr(a,new A.pn(new A.bb(q,!1,!1,!1,!1,B.R5,s),!1,new A.bb(A.bo(s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,"When pressed sends back to the home page",s,s,s,s,s,"Close glossary page button",s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,r,s),!1,!1,!1,!1,p,s),!0,"Back to Help page",s)),A.a1y(A.a([new A.it(A.jA(A.a([B.K6,B.K2,B.K9,B.Ka,A.cG(A.a([A.fh(new A.c5(B.C4,A.KN(!1,B.xZ,B.w,s,s,s,s,s,new A.a_F(a),s,B.kQ),s),1)],t.i_),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),B.hI,s,s)],t.gG),B.ii,!0))}}
+return A.ale(A.amr(a,new A.pn(new A.bb(q,!1,!1,!1,!1,B.R5,s),!1,new A.bb(A.bo(s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,"When pressed sends back to the home page",s,s,s,s,s,"Close glossary page button",s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,r,s),!1,!1,!1,!1,p,s),!0,"Back to Help page",s)),A.a1y(A.a([new A.it(A.jA(A.a([B.K5,B.K1,B.K9,B.Ka,A.cG(A.a([A.fh(new A.c5(B.C4,A.KN(!1,B.xZ,B.w,s,s,s,s,s,new A.a_F(a),s,B.kQ),s),1)],t.i_),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),B.hI,s,s)],t.gG),B.ii,!0))}}
 A.a_E.prototype={
 $0(){return A.aiD(this.a)},
 $S:0}
@@ -79333,7 +79333,7 @@ s=A.dX(p,p,A.Y(a).ax.b,p,p,p,p,p,p,p,p,p,p,p,p,p,p,!0,p,p,p,p,p,p,p,p)
 r=A.ry(p,p)
 r.b_=new A.a_S(a)
 q=t.i_
-return A.ale(n,A.a1y(A.a([new A.it(A.jA(A.a([A.cG(A.a([A.fh(A.a8A(A.bV(A.a([m,B.xV,B.MR,B.xV,A.bV(p,r,s,"Glossary"),B.MQ],t.VO),p,p,p),p,p),1)],q),B.x,B.A,B.B),B.K7,B.K3,B.K5,A.cG(A.a([A.fh(new A.c5(B.lZ,A.KN(!1,B.xZ,B.w,p,p,p,p,p,new A.a_T(a),p,B.kQ),p),1)],q),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),new A.cI(B.i,p,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),p,p,p,B.aG),B.C6,p),B.A5],t.gG),B.ii,!0))}}
+return A.ale(n,A.a1y(A.a([new A.it(A.jA(A.a([A.cG(A.a([A.fh(A.a8A(A.bV(A.a([m,B.xV,B.MR,B.xV,A.bV(p,r,s,"Glossary"),B.MQ],t.VO),p,p,p),p,p),1)],q),B.x,B.A,B.B),B.K6,B.K2,B.K4,A.cG(A.a([A.fh(new A.c5(B.lZ,A.KN(!1,B.xZ,B.w,p,p,p,p,p,new A.a_T(a),p,B.kQ),p),1)],q),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),new A.cI(B.i,p,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),p,p,p,B.aG),B.C6,p),B.A5],t.gG),B.ii,!0))}}
 A.a_Q.prototype={
 $0(){A.akZ(this.a,"/help/glossary",t.X)},
 $S:0}
@@ -79444,7 +79444,7 @@ r.toString
 o=t.Xh
 n=t.Na
 m=t.js
-return A.ale(i,A.a1y(A.a([new A.it(B.R0,new A.cI(h,k,k,k,k,k,B.aG),B.C2,k),new A.it(A.jA(A.a([p,A.cG(A.a([new A.ko(l.at,"Ambient temperature",q,r,10,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.z,"Target bread weight","g",1e5,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.Q,"Hydration level","%",99,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.as,"Salt level","%",10,5,k)],o),B.x,B.A,B.B)],n),B.x,B.A,B.dS),new A.cI(s,k,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),k,k,k,B.aG),B.lY,k),new A.it(A.jA(A.a([B.K8,A.cG(A.a([new A.jb("Flour",B.c.a0(l.f,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Water",B.c.a0(l.r,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Levain",B.c.a0(l.w,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Salt",B.c.a0(l.x,1)+"g",k,k)],m),B.x,B.A,B.B),B.K4,A.cG(A.a([new A.jb("Inoculation level",B.c.a0(l.d,0)+"%",u.r,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Target dough rise",B.h.a0(l.e,0)+"%",u.X,k)],m),B.x,B.A,B.B)],n),B.x,B.A,B.B),B.hI,k,k)],t.gG),B.ii,!0))}}
+return A.ale(i,A.a1y(A.a([new A.it(B.R0,new A.cI(h,k,k,k,k,k,B.aG),B.C2,k),new A.it(A.jA(A.a([p,A.cG(A.a([new A.ko(l.at,"Ambient temperature",q,r,10,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.z,"Target bread weight","g",1e5,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.Q,"Hydration level","%",99,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.as,"Salt level","%",10,5,k)],o),B.x,B.A,B.B)],n),B.x,B.A,B.dS),new A.cI(s,k,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),k,k,k,B.aG),B.lY,k),new A.it(A.jA(A.a([B.K8,A.cG(A.a([new A.jb("Flour",B.c.a0(l.f,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Water",B.c.a0(l.r,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Levain",B.c.a0(l.w,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Salt",B.c.a0(l.x,1)+"g",k,k)],m),B.x,B.A,B.B),B.K3,A.cG(A.a([new A.jb("Inoculation level",B.c.a0(l.d,0)+"%",u.r,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Target dough rise",B.h.a0(l.e,0)+"%",u.X,k)],m),B.x,B.A,B.B)],n),B.x,B.A,B.B),B.hI,k,k)],t.gG),B.ii,!0))}}
 A.adh.prototype={
 $0(){var s=this.a
 s.N3()
@@ -79565,13 +79565,13 @@ return A.Z(A.amC(a,B.DP),$async$q8)
 case 2:if(!c)throw A.e(A.ck("Could not launch "+$.an7().k(0)))
 return A.R(null,r)}})
 return A.S($async$q8,r)},
-K(a){var s=null,r=t.i_,q=A.cG(A.a([A.fh(A.eG("Sourdoc \xa9"+B.h.k(A.aq7(new A.eT(Date.now(),!1))),s,s,s,s,B.c1,s),1)],r),B.x,B.A,B.B),p=B.d.a6("d2c6258f80f46ddc78b4c1e4d908e9dafa33b928",0,7),o=A.dX(s,s,A.Y(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),n=A.ry(s,s)
+K(a){var s=null,r=t.i_,q=A.cG(A.a([A.fh(A.eG("Sourdoc \xa9"+B.h.k(A.aq7(new A.eT(Date.now(),!1))),s,s,s,s,B.c1,s),1)],r),B.x,B.A,B.B),p=B.d.a6("8fea37cf3c034d28642877ba11df7b5bf4f70303",0,7),o=A.dX(s,s,A.Y(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),n=A.ry(s,s)
 n.b_=new A.aao(this)
 p=A.cG(A.a([A.fh(A.a8A(A.bV(A.a([B.MP,A.bV(s,n,o,p)],t.VO),s,s,s),s,B.c1),1)],r),B.x,B.A,B.B)
 o=A.dX(s,s,A.Y(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s)
 n=A.ry(s,s)
 n.b_=new A.aap(this)
-return A.jA(A.a([q,B.K1,p,A.cG(A.a([A.fh(A.a8A(A.bV(s,n,o,"Report an issue"),s,B.c1),1)],r),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B)}}
+return A.jA(A.a([q,B.K7,p,A.cG(A.a([A.fh(A.a8A(A.bV(s,n,o,"Report an issue"),s,B.c1),1)],r),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B)}}
 A.aao.prototype={
 $0(){var s=0,r=A.T(t.H),q=this
 var $async$$0=A.U(function(a,b){if(a===1)return A.Q(b,r)
@@ -84007,14 +84007,14 @@ B.Fv=A.a(s([B.rl,null,null,B.rA]),t.L)
 B.Fw=A.a(s([B.rm,null,null,B.rB]),t.L)
 B.Fx=A.a(s([B.rn,null,null,B.iZ]),t.L)
 B.Fy=A.a(s([B.ro,null,null,B.rC]),t.L)
-B.EG=A.a(s([B.rp,null,null,B.j_]),t.L)
-B.EH=A.a(s([B.rq,null,null,B.j0]),t.L)
-B.EI=A.a(s([B.rr,null,null,B.j1]),t.L)
-B.EJ=A.a(s([B.rs,null,null,B.j2]),t.L)
-B.EK=A.a(s([B.rt,null,null,B.j3]),t.L)
-B.EL=A.a(s([B.ru,null,null,B.j4]),t.L)
-B.EM=A.a(s([B.rv,null,null,B.j5]),t.L)
-B.EN=A.a(s([B.rw,null,null,B.j6]),t.L)
+B.EH=A.a(s([B.rp,null,null,B.j_]),t.L)
+B.EI=A.a(s([B.rq,null,null,B.j0]),t.L)
+B.EJ=A.a(s([B.rr,null,null,B.j1]),t.L)
+B.EK=A.a(s([B.rs,null,null,B.j2]),t.L)
+B.EL=A.a(s([B.rt,null,null,B.j3]),t.L)
+B.EM=A.a(s([B.ru,null,null,B.j4]),t.L)
+B.EN=A.a(s([B.rv,null,null,B.j5]),t.L)
+B.EO=A.a(s([B.rw,null,null,B.j6]),t.L)
 B.FF=A.a(s([B.rx,null,null,B.j7]),t.L)
 B.FG=A.a(s([B.ry,null,null,B.j8]),t.L)
 B.Fp=A.a(s([B.dQ,B.dQ,B.fm,null]),t.L)
@@ -84034,7 +84034,7 @@ B.Fr=A.a(s([B.dR,B.dR,B.fn,null]),t.L)
 B.EX=A.a(s([B.dN,null,null,B.j2]),t.L)
 B.Fn=A.a(s([B.dO,null,null,B.j8]),t.L)
 B.Fs=A.a(s([B.bU,B.bU,B.cj,null]),t.L)
-B.HD=new A.cl(["*",B.Fu,"+",B.Fv,"-",B.Fw,".",B.Fx,"/",B.Fy,"0",B.EG,"1",B.EH,"2",B.EI,"3",B.EJ,"4",B.EK,"5",B.EL,"6",B.EM,"7",B.EN,"8",B.FF,"9",B.FG,"Alt",B.Fp,"AltGraph",B.FH,"ArrowDown",B.ES,"ArrowLeft",B.ET,"ArrowRight",B.EU,"ArrowUp",B.F7,"Clear",B.Fl,"Control",B.Fq,"Delete",B.EC,"End",B.EV,"Enter",B.Fz,"Home",B.EW,"Insert",B.Fm,"Meta",B.Fr,"PageDown",B.EX,"PageUp",B.Fn,"Shift",B.Fs],A.a9("cl<v,H<f?>>"))
+B.HD=new A.cl(["*",B.Fu,"+",B.Fv,"-",B.Fw,".",B.Fx,"/",B.Fy,"0",B.EH,"1",B.EI,"2",B.EJ,"3",B.EK,"4",B.EL,"5",B.EM,"6",B.EN,"7",B.EO,"8",B.FF,"9",B.FG,"Alt",B.Fp,"AltGraph",B.FH,"ArrowDown",B.ES,"ArrowLeft",B.ET,"ArrowRight",B.EU,"ArrowUp",B.F7,"Clear",B.Fl,"Control",B.Fq,"Delete",B.EC,"End",B.EV,"Enter",B.Fz,"Home",B.EW,"Insert",B.Fm,"Meta",B.Fr,"PageDown",B.EX,"PageUp",B.Fn,"Shift",B.Fs],A.a9("cl<v,H<f?>>"))
 B.HE=new A.wK(null,null,null,null,null,null,null,null)
 B.AI=new A.w(4284790262)
 B.Ay=new A.w(4282557941)
@@ -84243,34 +84243,34 @@ B.e6=new A.r2(1,"doNotPop")
 B.wL=new A.r2(2,"bubble")
 B.jw=new A.fw(null,null)
 B.aE=new A.Lq(1,"down")
-B.R8=new A.eF("Version: 1.4.9",null,null,B.c1,null,null,null,null,null)
-B.Cy=new A.iE(1,B.cb,B.R8,null)
-B.EO=A.a(s([B.Cy]),t.i_)
-B.K1=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EO,null)
 B.R2=new A.eF(u.r,null,null,null,null,null,null,null,null)
 B.Cw=new A.iE(1,B.cb,B.R2,null)
 B.Eq=A.a(s([B.Cw]),t.i_)
-B.K2=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.Eq,null)
+B.K1=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.Eq,null)
 B.D0=new A.iG("Is the baker's formula not enough?",14,null)
 B.FA=A.a(s([B.D0]),t.YZ)
-B.K3=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.FA,null)
+B.K2=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.FA,null)
 B.CX=new A.iG("Fermentation",20,null)
 B.EE=A.a(s([B.CX]),t.YZ)
-B.K4=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EE,null)
+B.K3=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EE,null)
 B.R1=new A.eF("Here's the key: temperature! The baker's formula provides ingredients weights based on flour content, but does not take into account the influence of ambient temperature. Many recipes take a one-size-fits-all approach, assuming a standard temperature and leaving bakers to make adjustments based on their kitchen conditions. Yet, temperature has a direct impact on the inoculation level, which in turn, significantly influences the amount of sourdough starter required for optimal dough.\nTemperature can make the difference between a perfectly risen, flavorful loaf and a dense, lackluster one. It determines the speed of fermentation: a warmer environment speeds up fermentation, while a cooler one slows it down. If your dough ferments too quickly, it might result in overproofing, which can lead to a tangy but flat and gummy bread. On the other hand, in a cooler kitchen, underproofing is a risk, causing the bread to be dense and lacking in flavor.",null,null,null,null,null,null,null,null)
-B.Cx=new A.iE(1,B.cb,B.R1,null)
-B.ED=A.a(s([B.Cx]),t.i_)
-B.K5=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.ED,null)
+B.Cy=new A.iE(1,B.cb,B.R1,null)
+B.ED=A.a(s([B.Cy]),t.i_)
+B.K4=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.ED,null)
 B.CZ=new A.iG("Inoculation level",16,null)
 B.EP=A.a(s([B.CZ]),t.YZ)
-B.K6=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EP,null)
+B.K5=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EP,null)
 B.CN=new A.GG(1,"italic")
 B.Om=new A.m(!0,null,null,null,null,null,null,null,B.CN,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.R6=new A.eF("    <target bread weight> = <flour>\n        \ufe63 <flour> \xd7 <hydration %>\n        \ufe63 <flour> \xd7 <inoculation %>\n        \ufe63 <flour> \xd7 <salt %>",null,B.Om,null,null,null,null,"Sourdough baking formula",null)
 B.IZ=new A.c5(B.lZ,B.R6,null)
 B.Cv=new A.iE(1,B.cb,B.IZ,null)
 B.F4=A.a(s([B.Cv]),t.i_)
-B.K7=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.F4,null)
+B.K6=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.F4,null)
+B.R8=new A.eF("Version: 1.4.10",null,null,B.c1,null,null,null,null,null)
+B.Cx=new A.iE(1,B.cb,B.R8,null)
+B.EG=A.a(s([B.Cx]),t.i_)
+B.K7=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EG,null)
 B.CY=new A.iG("Ingredients",20,null)
 B.EF=A.a(s([B.CY]),t.YZ)
 B.K8=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EF,null)
@@ -85663,7 +85663,7 @@ return q})
 s($,"aLf","avY",()=>$.UI().h(0,B.c0).a)
 s($,"aLy","UI",()=>A.aD([B.c0,A.aqS("Celsius","\xbaC"),B.d2,A.aqS("Farenheit","\xbaF")],A.a9("j6"),A.a9("me")))
 s($,"aL4","ajL",()=>A.aD([B.c0,new A.aiv(),B.d2,new A.aiw()],A.a9("j6"),A.a9("M(M)")))
-s($,"aK1","an7",()=>A.i3("https://github.com/duddu/sourdoc/tree/d2c6258f80f46ddc78b4c1e4d908e9dafa33b928",0,null))
+s($,"aK1","an7",()=>A.i3("https://github.com/duddu/sourdoc/tree/8fea37cf3c034d28642877ba11df7b5bf4f70303",0,null))
 s($,"aKC","avz",()=>A.i3("https://github.com/duddu/sourdoc/issues/new/choose",0,null))
 s($,"aJf","an2",()=>new A.G())
 r($,"aCt","auH",()=>{var q=new A.a20()
