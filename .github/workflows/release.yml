@@ -40,6 +40,13 @@ jobs:
               run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
             - name: Build release
               run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
+            - name: '[web] Copy deploy monitor workflow'
+              if: ${{ matrix.platform == 'web' }}
+              env:
+                WORKFLOW: web_deploy_monitor.yml
+              run: |
+                mkdir -p ${{ matrix.build-folder }}/.github/workflows
+                cp .github/workflows/${{ env.WORKFLOW }} ${{ matrix.build-folder }}/.github/workflows/${{ env.WORKFLOW }}
             - name: '[web] Commit build to onrender branch'
               if: ${{ matrix.platform == 'web' }}
               uses: JamesIves/github-pages-deploy-action@v4

@@ -1,10 +1,11 @@
 name: Web deploy monitor
 on:
-    workflow_dispatch:
-    release: 
-        types:
-            - created
-            - edited
+    push:
+        branches:
+            - onrender
+env:
+    RAW_GITHUB_PATH: https://raw.githubusercontent.com/${{ github.repository }}
+    MONITOR_SCRIPT_PATH: cli/web_deploy_monitor.sh
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -15,5 +16,5 @@ jobs:
                 fetch-depth: 1
             - name: Check deployment status
               run: |
-                COMMIT=$(git rev-parse HEAD)
-                bash cli/web_deploy_monitor.sh
+                COMMIT=$(cut -c 44-83 <<< $(git log -1 --pretty=%B))
+                bash <(curl -s ${{ env.RAW_GITHUB_PATH }}/$COMMIT/${{ env.MONITOR_SCRIPT_PATH }})
