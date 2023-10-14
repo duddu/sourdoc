@@ -15,13 +15,13 @@ class AppBarTitleWithAction extends StatelessWidget {
   const AppBarTitleWithAction(
       {super.key,
       required this.title,
-      this.icon,
+      this.logo = false,
       required this.action,
       this.backButton = false,
       this.backButtonTooltip});
 
   final Semantics title;
-  final Icon? icon;
+  final bool logo;
   final Semantics action;
   final bool backButton;
   final String? backButtonTooltip;
@@ -57,12 +57,16 @@ class AppBarTitleWithAction extends StatelessWidget {
               child: Column(children: [
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: icon != null
+                children: logo
                     ? [
                         title,
-                        Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: icon!)
+                        const Padding(
+                            padding: EdgeInsets.fromLTRB(6, 0, 0, 1),
+                            child: Image(
+                                image: AssetImage('assets/logo/logo.png'),
+                                height: 34,
+                                semanticLabel:
+                                    locale.a11yAppBarHomeTitleLogoLabel)),
                       ]
                     : [title])
           ])),

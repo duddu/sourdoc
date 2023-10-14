@@ -59,8 +59,7 @@ const String appBarGlossaryBackButtonTooltip = 'Back to Help page';
 
 // Accessibility
 const String a11yAppBarHomeTitleLabel = 'Sourdoc home page title';
-const String a11yAppBarHomeTitleIconLabel =
-    'Sourdoc home page title calculator icon';
+const String a11yAppBarHomeTitleLogoLabel = 'Sourdoc logo';
 const String a11yAppBarHomeActionButtonLabel = 'Help page button';
 const String a11yAppBarHomeActionButtonHint =
     'When pressed opens the help page';

@@ -155,11 +155,7 @@ class _HomePageState extends State<HomePage> {
                   label: locale.a11yAppBarHomeTitleLabel,
                   child: const Text(locale.title,
                       style: TextStyle(color: Colors.white))),
-              icon: const Icon(
-                Icons.calculate_rounded,
-                color: Colors.white,
-                semanticLabel: locale.a11yAppBarHomeTitleIconLabel,
-              ),
+              logo: true,
               action: Semantics(
                   button: true,
                   label: locale.a11yAppBarHomeActionButtonLabel,
