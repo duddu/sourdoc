@@ -10,10 +10,11 @@ const RESOURCES = {"canvaskit/chromium/canvaskit.js": "36d162e8f857ceeacbf01ed75
 "canvaskit/skwasm.wasm": "4ca73baf420612f1657d5b2be4b7467d",
 "canvaskit/skwasm.worker.js": "bfb704a6c714a75da9ef320991e88b03",
 "canvaskit/skwasm.js": "5256dd3e40ec9fe1fc9faa51a116bcfd",
-"version.json": "71be3db471719748221101d519a7fe50",
-"assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
-"assets/AssetManifest.bin": "0b0a3415aad49b6e9bf965ff578614f9",
-"assets/fonts/MaterialIcons-Regular.otf": "4e4c9e92b41ef63a612a72b2464d8b4b",
+"version.json": "8e5749fb5afdbfde1a4defb9b660765e",
+"assets/AssetManifest.json": "8efd473f012901cfc00cc1e0d345667c",
+"assets/assets/logo/logo.png": "39c1b585fbdc71cf42586f7adc368bda",
+"assets/AssetManifest.bin": "461a54388593173daa020ee10a4959b0",
+"assets/fonts/MaterialIcons-Regular.otf": "7f3416231403d6ffc4a143d8b8ae8307",
 "assets/NOTICES": "8c50d96d7b91e36de748367cceffa946",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "assets/shaders/ink_sparkle.frag": "f8b80e740d33eb157090be4e995febdf",
@@ -21,13 +22,13 @@ const RESOURCES = {"canvaskit/chromium/canvaskit.js": "36d162e8f857ceeacbf01ed75
 "icons/Icon-512.png": "4767efca55500ece1f0c396d99f839ce",
 "icons/Icon-192.png": "29576bd6ecc1b877aaa9c34e19ff8d92",
 "icons/Icon-maskable-512.png": "4767efca55500ece1f0c396d99f839ce",
-"index.html": "35efac1250be48cbc7daa5fa2aade379",
-"/": "35efac1250be48cbc7daa5fa2aade379",
-"main.dart.js": "7af3f67605afb3a13155029758b2888a",
+"index.html": "d78c1b16d749ced47153d76a30e3d062",
+"/": "d78c1b16d749ced47153d76a30e3d062",
+"main.dart.js": "05493872bd52ab6fa1bf4722751dfbfd",
 "flutter.js": "0b19a3d1d54c58174c41cd35acdd9388",
 "favicon.png": "92fa3fa624b79147f3597de11ea5ef98",
 "manifest.json": "9497b8809289c1237c9cf70aa88cf754",
-"sitemap.xml": "8b2e3a762c3e51d3dae5430477ce1c2b"};
+"sitemap.xml": "8764d20a52a70428120ebeea27ebd8ef"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
