@@ -37,8 +37,10 @@ jobs:
               uses: actions/checkout@v4
               with:
                 fetch-depth: 1
-            - name: Set version environment variable
-              run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
+            - name: Set environment variables
+              run: |
+                echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
+                echo "ARTIFACT_NAME=${{ matrix.platform }}-sourdoc-v$(cat VERSION)" >> $GITHUB_ENV
             - name: Build release
               run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
             - name: '[web] Trigger deploy on Render'
@@ -50,12 +52,12 @@ jobs:
             - name: 'Compress build'
               run: |
                 cd ${{ matrix.build-folder }}
-                tar -czf ${{ matrix.platform }}-${{ matrix.build-artifact }}.tgz ${{ matrix.build-artifact }}
+                tar -czf ${{ env.ARTIFACT_NAME }}.tgz ${{ matrix.build-artifact }}
             - name: 'Upload build artifact'
               uses: actions/upload-artifact@v3
               with:
-                name: ${{ matrix.platform }}-${{ matrix.build-artifact }}
-                path: ${{ matrix.build-folder }}/${{ matrix.platform }}-${{ matrix.build-artifact }}.tgz
+                name: ${{ env.ARTIFACT_NAME }}
+                path: ${{ matrix.build-folder }}/${{ env.ARTIFACT_NAME }}.tgz
                 if-no-files-found: error
     create-github-release:
         concurrency: release-${{ github.ref }}
