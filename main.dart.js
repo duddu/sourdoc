@@ -7576,7 +7576,7 @@ j=1}else j=3
 q.a=k+n
 s+=j
 r=s
-p=!0}else if(o<127&&(B.F8[o>>>4]&1<<(o&15))!==0){if(p&&65<=o&&90>=o){if(q==null)q=new A.c8("")
+p=!0}else if(o<127&&(B.F7[o>>>4]&1<<(o&15))!==0){if(p&&65<=o&&90>=o){if(q==null)q=new A.c8("")
 if(r<s){q.a+=B.d.a6(a,r,s)
 r=s}p=!1}++s}else if(o<=93&&(B.mH[o>>>4]&1<<(o&15))!==0)A.tP(a,s,"Invalid character")
 else{if((o&64512)===55296&&s+1<c){i=a.charCodeAt(s+1)
@@ -21071,7 +21071,7 @@ q=b.Q
 if(a.Q!==q)return q?-1:1
 return 0},
 ayG(a,b){var s=A.ab(b).j("ag<1,dN>")
-return A.axZ(!0,A.ah(new A.ag(b,new A.YK(),s),!0,s.j("bd.E")),a,B.Fk,!0,B.BG,null)},
+return A.axZ(!0,A.ah(new A.ag(b,new A.YK(),s),!0,s.j("bd.E")),a,B.Fj,!0,B.BG,null)},
 ayE(a){a.bU()
 a.aQ(A.atv())},
 aks(a){var s=a.a,r=s instanceof A.nl?s:null
@@ -21623,7 +21623,7 @@ _.Q=!0
 _.at=_.as=!1
 _.$ti=d},
 akI(a,b){var s
-if(a.i(0,b))return new A.ES(B.F9)
+if(a.i(0,b))return new A.ES(B.F8)
 s=A.a([],t.fJ)
 a.lF(new A.a0N(b,A.aT("debugDidFindAncestor"),A.aF(t.u),s))
 return new A.ES(s)},
@@ -25662,7 +25662,7 @@ n=A.ah(new A.b8(p,l),!0,l.j("l.E"))
 new A.aZ(n,new A.a0b(q),A.ab(n).j("aZ<1>")).a2(0,m.ga6F())
 new A.aZ(q,new A.a0c(m),A.ab(q).j("aZ<1>")).a2(0,r)}},
 T1(a){var s,r,q,p,o,n,m,l,k=A.km().b-1
-if(k===0)return B.Fe
+if(k===0)return B.Fd
 s=A.a([],t.jT)
 r=t.t
 q=new A.lO(A.a([],r),!1)
@@ -26905,7 +26905,7 @@ tw(){var s=this.Q
 s===$&&A.b()
 return s},
 tx(a,b,c,d){var s,r,q,p
-if(a<0||b<0)return B.Fj
+if(a<0||b<0)return B.Fi
 s=this.a
 s===$&&A.b()
 s=s.a
@@ -26923,7 +26923,7 @@ l.push(new A.dq(n[0],n[1],n[2],n[3],B.mF[m]))}return l},
 dA(a){var s,r=this.a
 r===$&&A.b()
 r=r.a.getGlyphPositionAtCoordinate(a.a,a.b)
-s=B.EZ[B.c.a5(r.affinity.value)]
+s=B.EY[B.c.a5(r.affinity.value)]
 return new A.aN(B.c.a5(r.pos),s)},
 jF(a){var s,r
 switch(a.b.a){case 0:s=a.a-1
@@ -33268,7 +33268,7 @@ if(r.z!==B.mn){r.z=B.mn
 r.KF()}}return r.w.a.TM(a)},
 KF(){var s,r
 for(s=this.as,r=0;r<s.length;++r)s[r].$1(this.z)},
-TL(a){if(B.b.p(B.F5,a))return this.z===B.cc
+TL(a){if(B.b.p(B.F4,a))return this.z===B.cc
 return!1},
 aia(a){var s,r,q,p,o,n,m,l,k,j,i=this,h=null
 if(!i.x){i.w.a.m()
@@ -43055,7 +43055,7 @@ r=A.qD(B.Il,B.f,r==null?1:r)
 r.toString
 p=o.aa(0,p.gl(p))
 if(p==null)p=1
-p=A.apx(p,B.F6,new A.cg(B.yM,B.yP))
+p=A.apx(p,B.F5,new A.cg(B.yM,B.yP))
 return new A.rM(A.iN(r.a,r.b,0),q,!0,q,new A.xF(q,p,s,1,B.Ly,q),q)}}
 A.Do.prototype={
 m(){var s=this,r=s.ci$
@@ -46029,7 +46029,7 @@ n=o.w
 o=o.cx
 r=q.ga4n()
 q.a.toString
-return new A.zG(p,n,p,new A.ae5(),p,p,p,p,p,p,B.Hy,p,p,p,B.Fg,q.ga4v(),o,p,B.Nq,s,p,r,p,p,B.mB,!1,!1,!1,!1,q.ga40(),!0,p,p,p,new A.nt(q,t.bT))},
+return new A.zG(p,n,p,new A.ae5(),p,p,p,p,p,p,B.Hy,p,p,p,B.Ff,q.ga4v(),o,p,B.Nq,s,p,r,p,p,B.mB,!1,!1,!1,!1,q.ga40(),!0,p,p,p,new A.nt(q,t.bT))},
 K(a){var s,r=null,q=A.vN(!1,!1,this.Z2(a),r,r,r,r,!0,r,r,new A.ae6(),r,r,r)
 this.a.toString
 s=this.d
@@ -46299,7 +46299,7 @@ A.t4.prototype={
 G(){return"_CornerId."+this.b}}
 A.kA.prototype={}
 A.qw.prototype={
-jS(){var s,r,q=this,p=A.aEW(B.F_,new A.a1O(q,q.b.gaA().U(0,q.a.gaA()))),o=q.a
+jS(){var s,r,q=this,p=A.aEW(B.EZ,new A.a1O(q,q.b.gaA().U(0,q.a.gaA()))),o=q.a
 o.toString
 s=p.a
 o=q.nq(o,s)
@@ -50011,7 +50011,7 @@ r.e=s.a.a
 r.f=s.d},
 $S:0}
 A.HE.prototype={
-K(a){return new A.xF(new A.n2(B.Ae,null,null),A.apx(1,B.Fo,new A.cg(B.yL,B.m)),this.c.R(0,new A.h(0,40.95)),1.25,B.LA,null)}}
+K(a){return new A.xF(new A.n2(B.Ae,null,null),A.apx(1,B.Fn,new A.cg(B.yL,B.m)),this.c.R(0,new A.h(0,40.95)),1.25,B.LA,null)}}
 A.lK.prototype={
 G(){return"MaterialType."+this.b}}
 A.wI.prototype={
@@ -55508,7 +55508,7 @@ jC(a){return this.mX(a,B.de,B.c3)},
 dA(a){var s=this.b
 return s.a.a.dA(a.U(0,s.gjr()))},
 o3(){var s,r,q=this.b,p=q.gjr()
-if(!isFinite(p.a)||!isFinite(p.b))return B.Fb
+if(!isFinite(p.a)||!isFinite(p.b))return B.Fa
 s=q.e
 if(s==null){s=q.a.a.o3()
 q.e=s}if(p.i(0,B.f))r=s
@@ -63369,7 +63369,7 @@ break
 case 1:return A.R(q,r)}})
 return A.S($async$B6,r)},
 a0A(a,b){var s,r,q,p
-if(a===b)return B.Ff
+if(a===b)return B.Fe
 if(a===B.eA&&b===B.db)return B.Es
 s=A.a([],t.QP)
 if(a==null)s.push(b)
@@ -64951,7 +64951,7 @@ A.ka.prototype={}
 A.J2.prototype={
 kf(a,b,c){var s,r,q,p,o,n=$.an.I$.f.c
 if(n==null||n.e==null)return!1
-for(s=t.vz,r=0;r<2;++r){q=B.F0[r]
+for(s=t.vz,r=0;r<2;++r){q=B.F_[r]
 p=n.e
 p.toString
 o=A.ajS(p,q,s)
@@ -67082,7 +67082,7 @@ i.CA()
 s=i.ga1c()
 r=r.oq
 i.e!==$&&A.bY()
-i.e=new A.K1(e,new A.bR(B.Hg,m),new A.nL(),q,B.en,0,l,i.ga31(),i.ga33(),s,B.en,0,k,i.ga2W(),i.ga2Y(),s,j,B.Fa,g,h.ax,h.ay,h.ch,p,h,o,n,h.x,r,new A.Fl(),new A.Fl())
+i.e=new A.K1(e,new A.bR(B.Hg,m),new A.nL(),q,B.en,0,l,i.ga31(),i.ga33(),s,B.en,0,k,i.ga2W(),i.ga2Y(),s,j,B.F9,g,h.ax,h.ay,h.ch,p,h,o,n,h.x,r,new A.Fl(),new A.Fl())
 return i},
 uy(a,b){var s,r,q,p,o,n=this
 if(!n.a.c.QE(a))return
@@ -70386,7 +70386,7 @@ A.ey.prototype={
 i(a,b){if(b==null)return!1
 if(J.L(b)!==A.p(this))return!1
 return b instanceof A.ey&&b.a===this.a&&b.d===this.d&&A.co(null,null)},
-gA(a){return A.K(this.a,"MaterialIcons",null,this.d,A.c4(B.Fi),B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
+gA(a){return A.K(this.a,"MaterialIcons",null,this.d,A.c4(B.Fh),B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
 k(a){return"IconData(U+"+B.d.oU(B.h.jA(this.a,16).toUpperCase(),5,"0")+")"}}
 A.nz.prototype={
 cm(a){return!this.w.i(0,a.w)},
@@ -71214,7 +71214,7 @@ a=s?c:a.ch
 if(a==null)a=B.fx
 b.gma()
 b.gma()
-e=new A.wN(a2,a0,q,p,l,o,n,a1,f===!0,m,k,h,g,j,i,a,new A.FU(c),B.Fc)
+e=new A.wN(a2,a0,q,p,l,o,n,a1,f===!0,m,k,h,g,j,i,a,new A.FU(c),B.Fb)
 if(!e.i(0,d.e))d.ae(new A.aeo(d,e))},
 DB(){this.qw()},
 P4(){if(this.d==null)this.qw()},
@@ -71555,7 +71555,7 @@ r.P(0,s.S0(null,k))
 k.a.toString
 q=r.a
 p=0
-for(;!1;++p){o=B.Fh[p]
+for(;!1;++p){o=B.Fg[p]
 n=k.c
 n.toString
 n=o.Dp(n)
@@ -76673,7 +76673,7 @@ p.vN()
 return s.az()},
 m(){var s,r,q,p,o=this
 for(s=o.b,r=s.length,q=o.gB8(),p=0;p<s.length;s.length===r||(0,A.J)(s),++p)J.awv(s[p],q)
-o.b=B.Fd
+o.b=B.Fc
 o.y=!1
 o.cX()},
 eU(a,b){return a.og(b)},
@@ -77162,7 +77162,7 @@ g.ok=A.C(t.D2,q)
 p=g.k4
 s=s.c
 g.k4=A.C(s,q)
-for(o=0;o<11;++o){n=B.F3[o]
+for(o=0;o<11;++o){n=B.F2[o]
 m=f.aaP(n)
 l=m==null?null:m.a
 k=p.h(0,n)
@@ -79312,7 +79312,7 @@ K(a){var s=null
 return A.la(s,A.l6(A.f3(new A.c5(B.Cj,this.c,s),s,680),s,s),B.w,s,this.d,s,s,this.e,s)}}
 A.GT.prototype={
 K(a){var s=null,r="Back to calculator",q=A.bo(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,"Sourdoc glossary page title",s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s),p=A.qb(B.i,B.Df,s,new A.a_E(a),s,r)
-return A.ale(A.amr(a,new A.pn(new A.bb(q,!1,!1,!1,!1,B.R6,s),!1,new A.bb(A.bo(s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,"When pressed sends back to the home page",s,s,s,s,s,"Close glossary page button",s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,r,s),!1,!1,!1,!1,p,s),!0,"Back to Help page",s)),A.a1y(A.a([new A.it(A.jA(A.a([B.K6,B.K1,B.K9,B.Ka,A.cG(A.a([A.fh(new A.c5(B.C4,A.KN(!1,B.xZ,B.w,s,s,s,s,s,new A.a_F(a),s,B.kQ),s),1)],t.i_),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),B.hI,s,s)],t.gG),B.ii,!0))}}
+return A.ale(A.amr(a,new A.pn(new A.bb(q,!1,!1,!1,!1,B.R6,s),!1,new A.bb(A.bo(s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,"When pressed sends back to the home page",s,s,s,s,s,"Close glossary page button",s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,r,s),!1,!1,!1,!1,p,s),!0,"Back to Help page",s)),A.a1y(A.a([new A.it(A.jA(A.a([B.K5,B.K1,B.K9,B.Ka,A.cG(A.a([A.fh(new A.c5(B.C4,A.KN(!1,B.xZ,B.w,s,s,s,s,s,new A.a_F(a),s,B.kQ),s),1)],t.i_),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),B.hI,s,s)],t.gG),B.ii,!0))}}
 A.a_E.prototype={
 $0(){return A.aiD(this.a)},
 $S:0}
@@ -79333,7 +79333,7 @@ s=A.dX(p,p,A.Y(a).ax.b,p,p,p,p,p,p,p,p,p,p,p,p,p,p,!0,p,p,p,p,p,p,p,p)
 r=A.ry(p,p)
 r.b_=new A.a_S(a)
 q=t.i_
-return A.ale(n,A.a1y(A.a([new A.it(A.jA(A.a([A.cG(A.a([A.fh(A.a8A(A.bV(A.a([m,B.xV,B.MR,B.xV,A.bV(p,r,s,"Glossary"),B.MQ],t.VO),p,p,p),p,p),1)],q),B.x,B.A,B.B),B.K7,B.K2,B.K5,A.cG(A.a([A.fh(new A.c5(B.lZ,A.KN(!1,B.xZ,B.w,p,p,p,p,p,new A.a_T(a),p,B.kQ),p),1)],q),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),new A.cI(B.i,p,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),p,p,p,B.aG),B.C6,p),B.A5],t.gG),B.ii,!0))}}
+return A.ale(n,A.a1y(A.a([new A.it(A.jA(A.a([A.cG(A.a([A.fh(A.a8A(A.bV(A.a([m,B.xV,B.MR,B.xV,A.bV(p,r,s,"Glossary"),B.MQ],t.VO),p,p,p),p,p),1)],q),B.x,B.A,B.B),B.K6,B.K2,B.K4,A.cG(A.a([A.fh(new A.c5(B.lZ,A.KN(!1,B.xZ,B.w,p,p,p,p,p,new A.a_T(a),p,B.kQ),p),1)],q),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B),new A.cI(B.i,p,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),p,p,p,B.aG),B.C6,p),B.A5],t.gG),B.ii,!0))}}
 A.a_Q.prototype={
 $0(){A.akZ(this.a,"/help/glossary",t.X)},
 $S:0}
@@ -79444,7 +79444,7 @@ r.toString
 o=t.Xh
 n=t.Na
 m=t.js
-return A.ale(i,A.a1y(A.a([new A.it(B.R1,new A.cI(h,k,k,k,k,k,B.aG),B.C2,k),new A.it(A.jA(A.a([p,A.cG(A.a([new A.ko(l.at,"Ambient temperature",q,r,10,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.z,"Target bread weight","g",1e5,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.Q,"Hydration level","%",99,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.as,"Salt level","%",10,5,k)],o),B.x,B.A,B.B)],n),B.x,B.A,B.dS),new A.cI(s,k,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),k,k,k,B.aG),B.lY,k),new A.it(A.jA(A.a([B.K8,A.cG(A.a([new A.jb("Flour",B.c.a0(l.f,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Water",B.c.a0(l.r,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Levain",B.c.a0(l.w,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Salt",B.c.a0(l.x,1)+"g",k,k)],m),B.x,B.A,B.B),B.K4,A.cG(A.a([new A.jb("Inoculation level",B.c.a0(l.d,0)+"%",u.r,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Target dough rise",B.h.a0(l.e,0)+"%",u.X,k)],m),B.x,B.A,B.B)],n),B.x,B.A,B.B),B.hI,k,k)],t.gG),B.ii,!0))}}
+return A.ale(i,A.a1y(A.a([new A.it(B.R0,new A.cI(h,k,k,k,k,k,B.aG),B.C2,k),new A.it(A.jA(A.a([p,A.cG(A.a([new A.ko(l.at,"Ambient temperature",q,r,10,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.z,"Target bread weight","g",1e5,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.Q,"Hydration level","%",99,5,k)],o),B.x,B.A,B.B),A.cG(A.a([new A.ko(l.as,"Salt level","%",10,5,k)],o),B.x,B.A,B.B)],n),B.x,B.A,B.dS),new A.cI(s,k,new A.d_(B.m,B.m,new A.aQ(B.i0,1,B.y,-1),B.m),k,k,k,B.aG),B.lY,k),new A.it(A.jA(A.a([B.K7,A.cG(A.a([new A.jb("Flour",B.c.a0(l.f,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Water",B.c.a0(l.r,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Levain",B.c.a0(l.w,1)+"g",k,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Salt",B.c.a0(l.x,1)+"g",k,k)],m),B.x,B.A,B.B),B.K3,A.cG(A.a([new A.jb("Inoculation level",B.c.a0(l.d,0)+"%",u.r,k)],m),B.x,B.A,B.B),A.cG(A.a([new A.jb("Target dough rise",B.h.a0(l.e,0)+"%",u.X,k)],m),B.x,B.A,B.B)],n),B.x,B.A,B.B),B.hI,k,k)],t.gG),B.ii,!0))}}
 A.adh.prototype={
 $0(){var s=this.a
 s.N3()
@@ -79565,13 +79565,13 @@ return A.Z(A.amC(a,B.DP),$async$q8)
 case 2:if(!c)throw A.e(A.ck("Could not launch "+$.an7().k(0)))
 return A.R(null,r)}})
 return A.S($async$q8,r)},
-K(a){var s=null,r=t.i_,q=A.cG(A.a([A.fh(A.eG("Sourdoc \xa9"+B.h.k(A.aq7(new A.eT(Date.now(),!1))),s,s,s,s,B.c1,s),1)],r),B.x,B.A,B.B),p=B.d.a6("e461e4ff581817711f233324ac557fddcbe790fa",0,7),o=A.dX(s,s,A.Y(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),n=A.ry(s,s)
+K(a){var s=null,r=t.i_,q=A.cG(A.a([A.fh(A.eG("Sourdoc \xa9"+B.h.k(A.aq7(new A.eT(Date.now(),!1))),s,s,s,s,B.c1,s),1)],r),B.x,B.A,B.B),p=B.d.a6("67531ef5a236e8c6e375172d53934cb957dd5339",0,7),o=A.dX(s,s,A.Y(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),n=A.ry(s,s)
 n.b_=new A.aao(this)
 p=A.cG(A.a([A.fh(A.a8A(A.bV(A.a([B.MP,A.bV(s,n,o,p)],t.VO),s,s,s),s,B.c1),1)],r),B.x,B.A,B.B)
 o=A.dX(s,s,A.Y(a).ax.b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s)
 n=A.ry(s,s)
 n.b_=new A.aap(this)
-return A.jA(A.a([q,B.K3,p,A.cG(A.a([A.fh(A.a8A(A.bV(s,n,o,"Report an issue"),s,B.c1),1)],r),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B)}}
+return A.jA(A.a([q,B.K8,p,A.cG(A.a([A.fh(A.a8A(A.bV(s,n,o,"Report an issue"),s,B.c1),1)],r),B.x,B.A,B.B)],t.Na),B.x,B.A,B.B)}}
 A.aao.prototype={
 $0(){var s=0,r=A.T(t.H),q=this
 var $async$$0=A.U(function(a,b){if(a===1)return A.Q(b,r)
@@ -82488,7 +82488,7 @@ B.ad=new A.aai()
 B.c6=new A.aam()
 B.D=new A.t(0,0,0,0)
 B.eq=new A.Lu(0,0,0,0)
-B.Fc=A.a(s([]),A.a9("y<XA>"))
+B.Fb=A.a(s([]),A.a9("y<XA>"))
 B.l7=new A.Lt()
 B.aW={}
 B.HA=new A.bq(B.aW,[],t.li)
@@ -82978,8 +82978,8 @@ B.b5=new A.bm(8,"AL")
 B.fa=new A.bm(9,"PR")
 B.DQ=new A.ww(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.DR=A.a(s([0,1]),t.n)
-B.F1=A.a(s([137,80,78,71,13,10,26,10]),t.Z)
-B.Dk=new A.jR(B.F1,"image/png")
+B.F0=A.a(s([137,80,78,71,13,10,26,10]),t.Z)
+B.Dk=new A.jR(B.F0,"image/png")
 B.Ec=A.a(s([71,73,70,56,55,97]),t.Z)
 B.Do=new A.jR(B.Ec,"image/gif")
 B.Ed=A.a(s([71,73,70,56,57,97]),t.Z)
@@ -83040,7 +83040,7 @@ B.CR=new A.fN(7)
 B.mj=new A.fN(8)
 B.mE=A.a(s([B.iA,B.CO,B.CP,B.l,B.X,B.CQ,B.dw,B.CR,B.mj]),A.a9("y<fN>"))
 B.a4=new A.z8(0,"upstream")
-B.EZ=A.a(s([B.a4,B.j]),A.a9("y<z8>"))
+B.EY=A.a(s([B.a4,B.j]),A.a9("y<z8>"))
 B.V=new A.j7(0,"rtl")
 B.q=new A.j7(1,"ltr")
 B.mF=A.a(s([B.V,B.q]),A.a9("y<j7>"))
@@ -83052,11 +83052,11 @@ B.yb=new A.t4(1,"topRight")
 B.yc=new A.t4(2,"bottomLeft")
 B.SZ=new A.kA(B.yb,B.yc)
 B.T_=new A.kA(B.yc,B.yb)
-B.F_=A.a(s([B.SY,B.T0,B.SZ,B.T_]),A.a9("y<kA>"))
+B.EZ=A.a(s([B.SY,B.T0,B.SZ,B.T_]),A.a9("y<kA>"))
 B.z7=new A.pj()
 B.e7=new A.JU(1,"page")
 B.fT=new A.dF(B.O,B.e7)
-B.F0=A.a(s([B.z7,B.fT]),A.a9("y<aL>"))
+B.F_=A.a(s([B.z7,B.fT]),A.a9("y<aL>"))
 B.mG=A.a(s([0,0,65490,12287,65535,34815,65534,18431]),t.t)
 B.mH=A.a(s([0,0,32776,33792,1,10240,0,0]),t.t)
 B.Z=new A.dS(0,"icon")
@@ -83070,36 +83070,36 @@ B.ac=new A.dS(7,"suffixIcon")
 B.ap=new A.dS(8,"helperError")
 B.a7=new A.dS(9,"counter")
 B.bI=new A.dS(10,"container")
-B.F3=A.a(s([B.Z,B.ag,B.S,B.ao,B.aa,B.ab,B.P,B.ac,B.ap,B.a7,B.bI]),A.a9("y<dS>"))
-B.F5=A.a(s(["click","scroll"]),t.s)
+B.F2=A.a(s([B.Z,B.ag,B.S,B.ao,B.aa,B.ab,B.P,B.ac,B.ap,B.a7,B.bI]),A.a9("y<dS>"))
+B.F4=A.a(s(["click","scroll"]),t.s)
 B.li=new A.w(419430400)
 B.f=new A.h(0,0)
 B.z2=new A.dv(0.2,B.cD,B.li,B.f,11)
-B.F6=A.a(s([B.z2]),t.sq)
-B.F8=A.a(s([0,0,32754,11263,65534,34815,65534,18431]),t.t)
-B.Ff=A.a(s([]),t.QP)
+B.F5=A.a(s([B.z2]),t.sq)
+B.F7=A.a(s([0,0,32754,11263,65534,34815,65534,18431]),t.t)
+B.Fe=A.a(s([]),t.QP)
 B.mJ=A.a(s([]),A.a9("y<aHU>"))
-B.Fk=A.a(s([]),t.E)
-B.F9=A.a(s([]),t.fJ)
-B.Fb=A.a(s([]),t.ER)
+B.Fj=A.a(s([]),t.E)
+B.F8=A.a(s([]),t.fJ)
+B.Fa=A.a(s([]),t.ER)
 B.Um=A.a(s([]),t.ss)
-B.Fg=A.a(s([]),t.tc)
+B.Ff=A.a(s([]),t.tc)
 B.fd=A.a(s([]),t.jl)
 B.mK=A.a(s([]),t.wi)
-B.Fe=A.a(s([]),t.jT)
-B.Fh=A.a(s([]),A.a9("y<al1<@>>"))
+B.Fd=A.a(s([]),t.jT)
+B.Fg=A.a(s([]),A.a9("y<al1<@>>"))
 B.iQ=A.a(s([]),t.AO)
-B.Fd=A.a(s([]),t.D1)
+B.Fc=A.a(s([]),t.D1)
 B.iR=A.a(s([]),t.W)
-B.Fj=A.a(s([]),t.G)
-B.Fa=A.a(s([]),t.fm)
+B.Fi=A.a(s([]),t.G)
+B.F9=A.a(s([]),t.fm)
 B.Un=A.a(s([]),t.F)
 B.dJ=A.a(s([]),t.t)
 B.mI=A.a(s([]),t.ee)
-B.Fi=A.a(s([]),A.a9("y<v?>"))
+B.Fh=A.a(s([]),A.a9("y<v?>"))
 B.Ij=new A.h(0,2)
 B.z1=new A.dv(0.75,B.cD,B.li,B.Ij,1.5)
-B.Fo=A.a(s([B.z1]),t.sq)
+B.Fn=A.a(s([B.z1]),t.sq)
 B.h9=new A.i_(0,"left")
 B.jT=new A.i_(1,"right")
 B.c1=new A.i_(2,"center")
@@ -84017,24 +84017,24 @@ B.EM=A.a(s([B.rv,null,null,B.j5]),t.L)
 B.EN=A.a(s([B.rw,null,null,B.j6]),t.L)
 B.FF=A.a(s([B.rx,null,null,B.j7]),t.L)
 B.FG=A.a(s([B.ry,null,null,B.j8]),t.L)
-B.Fp=A.a(s([B.dQ,B.dQ,B.fm,null]),t.L)
+B.Fo=A.a(s([B.dQ,B.dQ,B.fm,null]),t.L)
 B.FH=A.a(s([B.fi,null,B.fi,null]),t.L)
-B.ES=A.a(s([B.bl,null,null,B.j1]),t.L)
-B.ET=A.a(s([B.bf,null,null,B.j3]),t.L)
-B.EU=A.a(s([B.bg,null,null,B.j5]),t.L)
-B.F7=A.a(s([B.bm,null,null,B.j7]),t.L)
-B.Fl=A.a(s([B.iW,null,null,B.j4]),t.L)
-B.Fq=A.a(s([B.dP,B.dP,B.fl,null]),t.L)
+B.ER=A.a(s([B.bl,null,null,B.j1]),t.L)
+B.ES=A.a(s([B.bf,null,null,B.j3]),t.L)
+B.ET=A.a(s([B.bg,null,null,B.j5]),t.L)
+B.F6=A.a(s([B.bm,null,null,B.j7]),t.L)
+B.Fk=A.a(s([B.iW,null,null,B.j4]),t.L)
+B.Fp=A.a(s([B.dP,B.dP,B.fl,null]),t.L)
 B.EC=A.a(s([B.aV,null,null,B.iZ]),t.L)
-B.EV=A.a(s([B.ch,null,null,B.j0]),t.L)
+B.EU=A.a(s([B.ch,null,null,B.j0]),t.L)
 B.Fz=A.a(s([B.fh,null,null,B.iY]),t.L)
-B.EW=A.a(s([B.ci,null,null,B.j6]),t.L)
-B.Fm=A.a(s([B.iX,null,null,B.j_]),t.L)
-B.Fr=A.a(s([B.dR,B.dR,B.fn,null]),t.L)
-B.EX=A.a(s([B.dN,null,null,B.j2]),t.L)
-B.Fn=A.a(s([B.dO,null,null,B.j8]),t.L)
-B.Fs=A.a(s([B.bU,B.bU,B.cj,null]),t.L)
-B.HD=new A.cl(["*",B.Fu,"+",B.Fv,"-",B.Fw,".",B.Fx,"/",B.Fy,"0",B.EG,"1",B.EH,"2",B.EI,"3",B.EJ,"4",B.EK,"5",B.EL,"6",B.EM,"7",B.EN,"8",B.FF,"9",B.FG,"Alt",B.Fp,"AltGraph",B.FH,"ArrowDown",B.ES,"ArrowLeft",B.ET,"ArrowRight",B.EU,"ArrowUp",B.F7,"Clear",B.Fl,"Control",B.Fq,"Delete",B.EC,"End",B.EV,"Enter",B.Fz,"Home",B.EW,"Insert",B.Fm,"Meta",B.Fr,"PageDown",B.EX,"PageUp",B.Fn,"Shift",B.Fs],A.a9("cl<v,H<f?>>"))
+B.EV=A.a(s([B.ci,null,null,B.j6]),t.L)
+B.Fl=A.a(s([B.iX,null,null,B.j_]),t.L)
+B.Fq=A.a(s([B.dR,B.dR,B.fn,null]),t.L)
+B.EW=A.a(s([B.dN,null,null,B.j2]),t.L)
+B.Fm=A.a(s([B.dO,null,null,B.j8]),t.L)
+B.Fr=A.a(s([B.bU,B.bU,B.cj,null]),t.L)
+B.HD=new A.cl(["*",B.Fu,"+",B.Fv,"-",B.Fw,".",B.Fx,"/",B.Fy,"0",B.EG,"1",B.EH,"2",B.EI,"3",B.EJ,"4",B.EK,"5",B.EL,"6",B.EM,"7",B.EN,"8",B.FF,"9",B.FG,"Alt",B.Fo,"AltGraph",B.FH,"ArrowDown",B.ER,"ArrowLeft",B.ES,"ArrowRight",B.ET,"ArrowUp",B.F6,"Clear",B.Fk,"Control",B.Fp,"Delete",B.EC,"End",B.EU,"Enter",B.Fz,"Home",B.EV,"Insert",B.Fl,"Meta",B.Fq,"PageDown",B.EW,"PageUp",B.Fm,"Shift",B.Fr],A.a9("cl<v,H<f?>>"))
 B.HE=new A.wK(null,null,null,null,null,null,null,null)
 B.AI=new A.w(4284790262)
 B.Ay=new A.w(4282557941)
@@ -84250,37 +84250,37 @@ B.K1=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.Eq,null)
 B.D0=new A.iG("Is the baker's formula not enough?",14,null)
 B.FA=A.a(s([B.D0]),t.YZ)
 B.K2=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.FA,null)
-B.R0=new A.eF("Version: 1.4.13",null,null,B.c1,null,null,null,null,null)
-B.Cw=new A.iE(1,B.cb,B.R0,null)
-B.ER=A.a(s([B.Cw]),t.i_)
-B.K3=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.ER,null)
 B.CX=new A.iG("Fermentation",20,null)
 B.EE=A.a(s([B.CX]),t.YZ)
-B.K4=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EE,null)
+B.K3=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EE,null)
 B.R2=new A.eF("Here's the key: temperature! The baker's formula provides ingredients weights based on flour content, but does not take into account the influence of ambient temperature. Many recipes take a one-size-fits-all approach, assuming a standard temperature and leaving bakers to make adjustments based on their kitchen conditions. Yet, temperature has a direct impact on the inoculation level, which in turn, significantly influences the amount of sourdough starter required for optimal dough.\nTemperature can make the difference between a perfectly risen, flavorful loaf and a dense, lackluster one. It determines the speed of fermentation: a warmer environment speeds up fermentation, while a cooler one slows it down. If your dough ferments too quickly, it might result in overproofing, which can lead to a tangy but flat and gummy bread. On the other hand, in a cooler kitchen, underproofing is a risk, causing the bread to be dense and lacking in flavor.",null,null,null,null,null,null,null,null)
 B.Cy=new A.iE(1,B.cb,B.R2,null)
 B.ED=A.a(s([B.Cy]),t.i_)
-B.K5=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.ED,null)
+B.K4=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.ED,null)
 B.CZ=new A.iG("Inoculation level",16,null)
 B.EO=A.a(s([B.CZ]),t.YZ)
-B.K6=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EO,null)
+B.K5=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EO,null)
 B.CN=new A.GG(1,"italic")
 B.Om=new A.m(!0,null,null,null,null,null,null,null,B.CN,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.R7=new A.eF("    <target bread weight> = <flour>\n        \ufe63 <flour> \xd7 <hydration %>\n        \ufe63 <flour> \xd7 <inoculation %>\n        \ufe63 <flour> \xd7 <salt %>",null,B.Om,null,null,null,null,"Sourdough baking formula",null)
 B.IZ=new A.c5(B.lZ,B.R7,null)
 B.Cv=new A.iE(1,B.cb,B.IZ,null)
-B.F4=A.a(s([B.Cv]),t.i_)
-B.K7=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.F4,null)
+B.F3=A.a(s([B.Cv]),t.i_)
+B.K6=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.F3,null)
 B.CY=new A.iG("Ingredients",20,null)
 B.EF=A.a(s([B.CY]),t.YZ)
-B.K8=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EF,null)
+B.K7=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EF,null)
+B.R1=new A.eF("Version: 1.4.14",null,null,B.c1,null,null,null,null,null)
+B.Cw=new A.iE(1,B.cb,B.R1,null)
+B.Fs=A.a(s([B.Cw]),t.i_)
+B.K8=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.Fs,null)
 B.D_=new A.iG("Target dough rise",20,null)
-B.F2=A.a(s([B.D_]),t.YZ)
-B.K9=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.F2,null)
+B.F1=A.a(s([B.D_]),t.YZ)
+B.K9=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.F1,null)
 B.R5=new A.eF(u.X,null,null,null,null,null,null,null,null)
 B.Cz=new A.iE(1,B.cb,B.R5,null)
-B.EY=A.a(s([B.Cz]),t.i_)
-B.Ka=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EY,null)
+B.EX=A.a(s([B.Cz]),t.i_)
+B.Ka=new A.eC(B.U,B.A,B.B,B.x,null,B.aE,null,B.EX,null)
 B.Kb=new A.JO(null,null)
 B.d0=new A.ol(0,"idle")
 B.Kc=new A.ol(1,"transientCallbacks")
@@ -84831,7 +84831,7 @@ B.Q2=new A.m(!0,B.i,null,"Roboto",null,null,null,null,null,null,null,null,null,n
 B.PC=new A.m(!0,B.i,null,"Roboto",null,null,null,null,null,null,null,null,null,null,null,null,null,B.e,null,null,null,"whiteMountainView labelSmall",null,null,null,null)
 B.R_=new A.cQ(B.Ph,B.QE,B.Ql,B.NN,B.Qd,B.Pa,B.QI,B.Oi,B.OQ,B.Q6,B.NE,B.Qm,B.Qa,B.Q2,B.PC)
 B.xZ=new A.eF("< Back to sourdough calculator",null,null,null,null,null,null,null,null)
-B.R1=new A.eF("Change these settings, and the ingredients and fermentation values will automatically update.",null,null,B.bb,null,null,null,null,null)
+B.R0=new A.eF("Change these settings, and the ingredients and fermentation values will automatically update.",null,null,B.bb,null,null,null,null,null)
 B.jY=new A.m(!0,B.i,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.R4=new A.eF("How does Sourdoc work?",null,B.jY,null,null,null,null,null,null)
 B.R6=new A.eF("Glossary",null,B.jY,null,null,null,null,null,null)
@@ -85663,7 +85663,7 @@ return q})
 s($,"aLf","avY",()=>$.UI().h(0,B.c0).a)
 s($,"aLy","UI",()=>A.aD([B.c0,A.aqS("Celsius","\xbaC"),B.d2,A.aqS("Farenheit","\xbaF")],A.a9("j6"),A.a9("me")))
 s($,"aL4","ajL",()=>A.aD([B.c0,new A.aiv(),B.d2,new A.aiw()],A.a9("j6"),A.a9("M(M)")))
-s($,"aK1","an7",()=>A.i3("https://github.com/duddu/sourdoc/tree/e461e4ff581817711f233324ac557fddcbe790fa",0,null))
+s($,"aK1","an7",()=>A.i3("https://github.com/duddu/sourdoc/tree/67531ef5a236e8c6e375172d53934cb957dd5339",0,null))
 s($,"aKC","avz",()=>A.i3("https://github.com/duddu/sourdoc/issues/new/choose",0,null))
 s($,"aJf","an2",()=>new A.G())
 r($,"aCt","auH",()=>{var q=new A.a20()
