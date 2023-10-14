@@ -46,9 +46,15 @@ jobs:
               with:
                 fetch-depth: 1
             - name: Set environment variables
+              if: ${{ matrix.platform != 'windows' }}
               run: |
                 echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
                 echo "ARTIFACT_NAME=${{ matrix.platform }}-sourdoc-v$(cat VERSION)" >> $GITHUB_ENV
+            - name: '[windows] Set environment variables'
+              if: ${{ matrix.platform == 'windows' }}
+              run: |
+                echo "VERSION=$(cat VERSION)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+                echo "ARTIFACT_NAME=${{ matrix.platform }}-sourdoc-v$(cat VERSION)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
             - name: '[linux] Install dependencies'
               if: ${{ matrix.platform == 'linux' }}
               run: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
