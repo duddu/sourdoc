@@ -7,7 +7,7 @@
 Your ultimate companion for perfect sourdough - Calculate every variable from mixing to fermentation for the ideal sourdough baking experience. Try it now:
 
 [![Launch web app](https://img.shields.io/badge/Launch_web_app-red?logo=googlechrome&logoColor=white)](https://sourdoc.duddu.dev)
-[![Download macOS app](https://img.shields.io/badge/Download_macOS_app-blue?logo=apple)](https://github.com/duddu/sourdoc/releases/download/v1.4.7/macos-sourdoc.app.tgz)
+[![Download macOS app](https://img.shields.io/badge/Download_macOS_app-blue?logo=apple)](https://github.com/duddu/sourdoc/releases/download/v1.4.8/macos-sourdoc.app.tgz)
 
 ## How it works
 
