@@ -13,6 +13,8 @@ jobs:
                       os: ubuntu-latest
                     - platform: macos
                       os: macos-latest
+                    - platform: linux
+                      os: ubuntu-latest
         name: build-${{ matrix.platform }}
         runs-on: ${{ matrix.os }}
         steps:

@@ -22,6 +22,10 @@ jobs:
                       os: macos-latest
                       build-folder: build/macos/Build/Products/Release
                       build-artifact: sourdoc.app
+                    - platform: linux
+                      os: ubuntu-latest
+                      build-folder: build/linux/release
+                      build-artifact: bundle
         name: release-${{ matrix.platform }}
         concurrency: build-${{ github.ref }}-${{ matrix.platform }}
         runs-on: ${{ matrix.os }}
