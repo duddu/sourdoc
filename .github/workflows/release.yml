@@ -9,7 +9,7 @@ permissions:
 jobs:
     trigger-test:
         uses: ./.github/workflows/test.yml
-    build-release:
+    release:
         strategy:
             matrix:
                 include:
@@ -21,7 +21,7 @@ jobs:
                       os: macos-latest
                       build-folder: build/macos/Build/Products/Release
                       build-artifact: sourdoc.app
-        name: build-${{ matrix.platform }}-release
+        name: release-${{ matrix.platform }}
         concurrency: build-${{ github.ref }}-${{ matrix.platform }}
         runs-on: ${{ matrix.os }}
         needs: trigger-test
@@ -40,17 +40,12 @@ jobs:
               run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV      
             - name: Build release
               run: flutter build -v ${{ matrix.platform }} --release --build-name=${{ env.VERSION }} --build-number=${{ github.sha }} --dart-define=VERSION=${{ env.VERSION }} --dart-define=COMMIT_SHA=${{ github.sha }} --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }}
-            - name: '[web] Commit build to onrender branch'
+            - name: '[web] Trigger deploy on Render'
               if: ${{ matrix.platform == 'web' }}
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: ${{ matrix.build-folder }}
                 branch: onrender
-            - name: '[web] Monitor deploy status'
-              if: ${{ matrix.platform == 'web' }}
-              run: |
-                echo "Follow the deploy pipeline at https://dashboard.render.com/static/srv-ckkutdqv7m0s73cts10g/events"
-                COMMIT=$(git rev-parse HEAD) bash cli/web_deploy_monitor.sh
             - name: '[macos] Compress build'
               if: ${{ matrix.build-artifact }}
               run: |
@@ -64,24 +59,34 @@ jobs:
                 path: ${{ matrix.build-folder }}/${{ matrix.platform }}-${{ matrix.build-artifact }}.tgz
                 if-no-files-found: error
     create-github-release:
-      concurrency: release-${{ github.ref }}
-      runs-on: ubuntu-latest
-      needs: build-release
-      steps:
-          - name: Checkout
-            uses: actions/checkout@v4
-            with:
-              fetch-depth: 1
-          - name: Set version environment variable
-            run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV   
-          - name: Download all artifacts
-            uses: actions/download-artifact@v3
-            with:
-              path: artifacts
-          - name: Create release
-            uses: softprops/action-gh-release@v1
-            with:
-              tag_name: v${{ env.VERSION }}
-              files: |
-                artifacts/**/*
-              fail_on_unmatched_files: true
+        concurrency: release-${{ github.ref }}
+        runs-on: ubuntu-latest
+        needs: release
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            - name: Set version environment variable
+              run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV   
+            - name: Download all artifacts
+              uses: actions/download-artifact@v3
+              with:
+                path: artifacts
+            - name: Create release
+              uses: softprops/action-gh-release@v1
+              with:
+                tag_name: v${{ env.VERSION }}
+                files: |
+                  artifacts/**/*
+                fail_on_unmatched_files: true
+    monitor-web-deploy:
+        needs: release
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            - name: Check deployment status
+              run: COMMIT=$(git rev-parse HEAD) bash cli/web_deploy_monitor.sh
