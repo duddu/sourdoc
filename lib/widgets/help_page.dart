@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/constants/routes.dart';
 import 'package:sourdoc/widgets/app_bar_with_actions.dart';
 import 'package:sourdoc/widgets/centered_container.dart';
@@ -12,6 +13,7 @@ class HelpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: getAppBarWithTitle(
           context,
@@ -44,7 +46,7 @@ class HelpPage extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 25),
         children: <CenteredContainer>[
           CenteredContainer(
-              padding: const EdgeInsets.fromLTRB(0, 16, 0, 20),
+              padding: const EdgeInsets.symmetric(vertical: 18),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border(
@@ -53,40 +55,53 @@ class HelpPage extends StatelessWidget {
               child: Column(children: <Row>[
                 Row(children: <Expanded>[
                   Expanded(
-                      child: Text.rich(
-                    TextSpan(children: [
-                      TextSpan(
-                          text: locale.title,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              backToHomePage(context);
-                            }),
-                      const TextSpan(text: ' '),
-                      const TextSpan(text: locale.appendixHowItWorksFragment1),
-                      const TextSpan(text: ' '),
-                      TextSpan(
-                          text: locale.glossaryPageTitle,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushNamed(context, glossaryPagePath);
-                            }),
-                      const TextSpan(text: locale.appendixHowItWorksFragment2),
-                    ]),
-                  ))
+                      child: Padding(
+                          padding: const EdgeInsets.only(bottom: 7),
+                          child: Text.rich(
+                            TextSpan(children: [
+                              TextSpan(
+                                  text: locale.title,
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      backToHomePage(context);
+                                    }),
+                              const TextSpan(text: ' '),
+                              const TextSpan(
+                                  text: locale.appendixHowItWorksFragment1),
+                              const TextSpan(text: ' '),
+                              TextSpan(
+                                  text: locale.glossaryPageTitle,
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushNamed(
+                                          context, glossaryPagePath);
+                                    }),
+                              const TextSpan(
+                                  text: locale.appendixHowItWorksFragment2),
+                            ]),
+                          )))
                 ]),
-                const Row(children: <Expanded>[
+                Row(children: <Expanded>[
                   Expanded(
                       child: Padding(
-                          padding: EdgeInsets.only(top: 8),
-                          child: Text(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth > style.contentMaxWidth
+                                  ? 100
+                                  : 20),
+                          child: const Text(
                             locale.appendixHowItWorksFormula,
                             semanticsLabel:
                                 locale.a11yAppendixHowItWorksFormula,
                             style: TextStyle(fontStyle: FontStyle.italic),
+                            textAlign: TextAlign.center,
                           )))
                 ]),
                 const Row(children: <Header>[

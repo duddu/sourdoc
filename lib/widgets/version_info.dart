@@ -22,13 +22,9 @@ class VersionInfo extends StatelessWidget {
     return Column(children: <Row>[
       Row(children: <Expanded>[
         Expanded(
-            child: Text('${locale.title} ©${DateTime.now().year.toString()}',
+            child: Text(
+                '©${DateTime.now().year.toString()} ${locale.title} v${environment.version}',
                 textAlign: TextAlign.center)),
-      ]),
-      const Row(children: <Expanded>[
-        Expanded(
-            child: Text('${locale.labelVersion}: ${environment.version}',
-                textAlign: TextAlign.center))
       ]),
       Row(children: <Expanded>[
         Expanded(
