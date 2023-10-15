@@ -45,6 +45,7 @@ const String appendixBakerFormulaDifference =
 Temperature can make the difference between a perfectly risen, flavorful loaf and a dense, lackluster one. It determines the speed of fermentation: a warmer environment speeds up fermentation, while a cooler one slows it down. If your dough ferments too quickly, it might result in overproofing, which can lead to a tangy but flat and gummy bread. On the other hand, in a cooler kitchen, underproofing is a risk, causing the bread to be dense and lacking in flavor.''';
 const String helpPageTitle = 'How does Sourdoc work?';
 const String backToHome = 'Back to sourdough calculator';
+const String labelBuildNumber = 'Build';
 const String labelCommit = 'Commit';
 const String reportIssue = 'Report an issue';
 const String glossaryPageTitle = 'Glossary';

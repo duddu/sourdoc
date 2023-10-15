@@ -4,59 +4,82 @@ import 'package:sourdoc/constants/environment.dart' as environment;
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:url_launcher/url_launcher.dart';
 
-final Uri _commitUrl =
-    Uri.parse('${environment.repoUrl}/tree/${environment.commitSha}');
-final Uri _openIssueUrl = Uri.parse('${environment.repoUrl}/issues/new/choose');
+const String _releaseUrl =
+    '${environment.repoUrl}/releases/tag/v${environment.version}';
+const String _commitUrl =
+    '${environment.repoUrl}/tree/${environment.commitSha}';
+const String _actionsRunUrl =
+    '${environment.repoUrl}/actions/runs/${environment.buildNumber}';
+const String _openIssueUrl = '${environment.repoUrl}/issues/new/choose';
 
-class VersionInfo extends StatelessWidget {
-  const VersionInfo({super.key});
+class VersionInfoItem extends StatelessWidget {
+  const VersionInfoItem(
+      {super.key,
+      required this.linkUrl,
+      required this.linkText,
+      this.itemLabel});
 
-  Future<void> _launchUrl(Uri url) async {
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+  final String? itemLabel;
+  final String linkUrl;
+  final String linkText;
+
+  Future<void> _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url),
+        mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $_commitUrl');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Row>[
-      Row(children: <Expanded>[
-        Expanded(
-            child: Text(
-                '©${DateTime.now().year.toString()} ${locale.title} v${environment.version}',
-                textAlign: TextAlign.center)),
+    return Text.rich(
+      TextSpan(children: [
+        if (itemLabel != null) TextSpan(text: itemLabel),
+        TextSpan(
+            text: linkText,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () async {
+                _launchUrl(linkUrl);
+              })
       ]),
-      Row(children: <Expanded>[
-        Expanded(
-            child: Text.rich(
-          TextSpan(children: [
-            const TextSpan(text: '${locale.labelCommit}: '),
-            TextSpan(
-                text: environment.commitSha.length > 7
-                    ? environment.commitSha.substring(0, 7)
-                    : environment.commitSha,
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () async {
-                    _launchUrl(_commitUrl);
-                  })
-          ]),
-          textAlign: TextAlign.center,
-        ))
-      ]),
-      Row(children: <Expanded>[
-        Expanded(
-            child: Text.rich(
-          TextSpan(
-              text: locale.reportIssue,
-              style: TextStyle(color: Theme.of(context).colorScheme.primary),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () async {
-                  _launchUrl(_openIssueUrl);
-                }),
-          textAlign: TextAlign.center,
-        ))
-      ])
+      textAlign: TextAlign.center,
+    );
+  }
+}
+
+class VersionInfo extends StatelessWidget {
+  const VersionInfo({super.key});
+
+  static const Text _divider = Text(' - ');
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(alignment: WrapAlignment.center, children: [
+      VersionInfoItem(
+        itemLabel: '©${DateTime.now().year.toString()} ${locale.title} ',
+        linkText: 'v${environment.version}',
+        linkUrl: _releaseUrl,
+      ),
+      _divider,
+      const VersionInfoItem(
+        itemLabel: '${locale.labelBuildNumber}: ',
+        linkText: environment.buildNumber,
+        linkUrl: _actionsRunUrl,
+      ),
+      _divider,
+      VersionInfoItem(
+        itemLabel: '${locale.labelCommit}: ',
+        linkText: environment.commitSha.length > 7
+            ? environment.commitSha.substring(0, 7)
+            : environment.commitSha,
+        linkUrl: _commitUrl,
+      ),
+      _divider,
+      const VersionInfoItem(
+        linkText: locale.reportIssue,
+        linkUrl: _openIssueUrl,
+      )
     ]);
   }
 }
