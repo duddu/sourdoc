@@ -4,7 +4,7 @@
     <title>Download Sourdoc release asset</title>
     <script>
         const version = '1.4.22';
-        const platform = new URLSearchParams(window.location.search).get('build');
+        const build = new URLSearchParams(window.location.search).get('build');
         window.location.href = 'https://github.com/duddu/sourdoc/releases/download/v' + version + '/' + build + '-sourdoc-v' + version + '.tgz';
     </script>
 </head>
