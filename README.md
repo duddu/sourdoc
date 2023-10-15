@@ -7,10 +7,10 @@
 Your ultimate companion for perfect sourdough - Calculate every variable from mixing to fermentation for the ideal sourdough baking experience. Try it now:
 
 [![Launch web app](https://img.shields.io/badge/Launch_web_app-red?logo=googlechrome&logoColor=white)](https://sourdoc.duddu.dev)
-[![Download Android app](https://img.shields.io/badge/Download_Android_app-silver?logo=android&logoColor=white&color=02b955)](https://sourdoc.duddu.dev/download-release-asset.html?platform=appbundle)
-[![Download macOS app](https://img.shields.io/badge/Download_macOS_app-silver?logo=apple&logoColor=grey)](https://sourdoc.duddu.dev/download-release-asset.html?platform=macos)
-[![Download Windows app](https://img.shields.io/badge/Download_Windows_app-0061bb?logo=windows&logoColor=white)](https://sourdoc.duddu.dev/download-release-asset.html?platform=windows)
-[![Download Linux app](https://img.shields.io/badge/Download_Linux_app-grey?logo=linux&logoColor=white)](https://sourdoc.duddu.dev/download-release-asset.html?platform=linux)
+[![Download Android app](https://img.shields.io/badge/Download_Android_app-silver?logo=android&logoColor=white&color=008f62)](https://sourdoc.duddu.dev/download-release-asset.html?build=appbundle)
+[![Download macOS app](https://img.shields.io/badge/Download_macOS_app-silver?logo=apple&logoColor=grey)](https://sourdoc.duddu.dev/download-release-asset.html?build=macos)
+[![Download Windows app](https://img.shields.io/badge/Download_Windows_app-0061bb?logo=windows&logoColor=white)](https://sourdoc.duddu.dev/download-release-asset.html?build=windows)
+[![Download Linux app](https://img.shields.io/badge/Download_Linux_app-grey?logo=linux&logoColor=white)](https://sourdoc.duddu.dev/download-release-asset.html?build=linux)
 
 ## How it works
 
