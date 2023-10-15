@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                       })))),
       body: ListView(
         primary: true,
-        padding: const EdgeInsets.only(bottom: 25),
+        padding: const EdgeInsets.only(bottom: 35),
         children: <CenteredContainer>[
           CenteredContainer(
               decoration: BoxDecoration(
@@ -190,7 +190,10 @@ class _HomePageState extends State<HomePage> {
               )),
           CenteredContainer(
               decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withAlpha(20),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .inversePrimary
+                      .withAlpha(30),
                   border: Border(
                       bottom:
                           BorderSide(width: 1, color: Colors.grey.shade300))),
