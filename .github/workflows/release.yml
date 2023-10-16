@@ -50,6 +50,18 @@ jobs:
         needs: trigger-test
         environment: ${{ matrix.environment }}
         steps:
+            - name: '[linux] Install dependencies'
+              if: ${{ matrix.build == 'linux' }}
+              run: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+            - name: '[appbundle] Setup java'
+              if: ${{ matrix.build == 'appbundle' }}
+              uses: actions/setup-java@v3
+              with:
+                java-version: 17
+                distribution: temurin
+            - name: '[appbundle] Setup android sdk'
+              if: ${{ matrix.build == 'appbundle' }}
+              uses: android-actions/setup-android@v3
             - name: Prepare flutter
               uses: subosito/flutter-action@v2
               with:
@@ -62,25 +74,11 @@ jobs:
             - name: Set environment variables
               if: ${{ matrix.build != 'windows' }}
               run: |
-                echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
-                echo "ARTIFACT_NAME=${{ matrix.build }}-sourdoc-v$(cat VERSION)" >> $GITHUB_ENV
+                echo -e "VERSION=$(cat VERSION)\nBUILD_NUMBER=$(date +%s)\nARTIFACT_NAME=${{ matrix.build }}-sourdoc-v$(cat VERSION)" >> $GITHUB_ENV
             - name: '[windows] Set environment variables'
               if: ${{ matrix.build == 'windows' }}
               run: |
-                echo "VERSION=$(cat VERSION)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
-                echo "ARTIFACT_NAME=${{ matrix.build }}-sourdoc-v$(cat VERSION)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
-            - name: '[linux] Install dependencies'
-              if: ${{ matrix.build == 'linux' }}
-              run: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
-            - name: '[appbundle] Setup java'
-              if: ${{ matrix.build == 'appbundle' }}
-              uses: actions/setup-java@v3
-              with:
-                java-version: '17'
-                distribution: 'temurin'            
-            - name: '[appbundle] Setup android sdk'
-              if: ${{ matrix.build == 'appbundle' }}
-              uses: android-actions/setup-android@v3
+                echo "VERSION=$(cat VERSION)`nBUILD_NUMBER=$(date +%s)`nARTIFACT_NAME=${{ matrix.build }}-sourdoc-v$(cat VERSION)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
             - name: '[appbundle] Setup upload keystore'
               if: ${{ matrix.build == 'appbundle' }}
               run: |
@@ -90,9 +88,9 @@ jobs:
             - name: Build release
               run: flutter build -v ${{ matrix.build }} --release 
                 --build-name=${{ env.VERSION }} 
-                --build-number=${{ github.run_id }} 
+                --build-number=${{ env.BUILD_NUMBER }}
                 --dart-define=VERSION=${{ env.VERSION }} 
-                --dart-define=BUILD_NUMBER=${{ github.run_id }} 
+                --dart-define=BUILD_NUMBER=${{ env.BUILD_NUMBER }}
                 --dart-define=COMMIT_SHA=${{ github.sha }} 
                 --dart-define=REPO_URL=${{ github.server_url }}/${{ github.repository }} 
                 ${{ matrix.build == 'web' && '--csp' || ''}}
