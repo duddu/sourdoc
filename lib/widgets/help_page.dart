@@ -20,7 +20,7 @@ class HelpPage extends StatelessWidget {
           border:
               Border(top: BorderSide(width: 1, color: Colors.grey.shade300)),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.symmetric(vertical: 18),
         child: const VersionInfo());
 
     return Scaffold(
