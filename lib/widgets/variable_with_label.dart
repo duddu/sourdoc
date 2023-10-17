@@ -15,11 +15,17 @@ class VariableWithLabel extends StatelessWidget {
   final String value;
   final String? additionalInfoText;
 
+  bool _hasAdditionalInfo() =>
+      additionalInfoText != null && additionalInfoText!.isNotEmpty;
+  bool _isMobileDevice(BuildContext context) =>
+      Theme.of(context).platform == TargetPlatform.android ||
+      Theme.of(context).platform == TargetPlatform.iOS;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-          height: 42,
+          height: _isMobileDevice(context) ? 46 : 44,
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -37,8 +43,7 @@ class VariableWithLabel extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.start,
                 ),
-                if (additionalInfoText != null &&
-                    additionalInfoText!.isNotEmpty)
+                if (_hasAdditionalInfo())
                   Expanded(
                       flex: 0,
                       child: Semantics(
@@ -76,6 +81,7 @@ class InfoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+        padding: EdgeInsets.zero,
         icon: Icon(Icons.info,
             color: Theme.of(context).colorScheme.inversePrimary),
         onPressed: () => {
