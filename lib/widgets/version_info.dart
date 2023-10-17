@@ -2,14 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sourdoc/constants/environment.dart' as environment;
 import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/widgets/centered_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const String _releaseUrl =
     '${environment.repoUrl}/releases/tag/v${environment.version}';
 const String _commitUrl =
     '${environment.repoUrl}/tree/${environment.commitSha}';
-const String _actionsRunUrl =
-    '${environment.repoUrl}/actions/runs/${environment.buildNumber}';
 const String _openIssueUrl = '${environment.repoUrl}/issues/new/choose';
 
 class VersionInfoItem extends StatelessWidget {
@@ -51,22 +50,18 @@ class VersionInfoItem extends StatelessWidget {
 class VersionInfo extends StatelessWidget {
   const VersionInfo({super.key});
 
-  static const Text _divider = Text(' - ');
-
   @override
   Widget build(BuildContext context) {
-    return Wrap(alignment: WrapAlignment.center, children: [
+    return Wrap(spacing: 8, alignment: WrapAlignment.center, children: [
       VersionInfoItem(
         label: '©${DateTime.now().year.toString()} ${locale.title} ',
         value: 'v${environment.version}',
         url: _releaseUrl,
       ),
-      _divider,
       const VersionInfoItem(
         label: '${locale.labelBuildNumber}: ',
         value: environment.buildNumber,
       ),
-      _divider,
       VersionInfoItem(
         label: '${locale.labelCommit}: ',
         value: environment.commitSha.length > 7
@@ -74,7 +69,6 @@ class VersionInfo extends StatelessWidget {
             : environment.commitSha,
         url: _commitUrl,
       ),
-      _divider,
       const VersionInfoItem(
         value: locale.reportIssue,
         url: _openIssueUrl,
@@ -82,3 +76,14 @@ class VersionInfo extends StatelessWidget {
     ]);
   }
 }
+
+CenteredContainer getVersionInfoContainer(BuildContext context) =>
+    CenteredContainer(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.inversePrimary.withAlpha(170),
+          border:
+              Border(top: BorderSide(width: 1, color: Colors.grey.shade300)),
+        ),
+        padding: EdgeInsets.fromLTRB(0, 18, 0,
+            Theme.of(context).platform == TargetPlatform.iOS ? 26 : 18),
+        child: const VersionInfo());

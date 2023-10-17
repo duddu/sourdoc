@@ -4,43 +4,42 @@ import 'package:sourdoc/constants/routes.dart';
 import 'package:sourdoc/widgets/app_bar_with_actions.dart';
 import 'package:sourdoc/widgets/centered_container.dart';
 import 'package:sourdoc/widgets/header.dart';
+import 'package:sourdoc/widgets/secondary_page.dart';
 
 class GlossaryPage extends StatelessWidget {
   const GlossaryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getAppBarWithTitle(
-          context,
-          AppBarTitleWithAction(
-              backButton: true,
-              backButtonTooltip: locale.appBarGlossaryBackButtonTooltip,
-              title: Semantics(
-                  label: locale.a11yAppBarGlossaryTitleLabel,
-                  child: const Text(locale.glossaryPageTitle,
-                      style: TextStyle(color: Colors.white))),
-              action: Semantics(
-                  button: true,
-                  label: locale.a11yAppBarGlossaryActionButtonLabel,
-                  hint: locale.a11yAppBarGlossaryActionButtonHint,
-                  tooltip: locale.appBarGlossaryActionButtonTooltip,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.close_rounded,
-                      semanticLabel:
-                          locale.a11yAppBarGlossaryActionButtonIconLabel,
-                      color: Colors.white,
-                    ),
-                    color: Colors.white,
+    return SecondaryPage(
+        appBar: getAppBarWithTitle(
+            context,
+            AppBarTitleWithAction(
+                backButton: true,
+                backButtonTooltip: locale.appBarGlossaryBackButtonTooltip,
+                title: Semantics(
+                    label: locale.a11yAppBarGlossaryTitleLabel,
+                    child: const Text(locale.glossaryPageTitle,
+                        style: TextStyle(color: Colors.white))),
+                action: Semantics(
+                    button: true,
+                    label: locale.a11yAppBarGlossaryActionButtonLabel,
+                    hint: locale.a11yAppBarGlossaryActionButtonHint,
                     tooltip: locale.appBarGlossaryActionButtonTooltip,
-                    onPressed: () => backToHomePage(context),
-                  )))),
-      body: ListView(
-        primary: true,
-        padding: const EdgeInsets.only(bottom: 25),
-        children: <CenteredContainer>[
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.close_rounded,
+                        semanticLabel:
+                            locale.a11yAppBarGlossaryActionButtonIconLabel,
+                        color: Colors.white,
+                      ),
+                      color: Colors.white,
+                      tooltip: locale.appBarGlossaryActionButtonTooltip,
+                      onPressed: () => backToHomePage(context),
+                    )))),
+        listViewChildren: <CenteredContainer>[
           CenteredContainer(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 20),
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
@@ -77,8 +76,6 @@ class GlossaryPage extends StatelessWidget {
                           )))
                 ]),
               ]))
-        ],
-      ),
-    );
+        ]);
   }
 }
