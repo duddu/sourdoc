@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   double _water = 0;
   double _levain = 0;
   double _salt = 0;
-  TemperatureUnit _temperatureUnit = form.defaultTemperatureUnit;
+  TemperatureUnit? _temperatureUnit;
 
   final totalWeightController = TextEditingController();
   final hydrationController = TextEditingController();
@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage> {
   void _updateFermentationValues() {
     final temperature = _parseValue(temperatureController);
 
-    _inoculation = getInoculationValue(temperature, _temperatureUnit);
-    _bulkRise = getBulkRiseValue(temperature, _temperatureUnit);
+    _inoculation = getInoculationValue(temperature, _temperatureUnit!);
+    _bulkRise = getBulkRiseValue(temperature, _temperatureUnit!);
   }
 
   void _updateFermentationState() {
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
           .firstWhere((element) => element.value.unit == selection)
           .key;
       temperatureController.text = convertTemperatureUnit(
-              _parseValue(temperatureController), _temperatureUnit)
+              _parseValue(temperatureController), _temperatureUnit!)
           .toStringAsFixed(1)
           .replaceFirst('.0', '');
       _storeTemperatureUnit();
@@ -123,9 +123,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   initState() {
-    super.initState();
-
     _loadInitialValues();
+
+    super.initState();
 
     temperatureController.addListener(_updateFermentationState);
     temperatureController.addListener(_storeTemperatureValue);
@@ -212,30 +212,33 @@ class _HomePageState extends State<HomePage> {
                             fontSize:
                                 Theme.of(context).textTheme.bodyLarge!.fontSize,
                             color: Colors.grey.shade800)),
-                    UnitChoice(
-                        a11yLabel: locale.a11yTemperatureUnitChoiceLabel,
-                        unitList: temperatureUnitMap.values
-                            .map((element) => UnitSingleChoiceDescriptor(
-                                value: element.unit,
-                                tooltip: element.description))
-                            .toList(),
-                        initialUnitValue:
-                            temperatureUnitMap[_temperatureUnit]!.unit,
-                        onSelectionChanged: _updateTemperatureUnit),
+                    if (_temperatureUnit != null)
+                      UnitChoice(
+                          a11yLabel: locale.a11yTemperatureUnitChoiceLabel,
+                          unitList: temperatureUnitMap.values
+                              .map((element) => UnitSingleChoiceDescriptor(
+                                  value: element.unit,
+                                  tooltip: element.description))
+                              .toList(),
+                          initialUnitValue:
+                              temperatureUnitMap[_temperatureUnit]!.unit,
+                          onSelectionChanged: _updateTemperatureUnit),
                   ],
                 ),
-                Row(
-                  children: <TextFieldWithAffixes>[
-                    TextFieldWithAffixes(
-                      paddingTop: 10,
-                      controller: temperatureController,
-                      prefixText: locale.inputPrefixTemperature,
-                      suffixText: temperatureUnitMap[_temperatureUnit]!.unit,
-                      tooltip: locale.inputTooltipTemperature,
-                      maxValue: form.maxValueTemperatureMap[_temperatureUnit]!,
-                    ),
-                  ],
-                ),
+                if (_temperatureUnit != null)
+                  Row(
+                    children: <TextFieldWithAffixes>[
+                      TextFieldWithAffixes(
+                        paddingTop: 10,
+                        controller: temperatureController,
+                        prefixText: locale.inputPrefixTemperature,
+                        suffixText: temperatureUnitMap[_temperatureUnit]!.unit,
+                        tooltip: locale.inputTooltipTemperature,
+                        maxValue:
+                            form.maxValueTemperatureMap[_temperatureUnit]!,
+                      ),
+                    ],
+                  ),
                 Row(
                   children: <TextFieldWithAffixes>[
                     TextFieldWithAffixes(

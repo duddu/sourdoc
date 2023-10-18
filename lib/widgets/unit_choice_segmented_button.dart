@@ -26,7 +26,7 @@ class UnitChoice<T extends Enum> extends StatefulWidget {
 }
 
 class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
-  late String unit;
+  String? unit;
 
   @override
   void initState() {
@@ -60,7 +60,7 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
           onSelectionChanged: (Set newSelection) {
             setState(() {
               unit = newSelection.first;
-              widget.onSelectionChanged(unit);
+              widget.onSelectionChanged(unit!);
             });
           },
         ));

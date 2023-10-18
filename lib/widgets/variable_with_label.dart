@@ -62,6 +62,7 @@ class VariableWithLabel extends StatelessWidget {
                 Expanded(
                     child: Text(
                   '${value.toStringAsFixed(fractionDigits)}$unit',
+                  semanticsLabel: label,
                   style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.end,
                 )),

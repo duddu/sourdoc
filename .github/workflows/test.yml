@@ -6,7 +6,7 @@ on:
         branches-ignore:
             - main
 jobs:
-    test:
+    unit-test:
         runs-on: ubuntu-latest
         steps:
             - name: Prepare flutter
@@ -18,5 +18,19 @@ jobs:
               uses: actions/checkout@v4
               with:
                 fetch-depth: 1
-            - name: Flutter tests
+            - name: Flutter test
               run: flutter test --coverage -r github
+    integration-test:
+        runs-on: macos-latest
+        steps:
+            - name: Prepare flutter
+              uses: subosito/flutter-action@v2
+              with:
+                flutter-version: 3.13.7
+                channel: stable
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            - name: Flutter integration test
+              run: flutter test -v -d macos integration_test/home_page.test.dart
