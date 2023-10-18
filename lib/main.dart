@@ -46,7 +46,6 @@ class Sourdoc extends StatelessWidget {
                   fontSize: style.isMobileScreenWidth(context) ? 14 : 16),
               bodyLarge: const TextStyle(fontSize: 16),
               headlineLarge: const TextStyle(fontSize: 20),
-              headlineMedium: const TextStyle(fontSize: 16),
             )),
         onGenerateRoute: (settings) {
           switch (settings.name) {

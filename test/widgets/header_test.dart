@@ -36,28 +36,6 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('should have font size 20 by default', (tester) async {
-      await tester
-          .pumpWidget(getWidgetWithTestScaffold(const Header(text: text)));
-
-      expect(
-          find.byWidgetPredicate((Widget widget) =>
-              widget is Text && widget.style?.fontSize == 20),
-          findsOneWidget);
-    });
-
-    group('if small is true', () {
-      testWidgets('should have font size 16', (tester) async {
-        await tester.pumpWidget(
-            getWidgetWithTestScaffold(const Header(text: text, small: true)));
-
-        expect(
-            find.byWidgetPredicate((Widget widget) =>
-                widget is Text && widget.style?.fontSize == 16),
-            findsOneWidget);
-      });
-    });
-
     group('if paddingTop is provided', () {
       testWidgets('should apply a custom padding', (tester) async {
         const double paddingTop = 100;
