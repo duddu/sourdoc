@@ -47,11 +47,13 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
           segments: <ButtonSegment<String>>[
             ButtonSegment(
                 value: widget.unitList.first.value,
-                label: Text(widget.unitList.first.value),
+                label: Text(widget.unitList.first.value,
+                    style: Theme.of(context).textTheme.bodyLarge),
                 tooltip: widget.unitList.first.tooltip),
             ButtonSegment(
                 value: widget.unitList.last.value,
-                label: Text(widget.unitList.last.value),
+                label: Text(widget.unitList.last.value,
+                    style: Theme.of(context).textTheme.bodyLarge),
                 tooltip: widget.unitList.last.tooltip),
           ],
           selected: {unit},

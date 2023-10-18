@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/constants/routes.dart';
 import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/widgets/centered_container.dart';
 import 'package:sourdoc/widgets/version_info.dart';
@@ -12,14 +14,10 @@ class SecondaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final CenteredContainer versionInfoContainer =
         getVersionInfoContainer(context);
 
     return Scaffold(
-        backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
-            ? Theme.of(context).colorScheme.inversePrimary
-            : null,
         appBar: appBar,
         body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,11 +29,29 @@ class SecondaryPage extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: <CenteredContainer>[
                   ...listViewChildren,
-                  if (screenWidth <= style.mobileMaxScreenWidth)
-                    versionInfoContainer
+                  CenteredContainer(
+                      padding: const EdgeInsets.fromLTRB(0, 13, 0, 26),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Column(children: <Row>[
+                        Row(children: <TextButton>[
+                          TextButton(
+                            onPressed: () => backToHomePage(context),
+                            style: ButtonStyle(
+                                alignment: Alignment.centerLeft,
+                                textStyle: MaterialStateProperty.all(
+                                    Theme.of(context).textTheme.bodyMedium),
+                                padding: const MaterialStatePropertyAll(
+                                    EdgeInsets.zero)),
+                            child: const Text('< ${locale.backToHome}'),
+                          )
+                        ])
+                      ])),
+                  if (style.isMobileScreenWidth(context)) versionInfoContainer
                 ],
               )),
-              if (screenWidth > style.mobileMaxScreenWidth) versionInfoContainer
+              if (!style.isMobileScreenWidth(context)) versionInfoContainer
             ]));
   }
 }

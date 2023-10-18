@@ -28,6 +28,7 @@ class VersionInfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text.rich(
+      style: Theme.of(context).textTheme.bodySmall,
       TextSpan(children: [
         if (label != null) TextSpan(text: label),
         TextSpan(
@@ -85,5 +86,5 @@ CenteredContainer getVersionInfoContainer(BuildContext context) =>
               Border(top: BorderSide(width: 1, color: Colors.grey.shade300)),
         ),
         padding: EdgeInsets.fromLTRB(0, 18, 0,
-            Theme.of(context).platform == TargetPlatform.iOS ? 26 : 18),
+            Theme.of(context).platform == TargetPlatform.iOS ? 25 : 18),
         child: const VersionInfo());

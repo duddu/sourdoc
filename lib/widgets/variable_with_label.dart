@@ -130,7 +130,8 @@ class InfoBottomSheet extends StatelessWidget {
               Expanded(
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                      child: Text(text)))
+                      child: Text(text,
+                          style: Theme.of(context).textTheme.bodyMedium)))
             ])
           ]),
         ]),

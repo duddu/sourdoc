@@ -22,7 +22,9 @@ class Header extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-                fontSize: small ? 16 : 20,
+                fontSize: small
+                    ? Theme.of(context).textTheme.headlineMedium!.fontSize
+                    : Theme.of(context).textTheme.headlineLarge!.fontSize,
                 color: Theme.of(context).colorScheme.primary),
             textAlign: TextAlign.start,
           )),

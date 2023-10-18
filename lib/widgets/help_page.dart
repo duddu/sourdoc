@@ -45,7 +45,7 @@ class HelpPage extends StatelessWidget {
                     )))),
         listViewChildren: <CenteredContainer>[
           CenteredContainer(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.only(top: 20),
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
@@ -55,6 +55,7 @@ class HelpPage extends StatelessWidget {
                       child: Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text.rich(
+                            style: Theme.of(context).textTheme.bodyMedium,
                             TextSpan(children: [
                               TextSpan(
                                   text: locale.title,
@@ -93,38 +94,32 @@ class HelpPage extends StatelessWidget {
                               horizontal: screenWidth > style.contentMaxWidth
                                   ? 100
                                   : 20),
-                          child: const Text(
+                          child: Text(
                             locale.appendixHowItWorksFormula,
                             semanticsLabel:
                                 locale.a11yAppendixHowItWorksFormula,
-                            style: TextStyle(fontStyle: FontStyle.italic),
+                            style: TextStyle(
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .fontSize,
+                              color: Colors.grey.shade800,
+                            ),
                             textAlign: TextAlign.center,
                           )))
                 ]),
                 const Row(children: <Header>[
                   Header(
                     text: locale.headerBakerFormulaDifference,
-                    paddingTop: 14,
+                    paddingTop: 15,
                   )
-                ]),
-                const Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(
-                    locale.appendixBakerFormulaDifference,
-                  ))
                 ]),
                 Row(children: <Expanded>[
                   Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextButton(
-                            onPressed: () => backToHomePage(context),
-                            style: const ButtonStyle(
-                                alignment: Alignment.centerLeft,
-                                padding:
-                                    MaterialStatePropertyAll(EdgeInsets.zero)),
-                            child: const Text('< ${locale.backToHome}'),
-                          )))
+                      child: Text(
+                    locale.appendixBakerFormulaDifference,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ))
                 ]),
               ])),
         ]);

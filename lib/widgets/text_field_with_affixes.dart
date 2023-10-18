@@ -30,6 +30,8 @@ class TextFieldWithAffixes extends StatelessWidget {
                     child: Text(locale.getInputErrorMessage(maxValue),
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontSize:
+                                Theme.of(context).textTheme.bodySmall!.fontSize,
                             color: Theme.of(context).colorScheme.error))))),
         backgroundColor: Theme.of(context).colorScheme.errorContainer,
       ),
@@ -63,15 +65,20 @@ class TextFieldWithAffixes extends StatelessWidget {
                 hint: locale.a11yTextFieldHint,
                 child: TextField(
                   controller: controller,
+                  autocorrect: false,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     isDense: true,
                     prefixText: '$prefixText:',
-                    prefixStyle:
-                        TextStyle(fontSize: 16, color: Colors.grey.shade800),
+                    prefixStyle: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.bodyLarge!.fontSize,
+                        color: Colors.grey.shade800),
                     suffixText: suffixText,
-                    suffixStyle:
-                        const TextStyle(fontSize: 16, color: Colors.black),
+                    suffixStyle: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.bodyLarge!.fontSize,
+                        color: Colors.black),
                   ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
@@ -80,6 +87,7 @@ class TextFieldWithAffixes extends StatelessWidget {
                       const TextInputType.numberWithOptions(decimal: true),
                   textAlign: TextAlign.end,
                   textInputAction: TextInputAction.done,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   onTap: _onTap,
                   onChanged: (text) {
                     _onChanged(text, context);

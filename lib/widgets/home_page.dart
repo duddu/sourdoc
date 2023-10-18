@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sourdoc/constants/form.dart' as form;
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/routes.dart';
+import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/convert_temperature_unit.dart';
 import 'package:sourdoc/methods/get_fermentation_values.dart';
 import 'package:sourdoc/methods/get_ingredients_values.dart';
@@ -184,9 +185,12 @@ class _HomePageState extends State<HomePage> {
                       .inversePrimary
                       .withAlpha(170)),
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 11),
-              child: const Text(
-                locale.formIntro,
+              child: Text(
+                style.isMobileScreenWidth(context)
+                    ? locale.formIntro
+                    : locale.formIntroLarge,
                 textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.bodySmall,
               )),
           CenteredContainer(
               decoration: BoxDecoration(
@@ -205,7 +209,9 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text('${locale.labelTemperatureUnit}:',
                         style: TextStyle(
-                            fontSize: 16, color: Colors.grey.shade800)),
+                            fontSize:
+                                Theme.of(context).textTheme.bodyLarge!.fontSize,
+                            color: Colors.grey.shade800)),
                     UnitChoice(
                         a11yLabel: locale.a11yTemperatureUnitChoiceLabel,
                         unitList: temperatureUnitMap.values

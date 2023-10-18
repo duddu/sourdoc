@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/routes.dart';
+import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/widgets/glossary_page.dart';
 import 'package:sourdoc/widgets/help_page.dart';
 import 'package:sourdoc/widgets/home_page.dart';
@@ -37,9 +38,16 @@ class Sourdoc extends StatelessWidget {
     return MaterialApp(
         title: locale.title,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+            textTheme: TextTheme(
+              bodySmall: const TextStyle(fontSize: 14),
+              bodyMedium: TextStyle(
+                  fontSize: style.isMobileScreenWidth(context) ? 14 : 16),
+              bodyLarge: const TextStyle(fontSize: 16),
+              headlineLarge: const TextStyle(fontSize: 20),
+              headlineMedium: const TextStyle(fontSize: 16),
+            )),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case homePagePath:
