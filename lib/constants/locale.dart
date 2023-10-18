@@ -46,7 +46,7 @@ Using the temperature value, Sourdoc computes both Inoculation and Target dough 
 const String appendixHowItWorksFragment2 =
     '''). We can then determine the precise quantities of all ingredients through the following formula:''';
 const String appendixHowItWorksFormula =
-    '<target bread weight> = <flour> - <flour> × <hydration%> - <flour> × <inoculation%> - <flour> × <salt%>';
+    'Target bread weight = flour - flour × hydration% - flour × inoculation% - flour × salt%';
 const String appendixBakerFormulaDifference =
     '''Here's the key: temperature! The baker's formula provides ingredients weights based on flour content, but does not take into account the influence of ambient temperature. Many recipes take a one-size-fits-all approach, assuming a standard temperature and leaving bakers to make adjustments based on their kitchen conditions. Yet, temperature has a direct impact on the inoculation level, which in turn, significantly influences the amount of sourdough starter required for optimal dough.
 Temperature can make the difference between a perfectly risen, flavorful loaf and a dense, lackluster one. It determines the speed of fermentation: a warmer environment speeds up fermentation, while a cooler one slows it down. If your dough ferments too quickly, it might result in overproofing, which can lead to a tangy but flat and gummy bread. On the other hand, in a cooler kitchen, underproofing is a risk, causing the bread to be dense and lacking in flavor.''';

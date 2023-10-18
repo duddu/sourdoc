@@ -53,7 +53,7 @@ class HelpPage extends StatelessWidget {
                 Row(children: <Expanded>[
                   Expanded(
                       child: Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
+                          padding: const EdgeInsets.only(bottom: 9),
                           child: Text.rich(
                             style: Theme.of(context).textTheme.bodyMedium,
                             TextSpan(children: [
@@ -92,16 +92,18 @@ class HelpPage extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: screenWidth > style.contentMaxWidth
-                                  ? 100
-                                  : 20),
+                                  ? 80
+                                  : 50),
                           child: Text(
                             locale.appendixHowItWorksFormula,
                             semanticsLabel:
                                 locale.a11yAppendixHowItWorksFormula,
                             style: TextStyle(
+                              fontFamily: 'serif',
+                              fontStyle: FontStyle.italic,
                               fontSize: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
+                                  .bodyMedium!
                                   .fontSize,
                               color: Colors.grey.shade800,
                             ),
