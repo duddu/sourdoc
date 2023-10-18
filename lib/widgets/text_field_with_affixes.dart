@@ -45,8 +45,10 @@ class TextFieldWithAffixes extends StatelessWidget {
   void _onChanged(String text, BuildContext context) {
     if (text.isEmpty) {
       controller.text = '0';
+      _selectAll();
     } else if (double.parse(text) > maxValue) {
       controller.text = '$maxValue';
+      _selectAll();
       _showErrorSnackBar(context);
     }
     for (var callback in onChangedCallbacks) {
@@ -54,7 +56,7 @@ class TextFieldWithAffixes extends StatelessWidget {
     }
   }
 
-  void _onTap() {
+  void _selectAll() {
     controller.selection = TextSelection(
         baseOffset: 0, extentOffset: controller.value.text.length);
   }
@@ -97,7 +99,7 @@ class TextFieldWithAffixes extends StatelessWidget {
                       textAlign: TextAlign.end,
                       textInputAction: TextInputAction.done,
                       style: Theme.of(context).textTheme.bodyLarge,
-                      onTap: _onTap,
+                      onTap: _selectAll,
                       onChanged: (text) {
                         _onChanged(text, context);
                       },
