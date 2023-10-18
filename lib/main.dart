@@ -1,3 +1,6 @@
+import 'dart:io' show Platform;
+
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
@@ -6,8 +9,28 @@ import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/widgets/glossary_page.dart';
 import 'package:sourdoc/widgets/help_page.dart';
 import 'package:sourdoc/widgets/home_page.dart';
+import 'package:window_size/window_size.dart';
+
+void _setupWindow() async {
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+    const double windowWidth = style.mobileMaxScreenWidth;
+    const double windowHeight = 850;
+
+    WidgetsFlutterBinding.ensureInitialized();
+    setWindowMinSize(const Size(windowWidth, windowHeight));
+    setWindowMaxSize(const Size(windowWidth, windowHeight));
+
+    final screen = await getCurrentScreen();
+    setWindowFrame(Rect.fromCenter(
+      center: screen!.frame.center,
+      width: windowWidth,
+      height: windowHeight,
+    ));
+  }
+}
 
 void main() {
+  _setupWindow();
   usePathUrlStrategy();
   runApp(const Sourdoc());
 }
