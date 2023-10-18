@@ -126,15 +126,6 @@ class _HomePageState extends State<HomePage> {
     _loadInitialValues();
 
     super.initState();
-
-    temperatureController.addListener(_updateFermentationState);
-    temperatureController.addListener(_storeTemperatureValue);
-    totalWeightController.addListener(_updateIngredientsState);
-    totalWeightController.addListener(_storeTotalWeightValue);
-    hydrationController.addListener(_updateIngredientsState);
-    hydrationController.addListener(_storeHydrationValue);
-    saltController.addListener(_updateIngredientsState);
-    saltController.addListener(_storeSaltLevelValue);
   }
 
   @override
@@ -236,6 +227,10 @@ class _HomePageState extends State<HomePage> {
                         tooltip: locale.inputTooltipTemperature,
                         maxValue:
                             form.maxValueTemperatureMap[_temperatureUnit]!,
+                        onChangedCallbacks: [
+                          _updateFermentationState,
+                          _storeTemperatureValue
+                        ],
                       ),
                     ],
                   ),
@@ -247,6 +242,10 @@ class _HomePageState extends State<HomePage> {
                       suffixText: locale.unitGrams,
                       tooltip: locale.inputTooltipWeight,
                       maxValue: form.maxValueTotalWeight,
+                      onChangedCallbacks: [
+                        _updateIngredientsState,
+                        _storeTotalWeightValue
+                      ],
                     ),
                   ],
                 ),
@@ -258,7 +257,10 @@ class _HomePageState extends State<HomePage> {
                       suffixText: locale.unitPercent,
                       tooltip: locale.inputTooltipHydration,
                       maxValue: form.maxValueHydration,
-                    ),
+                        onChangedCallbacks: [
+                          _updateIngredientsState,
+                          _storeHydrationValue
+                        ]),
                   ],
                 ),
                 Row(
@@ -269,6 +271,10 @@ class _HomePageState extends State<HomePage> {
                       suffixText: locale.unitPercent,
                       tooltip: locale.inputTooltipSalt,
                       maxValue: form.maxValueSaltLevel,
+                      onChangedCallbacks: [
+                        _updateIngredientsState,
+                        _storeSaltLevelValue
+                      ],
                     ),
                   ],
                 )

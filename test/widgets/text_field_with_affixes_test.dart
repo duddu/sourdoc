@@ -11,6 +11,8 @@ const String testSuffixText = 'test suffix';
 const String testTooltip = 'test tooltip';
 const double testMaxValue = 100;
 
+int _counter = 0;
+
 class TestTextField extends StatefulWidget {
   TestTextField({super.key});
 
@@ -30,6 +32,11 @@ class _TestTextFieldState extends State<TestTextField> {
       suffixText: testSuffixText,
       tooltip: testTooltip,
       maxValue: testMaxValue,
+      onChangedCallbacks: [
+        () {
+          _counter++;
+        }
+      ],
     );
   }
 }
@@ -84,6 +91,15 @@ void main() {
           findsOneWidget);
     });
 
+    testWidgets('should call the on change callback', (tester) async {
+      final testTextField = TestTextField();
+      await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
+
+      expect(_counter, 0);
+      await tester.enterText(find.byType(TextField), '123');
+      expect(_counter, 1);
+    });
+
     testWidgets('should apply default padding top', (tester) async {
       final testTextField = TestTextField();
       await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
@@ -104,6 +120,7 @@ void main() {
         tooltip: testTooltip,
         maxValue: testMaxValue,
         paddingTop: 10,
+        onChangedCallbacks: const [],
       );
       await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
 
