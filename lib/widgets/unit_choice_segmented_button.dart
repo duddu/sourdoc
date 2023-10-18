@@ -12,25 +12,32 @@ class UnitChoice<T extends Enum> extends StatefulWidget {
     super.key,
     required this.a11yLabel,
     required this.unitList,
-    required this.initialUnitValue,
+    required this.getInitialUnitValue,
     required this.onSelectionChanged,
   });
 
   final String a11yLabel;
   final List<UnitSingleChoiceDescriptor> unitList;
-  final String initialUnitValue;
-  final Function(String) onSelectionChanged;
+  final Future<String> Function() getInitialUnitValue;
+  final void Function(String) onSelectionChanged;
 
   @override
   State<UnitChoice> createState() => _UnitChoiceState<T>();
 }
 
 class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
-  String? unit;
+  String? _unit;
+
+  Future<void> _loadInitialValue() async {
+    final String initial = await widget.getInitialUnitValue();
+    setState(() {
+      _unit = initial;
+    });
+  }
 
   @override
   void initState() {
-    unit = widget.initialUnitValue;
+    _loadInitialValue();
     super.initState();
   }
 
@@ -40,7 +47,7 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
         focusable: true,
         inMutuallyExclusiveGroup: true,
         label: widget.a11yLabel,
-        value: unit,
+        value: _unit,
         child: SegmentedButton(
           multiSelectionEnabled: false,
           showSelectedIcon: true,
@@ -56,11 +63,13 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
                     style: Theme.of(context).textTheme.bodyLarge),
                 tooltip: widget.unitList.last.tooltip),
           ],
-          selected: {unit},
+          selected: {_unit},
           onSelectionChanged: (Set newSelection) {
             setState(() {
-              unit = newSelection.first;
-              widget.onSelectionChanged(unit!);
+              if (_unit != null) {
+                widget.onSelectionChanged(newSelection.first);
+              }
+              _unit = newSelection.first;
             });
           },
         ));
