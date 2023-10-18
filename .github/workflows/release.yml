@@ -32,6 +32,10 @@ jobs:
                       os: ubuntu-latest
                       build-folder: build/app/outputs/bundle/release
                       build-artifact: app-release.aab
+                    - build: apk
+                      os: ubuntu-latest
+                      build-folder: build/app/outputs/flutter-apk
+                      build-artifact: app-release.apk
                     - build: macos
                       os: macos-latest
                       build-folder: build/macos/Build/Products/Release
@@ -54,13 +58,13 @@ jobs:
               if: ${{ matrix.build == 'linux' }}
               run: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
             - name: '[appbundle] Setup java'
-              if: ${{ matrix.build == 'appbundle' }}
+              if: ${{ matrix.build == 'appbundle' || matrix.build == 'apk' }}
               uses: actions/setup-java@v3
               with:
                 java-version: 17
                 distribution: temurin
             - name: '[appbundle] Setup android sdk'
-              if: ${{ matrix.build == 'appbundle' }}
+              if: ${{ matrix.build == 'appbundle' || matrix.build == 'apk' }}
               uses: android-actions/setup-android@v3
             - name: Prepare flutter
               uses: subosito/flutter-action@v2
@@ -81,7 +85,7 @@ jobs:
               run: |
                 echo "VERSION=$(cat VERSION)`nBUILD_NUMBER=$(date +%s)`nARTIFACT_NAME=${{ matrix.build }}-sourdoc-v$(cat VERSION)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
             - name: '[appbundle] Setup upload keystore'
-              if: ${{ matrix.build == 'appbundle' }}
+              if: ${{ matrix.build == 'appbundle' || matrix.build == 'apk' }}
               run: |
                 echo "${{ secrets.ANDROID_UPLOAD_KEYSTORE_ASC }}" > $HOME/upload-keystore.jks.asc
                 gpg -d --passphrase "${{ secrets.ANDROID_UPLOAD_KEYSTORE_ASC_PASSPHRASE }}" --batch $HOME/upload-keystore.jks.asc > $HOME/upload-keystore.jks
