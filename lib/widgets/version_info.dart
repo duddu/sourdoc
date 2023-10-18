@@ -53,28 +53,32 @@ class VersionInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 8, alignment: WrapAlignment.center, children: [
-      VersionInfoItem(
-        label: '©${DateTime.now().year.toString()} ${locale.title} ',
-        value: 'v${environment.version}',
-        url: _releaseUrl,
-      ),
-      const VersionInfoItem(
-        label: '${locale.labelBuildNumber}: ',
-        value: environment.buildNumber,
-      ),
-      VersionInfoItem(
-        label: '${locale.labelCommit}: ',
-        value: environment.commitSha.length > 7
-            ? environment.commitSha.substring(0, 7)
-            : environment.commitSha,
-        url: _commitUrl,
-      ),
-      const VersionInfoItem(
-        value: locale.reportIssue,
-        url: _openIssueUrl,
-      )
-    ]);
+    return Wrap(
+        spacing: 9,
+        runSpacing: 2,
+        alignment: WrapAlignment.center,
+        children: [
+          VersionInfoItem(
+            label: '©${DateTime.now().year.toString()} ${locale.title} ',
+            value: 'v${environment.version}',
+            url: _releaseUrl,
+          ),
+          const VersionInfoItem(
+            label: '${locale.labelBuildNumber}: ',
+            value: environment.buildNumber,
+          ),
+          VersionInfoItem(
+            label: '${locale.labelCommit}: ',
+            value: environment.commitSha.length > 7
+                ? environment.commitSha.substring(0, 7)
+                : environment.commitSha,
+            url: _commitUrl,
+          ),
+          const VersionInfoItem(
+            value: locale.reportIssue,
+            url: _openIssueUrl,
+          )
+        ]);
   }
 }
 
