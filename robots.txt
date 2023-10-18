@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /download-release-asset.html
+
+User-agent: *
+Disallow: /privacy-policy.html
+
+User-agent: *
+Allow: /
+
+Sitemap: https://sourdoc.duddu.dev/sitemap.xml
