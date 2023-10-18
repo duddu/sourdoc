@@ -278,22 +278,30 @@ class _HomePageState extends State<HomePage> {
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelFlour,
-                      value: '${_flour.toStringAsFixed(1)}${locale.unitGrams}')
+                      value: _flour,
+                      fractionDigits: 1,
+                      unit: locale.unitGrams)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelWater,
-                      value: '${_water.toStringAsFixed(1)}${locale.unitGrams}')
+                      value: _water,
+                      fractionDigits: 1,
+                      unit: locale.unitGrams)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelLevain,
-                      value: '${_levain.toStringAsFixed(1)}${locale.unitGrams}')
+                      value: _levain,
+                      fractionDigits: 1,
+                      unit: locale.unitGrams)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelSalt,
-                      value: '${_salt.toStringAsFixed(1)}${locale.unitGrams}')
+                      value: _salt,
+                      fractionDigits: 1,
+                      unit: locale.unitGrams)
                 ]),
                 const Row(children: <Header>[
                   Header(text: locale.headerFermentation)
@@ -301,15 +309,17 @@ class _HomePageState extends State<HomePage> {
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelInoculation,
-                      value:
-                          '${_inoculation.toStringAsFixed(0)}${locale.unitPercent}',
+                      value: _inoculation,
+                      fractionDigits: 0,
+                      unit: locale.unitPercent,
                       additionalInfoText: locale.additionalInfoInoculation)
                 ]),
                 Row(children: <VariableWithLabel>[
                   VariableWithLabel(
                       label: locale.variableLabelDoughRise,
-                      value:
-                          '${_bulkRise.toStringAsFixed(0)}${locale.unitPercent}',
+                      value: _bulkRise,
+                      fractionDigits: 0,
+                      unit: locale.unitPercent,
                       additionalInfoText: locale.additionalInfoDoughRise)
                 ]),
               ])),

@@ -8,18 +8,32 @@ import 'helpers/ignore_overflow_errors.dart';
 void main() {
   group('VariableWithLabel', () {
     const String label = 'variable test label';
-    const String value = 'variable test value';
-    testWidgets('should have a label and a value', (tester) async {
-      await tester.pumpWidget(getWidgetWithTestScaffold(
-          const VariableWithLabel(label: label, value: value)));
+    const double value = 10.43123;
+    const int fractionDigits = 2;
+    const String unit = 'g';
+
+    final getTestWidget = getWidgetWithTestScaffold(const VariableWithLabel(
+      label: label,
+      value: value,
+      fractionDigits: fractionDigits,
+      unit: unit,
+    ));
+
+    testWidgets('should have a label', (tester) async {
+      await tester.pumpWidget(getTestWidget);
 
       expect(find.textContaining(label), findsOneWidget);
-      expect(find.text(value), findsOneWidget);
+    });
+
+    testWidgets('should have a rounded value with unit', (tester) async {
+      await tester.pumpWidget(getTestWidget);
+
+      expect(find.text('${value.toStringAsFixed(fractionDigits)}$unit'),
+          findsOneWidget);
     });
 
     testWidgets('should not have an InfoButton by default', (tester) async {
-      await tester.pumpWidget(getWidgetWithTestScaffold(
-          const VariableWithLabel(label: label, value: value)));
+      await tester.pumpWidget(getTestWidget);
 
       expect(find.byWidgetPredicate((Widget widget) => widget is InfoButton),
           findsNothing);
@@ -35,6 +49,8 @@ void main() {
             .pumpWidget(getWidgetWithTestScaffold(const VariableWithLabel(
           label: label,
           value: value,
+          fractionDigits: fractionDigits,
+          unit: unit,
           additionalInfoText: additionalInfoText,
         )));
 

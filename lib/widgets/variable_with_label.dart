@@ -8,11 +8,15 @@ class VariableWithLabel extends StatelessWidget {
     super.key,
     required this.label,
     required this.value,
+    required this.fractionDigits,
+    required this.unit,
     this.additionalInfoText,
   });
 
   final String label;
-  final String value;
+  final double value;
+  final int fractionDigits;
+  final String unit;
   final String? additionalInfoText;
 
   bool _hasAdditionalInfo() =>
@@ -57,7 +61,7 @@ class VariableWithLabel extends StatelessWidget {
                           ))),
                 Expanded(
                     child: Text(
-                  value,
+                  '${value.toStringAsFixed(fractionDigits)}$unit',
                   style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.end,
                 )),
