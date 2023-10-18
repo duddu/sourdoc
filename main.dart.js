@@ -79610,7 +79610,7 @@ a4a(a){var s=0,r=A.U(t.H)
 var $async$uS=A.V(function(b,c){if(b===1)return A.R(c,r)
 while(true)switch(s){case 0:s=2
 return A.Z(A.amE(A.j9(a,0,null),B.DI),$async$uS)
-case 2:if(!c)throw A.e(A.ck("Could not launch https://github.com/duddu/sourdoc/tree/467ebdea2cb69280d3149e10519c72bd6a9d38c5"))
+case 2:if(!c)throw A.e(A.ck("Could not launch https://github.com/duddu/sourdoc/tree/d6b6828fea1aaabb3286b836ba2fad443e90ff1a"))
 return A.S(null,r)}})
 return A.T($async$uS,r)},
 K(a){var s,r=this,q=null,p=A.N(a),o=A.a([],t.VO),n=r.c
@@ -79632,7 +79632,7 @@ return A.S(null,r)}})
 return A.T($async$$0,r)},
 $S:35}
 A.Lq.prototype={
-K(a){return A.arn(B.St,A.a([new A.oH("\xa9"+B.h.k(A.aq8(new A.eR(Date.now(),!1)))+" Sourdoc ","v1.7.8","https://github.com/duddu/sourdoc/releases/tag/v1.7.8",null),B.Sp,new A.oH("Commit: ",B.d.a6("467ebdea2cb69280d3149e10519c72bd6a9d38c5",0,7),"https://github.com/duddu/sourdoc/tree/467ebdea2cb69280d3149e10519c72bd6a9d38c5",null),B.So],t.E),2,9)}}
+K(a){return A.arn(B.St,A.a([new A.oH("\xa9"+B.h.k(A.aq8(new A.eR(Date.now(),!1)))+" Sourdoc ","v1.7.9","https://github.com/duddu/sourdoc/releases/tag/v1.7.9",null),B.So,new A.oH("Commit: ",B.d.a6("d6b6828fea1aaabb3286b836ba2fad443e90ff1a",0,7),"https://github.com/duddu/sourdoc/tree/d6b6828fea1aaabb3286b836ba2fad443e90ff1a",null),B.Sp],t.E),2,9)}}
 A.wo.prototype={
 G(){return"LaunchMode."+this.b}}
 A.aav.prototype={}
@@ -84999,8 +84999,8 @@ B.d3=new A.aal(!1)
 B.Sn=new A.e_("dismissible",A.a9("e_<v>"))
 B.y4=new A.mk(B.f,0,B.r,B.f)
 B.k4=new A.mk(B.f,1,B.r,B.f)
-B.So=new A.oH(null,"Report an issue","https://github.com/duddu/sourdoc/issues/new/choose",null)
-B.Sp=new A.oH("Build: ","1697622403",null,null)
+B.So=new A.oH("Build: ","1697632745",null,null)
+B.Sp=new A.oH(null,"Report an issue","https://github.com/duddu/sourdoc/issues/new/choose",null)
 B.Sq=new A.Lq(null)
 B.k5=new A.Lr(0,"up")
 B.d4=new A.kt(0,0)
