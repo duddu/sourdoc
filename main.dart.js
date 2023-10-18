@@ -79467,7 +79467,7 @@ q.toString
 n=t.Xh
 m=t.Na
 l=t.js
-return A.aqp(h,A.akQ(A.a([new A.fH(s,new A.cI(g,j,j,j,j,j,B.aF),B.C0,j),new A.fH(A.is(A.a([o,A.cG(A.a([A.a8I(k.at,q,10,"Ambient temperature",p,"Your desired final loaf total weight")],n),B.z,B.D,B.E),A.cG(A.a([A.a8I(k.z,1e5,5,"Target bread weight","g","Your desired ratio of water to flour")],n),B.z,B.D,B.E),A.cG(A.a([A.a8I(k.Q,99,5,"Hydration level","%","Your desired ratio of salt to flour")],n),B.z,B.D,B.E),A.cG(A.a([A.a8I(k.as,10,5,"Salt level","%","The prevailing temperature of your kitchen")],n),B.z,B.D,B.E)],m),B.z,B.D,B.cK),new A.cI(r,j,new A.d_(B.m,B.m,new A.aQ(B.hZ,1,B.w,-1),B.m),j,j,j,B.aF),B.lV,j),new A.fH(A.is(A.a([B.JR,A.cG(A.a([new A.ja("Flour",B.c.a0(k.f,1)+"g",j,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Water",B.c.a0(k.r,1)+"g",j,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Starter",B.c.a0(k.w,1)+"g",j,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Salt",B.c.a0(k.x,1)+"g",j,j)],l),B.z,B.D,B.E),B.JP,A.cG(A.a([new A.ja("Inoculation level",B.c.a0(k.d,0)+"%",u.r,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Target dough rise",B.h.a0(k.e,0)+"%",u.X,j)],l),B.z,B.D,B.E)],m),B.z,B.D,B.E),B.eA,j,j)],t.gG),B.BZ,!0))}}
+return A.aqp(h,A.akQ(A.a([new A.fH(s,new A.cI(g,j,j,j,j,j,B.aF),B.C0,j),new A.fH(A.is(A.a([o,A.cG(A.a([A.a8I(k.at,q,10,"Ambient temperature",p,"The prevailing temperature of your kitchen")],n),B.z,B.D,B.E),A.cG(A.a([A.a8I(k.z,1e5,5,"Target bread weight","g","Your desired final loaf total weight")],n),B.z,B.D,B.E),A.cG(A.a([A.a8I(k.Q,99,5,"Hydration level","%","Your desired ratio of water to flour")],n),B.z,B.D,B.E),A.cG(A.a([A.a8I(k.as,10,5,"Salt level","%","Your desired ratio of salt to flour")],n),B.z,B.D,B.E)],m),B.z,B.D,B.cK),new A.cI(r,j,new A.d_(B.m,B.m,new A.aQ(B.hZ,1,B.w,-1),B.m),j,j,j,B.aF),B.lV,j),new A.fH(A.is(A.a([B.JR,A.cG(A.a([new A.ja("Flour",B.c.a0(k.f,1)+"g",j,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Water",B.c.a0(k.r,1)+"g",j,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Starter",B.c.a0(k.w,1)+"g",j,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Salt",B.c.a0(k.x,1)+"g",j,j)],l),B.z,B.D,B.E),B.JP,A.cG(A.a([new A.ja("Inoculation level",B.c.a0(k.d,0)+"%",u.r,j)],l),B.z,B.D,B.E),A.cG(A.a([new A.ja("Target dough rise",B.h.a0(k.e,0)+"%",u.X,j)],l),B.z,B.D,B.E)],m),B.z,B.D,B.E),B.eA,j,j)],t.gG),B.BZ,!0))}}
 A.adh.prototype={
 $0(){var s=this.a
 s.N3()
@@ -79602,7 +79602,7 @@ a4a(a){var s=0,r=A.U(t.H)
 var $async$uS=A.V(function(b,c){if(b===1)return A.R(c,r)
 while(true)switch(s){case 0:s=2
 return A.Z(A.amD(A.j9(a,0,null),B.DI),$async$uS)
-case 2:if(!c)throw A.e(A.ck("Could not launch https://github.com/duddu/sourdoc/tree/6afdbb49a1de70366e8843f7eb426c123d189e89"))
+case 2:if(!c)throw A.e(A.ck("Could not launch https://github.com/duddu/sourdoc/tree/329fc484b3b6480c21dd1ce3a62f1b4f4849a7b3"))
 return A.S(null,r)}})
 return A.T($async$uS,r)},
 K(a){var s,r=this,q=null,p=A.N(a),o=A.a([],t.VO),n=r.c
@@ -79624,7 +79624,7 @@ return A.S(null,r)}})
 return A.T($async$$0,r)},
 $S:35}
 A.Lq.prototype={
-K(a){return A.arm(B.St,A.a([new A.oH("\xa9"+B.h.k(A.aq7(new A.eR(Date.now(),!1)))+" Sourdoc ","v1.7.6","https://github.com/duddu/sourdoc/releases/tag/v1.7.6",null),B.Sp,new A.oH("Commit: ",B.d.a6("6afdbb49a1de70366e8843f7eb426c123d189e89",0,7),"https://github.com/duddu/sourdoc/tree/6afdbb49a1de70366e8843f7eb426c123d189e89",null),B.So],t.E),2,9)}}
+K(a){return A.arm(B.St,A.a([new A.oH("\xa9"+B.h.k(A.aq7(new A.eR(Date.now(),!1)))+" Sourdoc ","v1.7.7","https://github.com/duddu/sourdoc/releases/tag/v1.7.7",null),B.So,new A.oH("Commit: ",B.d.a6("329fc484b3b6480c21dd1ce3a62f1b4f4849a7b3",0,7),"https://github.com/duddu/sourdoc/tree/329fc484b3b6480c21dd1ce3a62f1b4f4849a7b3",null),B.Sp],t.E),2,9)}}
 A.wo.prototype={
 G(){return"LaunchMode."+this.b}}
 A.aav.prototype={}
@@ -84991,8 +84991,8 @@ B.d3=new A.aal(!1)
 B.Sn=new A.e_("dismissible",A.a9("e_<v>"))
 B.y4=new A.mk(B.f,0,B.r,B.f)
 B.k4=new A.mk(B.f,1,B.r,B.f)
-B.So=new A.oH(null,"Report an issue","https://github.com/duddu/sourdoc/issues/new/choose",null)
-B.Sp=new A.oH("Build: ","1697606628",null,null)
+B.So=new A.oH("Build: ","1697611260",null,null)
+B.Sp=new A.oH(null,"Report an issue","https://github.com/duddu/sourdoc/issues/new/choose",null)
 B.Sq=new A.Lq(null)
 B.k5=new A.Lr(0,"up")
 B.d4=new A.kt(0,0)
