@@ -27,6 +27,7 @@ void expectCalculatorValues({
           widget is TextField &&
           widget.decoration!.prefixText ==
               '${locale.inputPrefixTemperature}:' &&
+          widget.decoration!.suffixText == temperatureUnit &&
           widget.controller!.text == temperature),
       findsOneWidget);
   expect(
@@ -231,6 +232,82 @@ void main() {
           salt: '16.7g',
           inoculation: '14%',
           rise: '25%');
+    });
+
+    testWidgets('should convert degrees back to celsius', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byTooltip(locale.degreesCelsius));
+      await tester.pumpAndSettle();
+
+      expectCalculatorValues(
+          temperatureUnit: 'ºC',
+          temperature: '26.7',
+          weight: '1350',
+          hydration: '85',
+          saltLevel: '2.5',
+          flour: '668.9g',
+          water: '568.5g',
+          levain: '95.9g',
+          salt: '16.7g',
+          inoculation: '14%',
+          rise: '25%');
+    });
+
+    testWidgets('should return the values to initial state', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpAndSettle();
+
+      expectCalculatorValues(
+          temperatureUnit: 'ºC',
+          temperature: '26.7',
+          weight: '1350',
+          hydration: '85',
+          saltLevel: '2.5',
+          flour: '669.0g',
+          water: '568.6g',
+          levain: '95.7g',
+          salt: '16.7g',
+          inoculation: '14%',
+          rise: '25%');
+
+      await tester.enterText(
+          find.byWidgetPredicate((Widget widget) =>
+              widget is TextField &&
+              widget.decoration!.prefixText ==
+                  '${locale.inputPrefixTemperature}:'),
+          '22');
+      await tester.enterText(
+          find.byWidgetPredicate((Widget widget) =>
+              widget is TextField &&
+              widget.decoration!.prefixText == '${locale.inputPrefixWeight}:'),
+          '700');
+      await tester.enterText(
+          find.byWidgetPredicate((Widget widget) =>
+              widget is TextField &&
+              widget.decoration!.prefixText ==
+                  '${locale.inputPrefixHydration}:'),
+          '70');
+      await tester.enterText(
+          find.byWidgetPredicate((Widget widget) =>
+              widget is TextField &&
+              widget.decoration!.prefixText == '${locale.inputPrefixSalt}:'),
+          '2');
+      await tester.pumpAndSettle();
+
+      expectCalculatorValues(
+          temperatureUnit: 'ºC',
+          temperature: '22',
+          weight: '700',
+          hydration: '70',
+          saltLevel: '2',
+          flour: '366.5g',
+          water: '256.5g',
+          levain: '69.6g',
+          salt: '7.3g',
+          inoculation: '19%',
+          rise: '50%');
     });
   });
 }
