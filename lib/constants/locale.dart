@@ -9,9 +9,14 @@ const String headerFermentation = 'Fermentation';
 const String headerBakerFormulaDifference =
     'Is the baker\'s formula not enough?';
 const String inputPrefixWeight = 'Target bread weight';
+const String inputTooltipWeight = 'Your desired final loaf total weight';
 const String inputPrefixHydration = 'Hydration level';
+const String inputTooltipHydration = 'Your desired ratio of water to flour';
 const String inputPrefixSalt = 'Salt level';
+const String inputTooltipSalt = 'Your desired ratio of salt to flour';
 const String inputPrefixTemperature = 'Ambient temperature';
+const String inputTooltipTemperature =
+    'The prevailing temperature of your kitchen';
 String getInputErrorMessage(double maxValue) =>
     'The maximum value supported by this field is $maxValue';
 const String additionalInfoInoculation =
@@ -70,7 +75,7 @@ String getA11yTextFieldLabel(String fieldName) =>
 const String a11yTextFieldHint =
     'When this value is changed, all variables depending on it are automatically updated';
 const String a11yTextFieldErrorLabel = 'Error message for the input field';
-const String a11yVariableInfoButtonLabel = 'Additional information button';
+const String a11yVariableInfoButtonLabel = 'Additional information';
 const String a11yVariableInfoButtonHint =
     'When pressed opens an overlay with the explanation of this variable';
 const String a11yVariableInfotTextLabel =

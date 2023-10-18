@@ -84,6 +84,7 @@ class InfoButton extends StatelessWidget {
         padding: EdgeInsets.zero,
         icon: Icon(Icons.info,
             color: Theme.of(context).colorScheme.inversePrimary),
+        tooltip: locale.a11yVariableInfoButtonLabel,
         onPressed: () => {
               showModalBottomSheet<void>(
                 context: context,

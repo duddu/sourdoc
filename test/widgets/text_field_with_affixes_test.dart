@@ -8,6 +8,7 @@ import 'helpers/get_widget_with_test_scaffold.dart';
 const String testInitialValue = '10';
 const String testPrefixText = 'test prefix';
 const String testSuffixText = 'test suffix';
+const String testTooltip = 'test tooltip';
 const double testMaxValue = 100;
 
 class TestTextField extends StatefulWidget {
@@ -27,6 +28,7 @@ class _TestTextFieldState extends State<TestTextField> {
       controller: widget.controller,
       prefixText: testPrefixText,
       suffixText: testSuffixText,
+      tooltip: testTooltip,
       maxValue: testMaxValue,
     );
   }
@@ -70,6 +72,18 @@ void main() {
           findsOneWidget);
     });
 
+    testWidgets('should have a tooltip text', (tester) async {
+      final testTextField = TestTextField();
+      await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
+
+      expect(
+          find.byWidgetPredicate((Widget widget) =>
+              widget is Tooltip &&
+              widget.message != null &&
+              widget.message == testTooltip),
+          findsOneWidget);
+    });
+
     testWidgets('should apply default padding top', (tester) async {
       final testTextField = TestTextField();
       await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
@@ -87,6 +101,7 @@ void main() {
         controller: TextEditingController(text: testInitialValue),
         prefixText: testPrefixText,
         suffixText: testSuffixText,
+        tooltip: testTooltip,
         maxValue: testMaxValue,
         paddingTop: 10,
       );
