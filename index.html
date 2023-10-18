@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Sourdoc</title>
-  <meta name="description" content="Sourdoc: Your ultimate companion for perfect sourdough - Calculate every variable from mixing to fermentation for the ideal sourdough baking experience.">
+  <title>Sourdoc - Sourdough Calculator</title>
+  <meta name="description"
+    content="Sourdoc: Your ultimate companion for perfect sourdough - Calculate every variable from mixing to fermentation for the ideal sourdough baking experience.">
 
   <base href="/">
   <link rel="canonical" href="https://sourdoc.duddu.dev" />
@@ -21,25 +23,26 @@
   <link rel="shortcut icon" href="favicon.ico?v=2">
   <meta name="msapplication-TileColor" content="#6b41c8">
   <meta name="theme-color" content="#6b41c8">
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS2J7KXZ0Q"></script>
   <script defer src="gtm-gtag.js"></script>
   <script>
-    const serviceWorkerVersion = '1.6.0';
+    const serviceWorkerVersion = '1.7.0';
   </script>
   <script defer src="flutter.js"></script>
 </head>
+
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
           timeoutMillis: 2000,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({renderer: "html"}).then(function(appRunner) {
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine({ renderer: 'html' }).then(function (appRunner) {
             appRunner.runApp();
           });
         }
@@ -47,4 +50,5 @@
     });
   </script>
 </body>
+
 </html>
