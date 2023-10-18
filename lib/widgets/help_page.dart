@@ -101,7 +101,7 @@ class HelpPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: Theme.of(context)
                                   .textTheme
-                                  .bodyMedium!
+                                  .bodySmall!
                                   .fontSize,
                               color: Colors.grey.shade800,
                             ),
