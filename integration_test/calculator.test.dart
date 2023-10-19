@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
-import 'package:sourdoc/widgets/home_page.dart';
+import 'package:sourdoc/main.dart';
 
 void expectCalculatorValues({
   required String temperatureUnit,
@@ -89,9 +89,9 @@ void expectCalculatorValues({
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('HomePage', () {
+  group('Calculator', () {
     testWidgets('should load initial default values', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       expectCalculatorValues(
@@ -109,7 +109,7 @@ void main() {
     });
 
     testWidgets('should switch to farenheit', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       await tester.tap(find.byTooltip(locale.degreesFarenheit));
@@ -131,7 +131,7 @@ void main() {
 
     testWidgets('should update values based on ambient temperature',
         (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       await tester.enterText(
@@ -158,7 +158,7 @@ void main() {
 
     testWidgets('should update values based on target bread weight',
         (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       await tester.enterText(
@@ -184,7 +184,7 @@ void main() {
 
     testWidgets('should update values based on hydration level',
         (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       await tester.enterText(
@@ -210,7 +210,7 @@ void main() {
     });
 
     testWidgets('should update values based on salt level', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       await tester.enterText(
@@ -235,7 +235,7 @@ void main() {
     });
 
     testWidgets('should convert degrees back to celsius', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       await tester.tap(find.byTooltip(locale.degreesCelsius));
@@ -256,7 +256,7 @@ void main() {
     });
 
     testWidgets('should return the values to initial state', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: HomePage()));
+      await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
 
       expectCalculatorValues(

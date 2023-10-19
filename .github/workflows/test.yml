@@ -33,4 +33,4 @@ jobs:
               with:
                 fetch-depth: 1
             - name: Flutter integration test
-              run: flutter test -v -d macos integration_test/home_page.test.dart
+              run: flutter test -v -d macos integration_test/main.dart
