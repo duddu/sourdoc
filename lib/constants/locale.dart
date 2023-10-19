@@ -95,3 +95,5 @@ const String a11yAppBarBackButtonLabel = 'Back button';
 const String a11yAppBarBackButtonHint =
     'When pressed sends to the previous page';
 const String a11yAppBarBackButtonIconLabel = 'Left arrow icon';
+const String a11yAppBarBackToHomePageButtonHint =
+    'When pressed sends back to the home page';

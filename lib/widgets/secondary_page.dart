@@ -29,23 +29,14 @@ class SecondaryPage extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: <CenteredContainer>[
                   ...listViewChildren,
-                  CenteredContainer(
-                      padding: const EdgeInsets.fromLTRB(0, 13, 0, 26),
-                      decoration: const BoxDecoration(
+                  const CenteredContainer(
+                      padding: EdgeInsets.fromLTRB(0, 13, 0, 26),
+                      decoration: BoxDecoration(
                         color: Colors.white,
                       ),
                       child: Column(children: <Row>[
-                        Row(children: <TextButton>[
-                          TextButton(
-                            onPressed: () => backToHomePage(context),
-                            style: ButtonStyle(
-                                alignment: Alignment.centerLeft,
-                                textStyle: MaterialStateProperty.all(
-                                    Theme.of(context).textTheme.bodyMedium),
-                                padding: const MaterialStatePropertyAll(
-                                    EdgeInsets.zero)),
-                            child: const Text('< ${locale.backToHome}'),
-                          )
+                        Row(children: <BackToHomePageTextButton>[
+                          BackToHomePageTextButton()
                         ])
                       ])),
                   if (style.isMobileScreenWidth(context)) versionInfoContainer
@@ -53,5 +44,27 @@ class SecondaryPage extends StatelessWidget {
               )),
               if (!style.isMobileScreenWidth(context)) versionInfoContainer
             ]));
+  }
+}
+
+class BackToHomePageTextButton extends StatelessWidget {
+  const BackToHomePageTextButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+        button: true,
+        label: locale.backToHome,
+        hint: locale.a11yAppBarBackToHomePageButtonHint,
+        child: TextButton(
+          isSemanticButton: true,
+          onPressed: () => backToHomePage(context),
+          style: ButtonStyle(
+              alignment: Alignment.centerLeft,
+              textStyle: MaterialStateProperty.all(
+                  Theme.of(context).textTheme.bodyMedium),
+              padding: const MaterialStatePropertyAll(EdgeInsets.zero)),
+          child: const Text('< ${locale.backToHome}'),
+        ));
   }
 }
