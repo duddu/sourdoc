@@ -32,11 +32,9 @@ class _TestTextFieldState extends State<TestTextField> {
       suffixText: testSuffixText,
       tooltip: testTooltip,
       maxValue: testMaxValue,
-      onChangedCallbacks: [
-        () {
-          _counter++;
-        }
-      ],
+      onChangedCallback: () {
+        _counter++;
+      },
     );
   }
 }
@@ -120,7 +118,7 @@ void main() {
         tooltip: testTooltip,
         maxValue: testMaxValue,
         paddingTop: 10,
-        onChangedCallbacks: const [],
+        onChangedCallback: () {},
       );
       await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
 

@@ -11,7 +11,7 @@ class TextFieldWithAffixes extends StatelessWidget {
     required this.suffixText,
     required this.tooltip,
     required this.maxValue,
-    required this.onChangedCallbacks,
+    required this.onChangedCallback,
     this.paddingTop = 5,
   });
 
@@ -20,7 +20,7 @@ class TextFieldWithAffixes extends StatelessWidget {
   final String suffixText;
   final String tooltip;
   final double maxValue;
-  final List<void Function()> onChangedCallbacks;
+  final VoidCallback onChangedCallback;
   final double paddingTop;
 
   void _showErrorSnackBar(context) {
@@ -51,9 +51,7 @@ class TextFieldWithAffixes extends StatelessWidget {
       _selectAll();
       _showErrorSnackBar(context);
     }
-    for (var callback in onChangedCallbacks) {
-      callback();
-    }
+    onChangedCallback();
   }
 
   void _selectAll() {

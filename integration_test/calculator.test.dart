@@ -3,9 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/main.dart';
+import 'package:sourdoc/methods/convert_temperature_unit.dart';
 
-void expectCalculatorValues({
-  required String temperatureUnit,
+void _expectCalculatorValues({
+  required TemperatureUnit temperatureUnit,
   required String temperature,
   required String weight,
   required String hydration,
@@ -27,7 +28,8 @@ void expectCalculatorValues({
           widget is TextField &&
           widget.decoration!.prefixText ==
               '${locale.inputPrefixTemperature}:' &&
-          widget.decoration!.suffixText == temperatureUnit &&
+          widget.decoration!.suffixText ==
+              temperatureUnitMap[temperatureUnit]?.unit &&
           widget.controller!.text == temperature),
       findsOneWidget);
   expect(
@@ -86,6 +88,16 @@ void expectCalculatorValues({
       findsOneWidget);
 }
 
+Future<void> _scrollUntilEnd(WidgetTester tester) async {
+  await tester.scrollUntilVisible(
+      find.byWidgetPredicate((Widget widget) =>
+          widget is Text &&
+          widget.semanticsLabel == locale.variableLabelDoughRise),
+      50,
+      scrollable: find.byType(Scrollable).first);
+  await tester.pumpAndSettle();
+}
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -93,9 +105,10 @@ void main() {
     testWidgets('should load initial default values', (tester) async {
       await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
+      await _scrollUntilEnd(tester);
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºC',
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.celsius,
           temperature: '22',
           weight: '700',
           hydration: '70',
@@ -115,8 +128,10 @@ void main() {
       await tester.tap(find.byTooltip(locale.degreesFarenheit));
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºF',
+      await _scrollUntilEnd(tester);
+
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.farenheit,
           temperature: '71.6',
           weight: '700',
           hydration: '70',
@@ -142,8 +157,10 @@ void main() {
           '80');
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºF',
+      await _scrollUntilEnd(tester);
+
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.farenheit,
           temperature: '80',
           weight: '700',
           hydration: '70',
@@ -168,8 +185,10 @@ void main() {
           '1350');
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºF',
+      await _scrollUntilEnd(tester);
+
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.farenheit,
           temperature: '80',
           weight: '1350',
           hydration: '70',
@@ -195,8 +214,10 @@ void main() {
           '85');
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºF',
+      await _scrollUntilEnd(tester);
+
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.farenheit,
           temperature: '80',
           weight: '1350',
           hydration: '85',
@@ -220,8 +241,10 @@ void main() {
           '2.5');
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºF',
+      await _scrollUntilEnd(tester);
+
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.farenheit,
           temperature: '80',
           weight: '1350',
           hydration: '85',
@@ -241,8 +264,10 @@ void main() {
       await tester.tap(find.byTooltip(locale.degreesCelsius));
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºC',
+      await _scrollUntilEnd(tester);
+
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.celsius,
           temperature: '26.7',
           weight: '1350',
           hydration: '85',
@@ -258,9 +283,10 @@ void main() {
     testWidgets('should return the values to initial state', (tester) async {
       await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
+      await _scrollUntilEnd(tester);
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºC',
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.celsius,
           temperature: '26.7',
           weight: '1350',
           hydration: '85',
@@ -296,8 +322,8 @@ void main() {
           '2');
       await tester.pumpAndSettle();
 
-      expectCalculatorValues(
-          temperatureUnit: 'ºC',
+      _expectCalculatorValues(
+          temperatureUnit: TemperatureUnit.celsius,
           temperature: '22',
           weight: '700',
           hydration: '70',

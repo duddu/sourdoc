@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class UnitSingleChoiceDescriptor {
-  UnitSingleChoiceDescriptor({required this.value, required this.tooltip});
+class UnitSingleChoiceDescriptor<T> {
+  UnitSingleChoiceDescriptor(
+      {required this.value, required this.label, required this.tooltip});
 
-  final String value;
+  final T value;
+  final String label;
   final String tooltip;
 }
 
-class UnitChoice<T extends Enum> extends StatefulWidget {
+class UnitChoice<T> extends StatefulWidget {
   const UnitChoice({
     super.key,
     required this.a11yLabel,
@@ -17,28 +19,29 @@ class UnitChoice<T extends Enum> extends StatefulWidget {
   });
 
   final String a11yLabel;
-  final List<UnitSingleChoiceDescriptor> unitList;
-  final Future<String> Function() getInitialUnitValue;
-  final void Function(String) onSelectionChanged;
+  final List<UnitSingleChoiceDescriptor<T>> unitList;
+  final Future<T> Function() getInitialUnitValue;
+  final void Function(T) onSelectionChanged;
 
   @override
-  State<UnitChoice> createState() => _UnitChoiceState<T>();
+  State<UnitChoice<T>> createState() => _UnitChoiceState<T>();
 }
 
-class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
-  String? _unit;
+class _UnitChoiceState<T> extends State<UnitChoice<T>> {
+  T? _unit;
 
   Future<void> _loadInitialValue() async {
-    final String initial = await widget.getInitialUnitValue();
+    final T initial = await widget.getInitialUnitValue();
     setState(() {
       _unit = initial;
     });
+    widget.onSelectionChanged(initial);
   }
 
   @override
   void initState() {
-    _loadInitialValue();
     super.initState();
+    _loadInitialValue();
   }
 
   @override
@@ -47,30 +50,23 @@ class _UnitChoiceState<T extends Enum> extends State<UnitChoice> {
         focusable: true,
         inMutuallyExclusiveGroup: true,
         label: widget.a11yLabel,
-        value: _unit,
+        value: _unit?.toString(),
         child: SegmentedButton(
           multiSelectionEnabled: false,
           showSelectedIcon: true,
-          segments: <ButtonSegment<String>>[
-            ButtonSegment(
-                value: widget.unitList.first.value,
-                label: Text(widget.unitList.first.value,
-                    style: Theme.of(context).textTheme.bodyLarge),
-                tooltip: widget.unitList.first.tooltip),
-            ButtonSegment(
-                value: widget.unitList.last.value,
-                label: Text(widget.unitList.last.value,
-                    style: Theme.of(context).textTheme.bodyLarge),
-                tooltip: widget.unitList.last.tooltip),
-          ],
+          segments: widget.unitList
+              .map((unit) => ButtonSegment(
+                  value: unit.value,
+                  label: Text(unit.label,
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  tooltip: unit.tooltip))
+              .toList(),
           selected: {_unit},
-          onSelectionChanged: (Set newSelection) {
+          onSelectionChanged: (newSelection) {
             setState(() {
-              if (_unit != null) {
-                widget.onSelectionChanged(newSelection.first);
-              }
               _unit = newSelection.first;
             });
+            widget.onSelectionChanged(newSelection.first as T);
           },
         ));
   }
