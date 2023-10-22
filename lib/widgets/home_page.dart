@@ -60,7 +60,7 @@ class HomePageListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       primary: true,
-      padding: const EdgeInsets.only(bottom: 35),
+      padding: const EdgeInsets.only(bottom: 25),
       children: [
         CenteredContainer(
             decoration: BoxDecoration(
