@@ -72,6 +72,7 @@ class BackToHomePageTextButton extends StatelessWidget {
           child: Row(children: [
             Icon(
               Icons.arrow_back_rounded,
+              semanticLabel: locale.a11yBackToHomeIconLabel,
               size: Theme.of(context).textTheme.bodyMedium?.fontSize,
             ),
             const Text(' ${locale.backToHome}')

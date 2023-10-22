@@ -56,6 +56,8 @@ class HelpPage extends StatelessWidget {
                             TextSpan(children: [
                               TextSpan(
                                   text: locale.title,
+                                  semanticsLabel:
+                                      locale.appBarHelpBackButtonTooltip,
                                   style: TextStyle(
                                       color: Theme.of(context)
                                           .colorScheme
@@ -70,6 +72,8 @@ class HelpPage extends StatelessWidget {
                               const TextSpan(text: ' '),
                               TextSpan(
                                   text: locale.glossaryPageTitle,
+                                  semanticsLabel:
+                                      locale.appBarHelpActionButtonTooltip,
                                   style: TextStyle(
                                       color: Theme.of(context)
                                           .colorScheme

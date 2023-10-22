@@ -51,7 +51,7 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('should navigate back from help to home via text link',
+    testWidgets('should navigate back from help to home via back text button',
         (tester) async {
       await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
@@ -60,12 +60,9 @@ void main() {
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
           find.byType(BackToHomePageTextButton), 50);
-      (find
-              .widgetWithText(TextButton, ' ${locale.backToHome}')
-              .evaluate()
-              .first
-              .widget as TextButton)
-          .onPressed!();
+      await tester.pumpAndSettle();
+      await tester
+          .tap(find.widgetWithIcon(TextButton, Icons.arrow_back_rounded));
       await tester.pumpAndSettle();
 
       expect(
@@ -130,7 +127,8 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('should navigate back from glossary to home via text link',
+    testWidgets(
+        'should navigate back from glossary to home via back text button',
         (tester) async {
       await tester.pumpWidget(const Sourdoc());
       await tester.pumpAndSettle();
@@ -141,12 +139,9 @@ void main() {
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
           find.byType(BackToHomePageTextButton), 50);
-      (find
-              .widgetWithText(TextButton, ' ${locale.backToHome}')
-              .evaluate()
-              .first
-              .widget as TextButton)
-          .onPressed!();
+      await tester.pumpAndSettle();
+      await tester
+          .tap(find.widgetWithIcon(TextButton, Icons.arrow_back_rounded));
       await tester.pumpAndSettle();
 
       expect(
