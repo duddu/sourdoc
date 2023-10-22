@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"index.html": "cdcfd9610e9dbc7b29ee40818f63fead",
-"/": "cdcfd9610e9dbc7b29ee40818f63fead",
-"version.json": "c3dea5afd656adb0537b63bbbe01db9c",
+const RESOURCES = {"index.html": "143305435cc4b561a8a7b32b163215a6",
+"/": "143305435cc4b561a8a7b32b163215a6",
+"version.json": "d1858d2b045d0bccd198fb1cada3f0c8",
 "privacy-policy.html": "c199690227a6f7207a3285992cd5fff5",
 "android-chrome-512x512.png": "13918b0ff560bb30dd16f8dcb46f1f2a",
 "apple-touch-icon.png": "749eb186bf7779a896965d4f87e9cc53",
@@ -35,9 +35,9 @@ const RESOURCES = {"index.html": "cdcfd9610e9dbc7b29ee40818f63fead",
 "safari-pinned-tab.svg": "a802e428525cd758cbe3166bbb8c0a0b",
 "android-chrome-192x192.png": "443bc62761ca4084c4d2188a9b7541da",
 "mstile-150x150.png": "068f007ccb455303504011c5f041f869",
-"main.dart.js": "1856a3fec08746004bbc6f43f4c56437",
+"main.dart.js": "7fcdb7522c3e124f44b57fe07bb236eb",
 "favicon.ico": "797024d44e3d0d3aa86d2a07e9a49253",
-"download-release-asset.html": "74859ff0b25197f5546a09fe5b451472"};
+"download-release-asset.html": "706f90534123d2ac30c393dcf5d20210"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",

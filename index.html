@@ -27,24 +27,22 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS2J7KXZ0Q"></script>
   <script defer src="gtm-gtag.js"></script>
   <script>
-    const serviceWorkerVersion = '1.8.0';
+    const serviceWorkerVersion = '1.9.1';
   </script>
   <script defer src="flutter.js"></script>
 </head>
 
 <body>
   <script>
-    window.addEventListener('load', function (ev) {
+    window.addEventListener('load', function () {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
-          timeoutMillis: 2000,
+          timeoutMillis: 3000,
         },
-        onEntrypointLoaded: function (engineInitializer) {
-          engineInitializer.initializeEngine({ renderer: 'html' }).then(function (appRunner) {
-            appRunner.runApp();
-          });
+        onEntrypointLoaded: async function (engineInitializer) {
+          await engineInitializer.autoStart();
         }
       });
     });
