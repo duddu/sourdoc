@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sourdoc/methods/convert_temperature_unit.dart';
+import 'package:sourdoc/methods/temperature_unit_helpers.dart';
 import 'package:sourdoc/models/temperature_unit_model.dart';
 
 void main() {
@@ -11,8 +11,8 @@ void main() {
 
     test('should have a default unit to string', () {
       final model = TemperatureUnitModel();
-      expect(model.temperatureUnitToString,
-          temperatureUnitMap[TemperatureUnit.celsius]!.unit);
+      expect(model.temperatureUnitSymbol,
+          getTemperatureUnitSymbol(TemperatureUnit.celsius));
     });
 
     test('should update unit', () {
@@ -20,8 +20,8 @@ void main() {
       var i = 0;
       model.addListener(() {
         expect(model.temperatureUnit, TemperatureUnit.farenheit);
-        expect(model.temperatureUnitToString,
-            temperatureUnitMap[TemperatureUnit.farenheit]!.unit);
+        expect(model.temperatureUnitSymbol,
+            getTemperatureUnitSymbol(TemperatureUnit.farenheit));
         i++;
       });
       model.updateTemperatureUnit(TemperatureUnit.farenheit);

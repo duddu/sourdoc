@@ -21,7 +21,7 @@ class VersionInfoItem extends StatelessWidget {
   Future<void> _launchUrl(String url) async {
     if (!await launchUrl(Uri.parse(url),
         mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $_commitUrl');
+      throw Exception('Could not launch the url: $url');
     }
   }
 

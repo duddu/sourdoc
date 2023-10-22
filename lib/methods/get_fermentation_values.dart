@@ -1,10 +1,10 @@
-import 'package:sourdoc/methods/convert_temperature_unit.dart';
+import 'package:sourdoc/methods/temperature_unit_helpers.dart';
 
 double _convertFromFarenheit(double temperature, TemperatureUnit unit) {
   double convertedTemperature = temperature;
   if (unit == TemperatureUnit.farenheit) {
     convertedTemperature =
-        convertTemperatureUnit(convertedTemperature, TemperatureUnit.celsius);
+        convertTemperatureToUnit(convertedTemperature, TemperatureUnit.celsius);
   }
   return convertedTemperature;
 }

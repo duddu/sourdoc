@@ -1,22 +1,32 @@
-import 'package:sourdoc/methods/convert_temperature_unit.dart';
+import 'package:sourdoc/methods/temperature_unit_helpers.dart';
 
 // Default initial values
 const TemperatureUnit defaultTemperatureUnit = TemperatureUnit.celsius;
-final String defaultTemperatureUnitValue =
-    temperatureUnitMap[defaultTemperatureUnit]!.unit;
-const Map<TemperatureUnit, String> defaultTemperatureMap = {
-  TemperatureUnit.celsius: '22',
-  TemperatureUnit.farenheit: '72'
-};
+final String defaultTemperatureUnitSymbol =
+    getTemperatureUnitSymbol(defaultTemperatureUnit);
 const String defaultTotalWeight = '700';
 const String defaultHydration = '70';
 const String defaultSaltLevel = '2';
+String getDefaultTemperature(TemperatureUnit temperatureUnit) {
+  if (temperatureUnit == TemperatureUnit.celsius) {
+    return '22';
+  }
+  if (temperatureUnit == TemperatureUnit.farenheit) {
+    return '72';
+  }
+  throw ArgumentError.value('temperatureUnit');
+}
 
 // Maximum values
-const Map<TemperatureUnit, double> maxValueTemperatureMap = {
-  TemperatureUnit.celsius: 40,
-  TemperatureUnit.farenheit: 104
-};
 const double maxValueTotalWeight = 9999;
 const double maxValueHydration = 99;
 const double maxValueSaltLevel = 10;
+double getMaxValueTemperature(TemperatureUnit temperatureUnit) {
+  if (temperatureUnit == TemperatureUnit.celsius) {
+    return 40;
+  }
+  if (temperatureUnit == TemperatureUnit.farenheit) {
+    return 104;
+  }
+  throw ArgumentError.value('temperatureUnit');
+}

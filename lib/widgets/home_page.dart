@@ -4,7 +4,7 @@ import 'package:sourdoc/constants/form.dart' as form;
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/routes.dart';
 import 'package:sourdoc/constants/style.dart' as style;
-import 'package:sourdoc/methods/convert_temperature_unit.dart';
+import 'package:sourdoc/methods/temperature_unit_helpers.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
 import 'package:sourdoc/models/calculator_model.dart';
 import 'package:sourdoc/models/temperature_unit_model.dart';
@@ -105,6 +105,13 @@ class _CalculatorFormState extends State<CalculatorForm> {
   final hydrationController = TextEditingController();
   final saltController = TextEditingController();
 
+  final unitChoiceList = temperatureUnitSet
+      .map((element) => UnitSingleChoiceDescriptor(
+          value: element.name,
+          label: element.symbol,
+          tooltip: element.description))
+      .toList();
+
   double _parseValue(TextEditingController controller) {
     if (controller.value.text.isEmpty) {
       return 0;
@@ -127,12 +134,12 @@ class _CalculatorFormState extends State<CalculatorForm> {
   void _onTemperatureUnitSelectionChanged(TemperatureUnit selection) {
     Provider.of<TemperatureUnitModel>(context, listen: false)
         .updateTemperatureUnit(selection);
-    storeInitialValue(temperatureUnitKey, temperatureUnitMap[selection]!.unit);
+    storeInitialValue(temperatureUnitKey, getTemperatureUnitSymbol(selection));
     if (temperatureController.text.isNotEmpty) {
-      temperatureController.text =
-          convertTemperatureUnit(_parseValue(temperatureController), selection)
-              .toStringAsFixed(1)
-              .replaceFirst('.0', '');
+      temperatureController.text = convertTemperatureToUnit(
+              _parseValue(temperatureController), selection)
+          .toStringAsFixed(1)
+          .replaceFirst('.0', '');
       storeInitialValue(temperatureKey, temperatureController.text);
     }
   }
@@ -158,19 +165,17 @@ class _CalculatorFormState extends State<CalculatorForm> {
     storeInitialValue(saltLevelKey, saltController.text);
   }
 
-  Future<TemperatureUnit> _getInitialTemperatureUnit() async {
+  Future<TemperatureUnit> _getInitialTemperatureSymbol() async {
     final String initialValueUnit = await getInitialOrDefaultValue(
-        temperatureUnitKey, form.defaultTemperatureUnitValue);
-    return temperatureUnitMap.entries
-        .firstWhere((e) => e.value.unit == initialValueUnit)
-        .key;
+        temperatureUnitKey, form.defaultTemperatureUnitSymbol);
+    return getTemperatureUnitName(initialValueUnit);
   }
 
   Future<void> _loadInitialValues() async {
     final TemperatureUnit initialTemperatureUnit =
-        await _getInitialTemperatureUnit();
+        await _getInitialTemperatureSymbol();
     temperatureController.text = await getInitialOrDefaultValue(
-        temperatureKey, form.defaultTemperatureMap[initialTemperatureUnit]!);
+        temperatureKey, form.getDefaultTemperature(initialTemperatureUnit));
     totalWeightController.text =
         await getInitialOrDefaultValue(totalWeightKey, form.defaultTotalWeight);
     hydrationController.text =
@@ -201,13 +206,8 @@ class _CalculatorFormState extends State<CalculatorForm> {
                   .merge(TextStyle(color: Colors.grey.shade800))),
           UnitChoice<TemperatureUnit>(
               a11yLabel: locale.a11yTemperatureUnitChoiceLabel,
-              unitList: temperatureUnitMap.entries
-                  .map((element) => UnitSingleChoiceDescriptor(
-                      value: element.key,
-                      label: element.value.unit,
-                      tooltip: element.value.description))
-                  .toList(),
-              getInitialUnitValue: _getInitialTemperatureUnit,
+              unitList: unitChoiceList,
+              getInitialUnitValue: _getInitialTemperatureSymbol,
               onSelectionChanged: _onTemperatureUnitSelectionChanged),
         ],
       ),
@@ -218,9 +218,9 @@ class _CalculatorFormState extends State<CalculatorForm> {
               paddingTop: 10,
               controller: temperatureController,
               prefixText: locale.inputPrefixTemperature,
-              suffixText: model.temperatureUnitToString,
+              suffixText: model.temperatureUnitSymbol,
               tooltip: locale.inputTooltipTemperature,
-              maxValue: form.maxValueTemperatureMap[model.temperatureUnit]!,
+              maxValue: form.getMaxValueTemperature(model.temperatureUnit),
               onChangedCallback: () {
                 _onTemperatureChanged(model.temperatureUnit);
               },
