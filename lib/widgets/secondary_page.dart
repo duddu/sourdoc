@@ -31,9 +31,6 @@ class SecondaryPage extends StatelessWidget {
                   ...listViewChildren,
                   const CenteredContainer(
                       padding: EdgeInsets.fromLTRB(0, 13, 0, 26),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
                       child: Column(children: <Row>[
                         Row(children: <BackToHomePageTextButton>[
                           BackToHomePageTextButton()

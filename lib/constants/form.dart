@@ -17,6 +17,6 @@ const Map<TemperatureUnit, double> maxValueTemperatureMap = {
   TemperatureUnit.celsius: 40,
   TemperatureUnit.farenheit: 104
 };
-const double maxValueTotalWeight = 100000;
+const double maxValueTotalWeight = 9999;
 const double maxValueHydration = 99;
 const double maxValueSaltLevel = 10;

@@ -61,37 +61,32 @@ class HomePageListView extends StatelessWidget {
     return ListView(
       primary: true,
       padding: const EdgeInsets.only(bottom: 35),
-      children: <CenteredContainer>[
+      children: [
         CenteredContainer(
             decoration: BoxDecoration(
                 color: Theme.of(context)
                     .colorScheme
                     .inversePrimary
                     .withAlpha(170)),
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 11),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               style.isMobileScreenWidth(context)
                   ? locale.formIntro
                   : locale.formIntroLarge,
               textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.bodyMedium,
             )),
-        CenteredContainer(
-            decoration: BoxDecoration(
-                color:
-                    Theme.of(context).colorScheme.inversePrimary.withAlpha(30),
-                border: Border(
-                    bottom: BorderSide(width: 1, color: Colors.grey.shade300))),
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: ChangeNotifierProvider(
-                create: (context) => TemperatureUnitModel(),
-                child: const CalculatorForm())),
-        const CenteredContainer(
-            decoration: BoxDecoration(color: Colors.white),
-            child: IngredientsValues()),
-        const CenteredContainer(
-            decoration: BoxDecoration(color: Colors.white),
-            child: FermentationValues()),
+        Card(
+            margin: EdgeInsets.zero,
+            semanticContainer: false,
+            shape: const RoundedRectangleBorder(),
+            child: CenteredContainer(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: ChangeNotifierProvider(
+                    create: (context) => TemperatureUnitModel(),
+                    child: const CalculatorForm()))),
+        const CenteredContainer(child: IngredientsValues()),
+        const CenteredContainer(child: FermentationValues()),
       ],
     );
   }
@@ -280,28 +275,24 @@ class IngredientsValues extends StatelessWidget {
     return Consumer<CalculatorModel>(builder: (context, model, child) {
       return Column(children: <Row>[
         const Row(children: <Header>[Header(text: locale.headerIngredients)]),
-        Row(children: <VariableWithLabel>[
+        Row(children: [
           VariableWithLabel(
-              label: locale.variableLabelFlour,
-              value: model.flour,
-              fractionDigits: 1,
-              unit: locale.unitGrams)
-        ]),
-        Row(children: <VariableWithLabel>[
+            label: locale.variableLabelFlour,
+            value: model.flour,
+            fractionDigits: 1,
+            unit: locale.unitGrams,
+            noMarginLeft: true,
+          ),
           VariableWithLabel(
               label: locale.variableLabelWater,
               value: model.water,
               fractionDigits: 1,
-              unit: locale.unitGrams)
-        ]),
-        Row(children: <VariableWithLabel>[
+              unit: locale.unitGrams),
           VariableWithLabel(
               label: locale.variableLabelLevain,
               value: model.levain,
               fractionDigits: 1,
-              unit: locale.unitGrams)
-        ]),
-        Row(children: <VariableWithLabel>[
+              unit: locale.unitGrams),
           VariableWithLabel(
               label: locale.variableLabelSalt,
               value: model.salt,
@@ -323,13 +314,13 @@ class FermentationValues extends StatelessWidget {
         const Row(children: <Header>[Header(text: locale.headerFermentation)]),
         Row(children: <VariableWithLabel>[
           VariableWithLabel(
-              label: locale.variableLabelInoculation,
-              value: model.inoculation,
-              fractionDigits: 0,
-              unit: locale.unitPercent,
-              additionalInfoText: locale.additionalInfoInoculation)
-        ]),
-        Row(children: <VariableWithLabel>[
+            label: locale.variableLabelInoculation,
+            value: model.inoculation,
+            fractionDigits: 0,
+            unit: locale.unitPercent,
+            additionalInfoText: locale.additionalInfoInoculation,
+            noMarginLeft: true,
+          ),
           VariableWithLabel(
               label: locale.variableLabelDoughRise,
               value: model.bulkRise,

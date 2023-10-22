@@ -46,9 +46,6 @@ class HelpPage extends StatelessWidget {
         listViewChildren: <CenteredContainer>[
           CenteredContainer(
               padding: const EdgeInsets.only(top: 20),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
               child: Column(children: <Row>[
                 Row(children: <Expanded>[
                   Expanded(

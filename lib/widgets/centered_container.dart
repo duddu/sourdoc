@@ -5,12 +5,12 @@ class CenteredContainer extends StatelessWidget {
   const CenteredContainer({
     super.key,
     required this.child,
-    required this.decoration,
+    this.decoration,
     this.padding,
   });
 
   final Widget child;
-  final BoxDecoration decoration;
+  final BoxDecoration? decoration;
   final EdgeInsetsGeometry? padding;
 
   @override

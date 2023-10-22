@@ -40,9 +40,6 @@ class GlossaryPage extends StatelessWidget {
         listViewChildren: <CenteredContainer>[
           CenteredContainer(
               padding: const EdgeInsets.only(top: 4),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
               child: Column(children: <Row>[
                 const Row(children: <Header>[
                   Header(text: locale.variableLabelInoculation, paddingTop: 16)

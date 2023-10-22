@@ -11,6 +11,7 @@ class VariableWithLabel extends StatelessWidget {
     required this.fractionDigits,
     required this.unit,
     this.additionalInfoText,
+    this.noMarginLeft = false,
   });
 
   final String label;
@@ -18,6 +19,7 @@ class VariableWithLabel extends StatelessWidget {
   final int fractionDigits;
   final String unit;
   final String? additionalInfoText;
+  final bool noMarginLeft;
 
   bool _hasAdditionalInfo() =>
       additionalInfoText != null && additionalInfoText!.isNotEmpty;
@@ -28,47 +30,66 @@ class VariableWithLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-          height: _isMobileDevice(context) ? 46 : 44,
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                width: 2,
-              ),
-            ),
-          ),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Text(
-                  '$label:',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.start,
-                ),
-                if (_hasAdditionalInfo())
-                  Expanded(
-                      flex: 0,
-                      child: Semantics(
-                          button: true,
-                          focusable: true,
-                          label: locale.a11yVariableInfoButtonLabel,
-                          hint: locale.a11yVariableInfoButtonHint,
-                          child: InfoButton(
-                            title: label,
-                            text: additionalInfoText!,
-                          ))),
+      child: Card(
+          semanticContainer: true,
+          margin: EdgeInsets.fromLTRB(noMarginLeft ? 0 : 11, 5, 0, 3),
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                  _hasAdditionalInfo() ? 19 : 2,
+                  _hasAdditionalInfo() && _isMobileDevice(context) ? 9 : 12,
+                  _hasAdditionalInfo() ? 4 : 2,
+                  _hasAdditionalInfo() && _isMobileDevice(context) ? 8 : 11),
+              child: Row(children: [
                 Expanded(
-                    child: Text(
-                  '${value.toStringAsFixed(fractionDigits)}$unit',
-                  semanticsLabel: label,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.end,
-                )),
-              ],
-            )
-          ])),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            label,
+                            style: TextStyle(
+                                overflow: TextOverflow.clip,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .fontSize,
+                                color: Colors.grey.shade800,
+                                height: 1.45),
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${value.toStringAsFixed(fractionDigits)}$unit',
+                            semanticsLabel: label,
+                            style: TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .fontSize,
+                                height: 1.35),
+                          ),
+                        ],
+                      )
+                    ])),
+                if (_hasAdditionalInfo())
+                  Semantics(
+                      button: true,
+                      focusable: true,
+                      label: locale.a11yVariableInfoButtonLabel,
+                      hint: locale.a11yVariableInfoButtonHint,
+                      child: InfoButton(
+                        title: label,
+                        text: additionalInfoText!,
+                      )),
+              ]))),
     );
   }
 }

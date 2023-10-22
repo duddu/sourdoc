@@ -32,7 +32,7 @@ void main() {
       expect(
           find.byWidgetPredicate((Widget widget) =>
               widget is Padding &&
-              widget.padding == const EdgeInsets.fromLTRB(0, 20, 0, 5)),
+              widget.padding == const EdgeInsets.fromLTRB(0, 20, 0, 10)),
           findsOneWidget);
     });
 
@@ -46,7 +46,7 @@ void main() {
             find.byWidgetPredicate((Widget widget) =>
                 widget is Padding &&
                 widget.padding ==
-                    const EdgeInsets.fromLTRB(0, paddingTop, 0, 5)),
+                    const EdgeInsets.fromLTRB(0, paddingTop, 0, 10)),
             findsOneWidget);
       });
     });
