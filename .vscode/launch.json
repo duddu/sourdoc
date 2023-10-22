@@ -7,7 +7,15 @@
         {
             "name": "sourdoc",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "VERSION=X.Y.ZZ",
+                "--dart-define",
+                "BUILD_NUMBER=1234567890",
+                "--dart-define",
+                "COMMIT_SHA=1234567"
+            ]
         },
         {
             "name": "sourdoc (profile mode)",
@@ -27,5 +35,5 @@
             "request": "launch",
             "program": "./test/"
         }
-    ]
+    ],
 }
