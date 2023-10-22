@@ -81,22 +81,24 @@ class Sourdoc extends StatelessWidget {
         });
   }
 
+  Route _onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case homePagePath:
+        return _getPageRouteBuilder(settings, const HomePage());
+      case helpPagePath:
+        return _getPageRouteBuilder(settings, const HelpPage());
+      case glossaryPagePath:
+        return _getPageRouteBuilder(settings, const GlossaryPage());
+      default:
+        return MaterialPageRoute(builder: (context) => const HomePage());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: locale.title,
         theme: _getThemeData(context),
-        onGenerateRoute: (settings) {
-          switch (settings.name) {
-            case homePagePath:
-              return _getPageRouteBuilder(settings, const HomePage());
-            case helpPagePath:
-              return _getPageRouteBuilder(settings, const HelpPage());
-            case glossaryPagePath:
-              return _getPageRouteBuilder(settings, const GlossaryPage());
-            default:
-              return MaterialPageRoute(builder: (context) => const HomePage());
-          }
-        });
+        onGenerateRoute: _onGenerateRoute);
   }
 }
