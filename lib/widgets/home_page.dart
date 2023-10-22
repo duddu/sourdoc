@@ -187,9 +187,18 @@ class _CalculatorFormState extends State<CalculatorForm> {
   }
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _loadInitialValues();
+  }
+
+  @override
+  void dispose() {
+    temperatureController.dispose();
+    totalWeightController.dispose();
+    hydrationController.dispose();
+    saltController.dispose();
+    super.dispose();
   }
 
   @override
