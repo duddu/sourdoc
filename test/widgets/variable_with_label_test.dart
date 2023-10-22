@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
+import 'package:sourdoc/constants/locale.dart' as locale;
+import 'package:sourdoc/widgets/header.dart';
 import 'package:sourdoc/widgets/variable_with_label.dart';
 
 import 'helpers/get_widget_with_test_scaffold.dart';
-import 'helpers/ignore_overflow_errors.dart';
 
 void main() {
   group('VariableWithLabel', () {
@@ -12,12 +14,13 @@ void main() {
     const int fractionDigits = 2;
     const String unit = 'g';
 
-    final getTestWidget = getWidgetWithTestScaffold(const VariableWithLabel(
-      label: label,
-      value: value,
-      fractionDigits: fractionDigits,
-      unit: unit,
-    ));
+    final valueWidget = Consumer(builder: (context, model, child) {
+      return const VariableWithLabelValue(
+          value: value, fractionDigits: fractionDigits, unit: unit);
+    });
+
+    final getTestWidget = getWidgetWithTestScaffold(
+        VariableWithLabel(label: label, value: valueWidget));
 
     testWidgets('should have a label', (tester) async {
       await tester.pumpWidget(getTestWidget);
@@ -32,7 +35,20 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('should not have an InfoButton by default', (tester) async {
+    testWidgets('should have a semantic label on the value', (tester) async {
+      await tester.pumpWidget(getTestWidget);
+
+      expect(
+          find.descendant(
+              of: find.byWidgetPredicate((widget) =>
+                  widget is Semantics &&
+                  widget.properties.label ==
+                      locale.getA11yVariableValueLabel(label)),
+              matching: find.byType(VariableWithLabelValue)),
+          findsOneWidget);
+    });
+
+    testWidgets('should not display an info button by default', (tester) async {
       await tester.pumpWidget(getTestWidget);
 
       expect(find.byWidgetPredicate((Widget widget) => widget is InfoButton),
@@ -42,19 +58,38 @@ void main() {
     group('if additionalInfoText is provided', () {
       const String additionalInfoText = 'additional info test text';
 
-      testWidgets('should have an InfoButton by default', (tester) async {
-        FlutterError.onError = ignoreOverflowErrors;
-
-        await tester
-            .pumpWidget(getWidgetWithTestScaffold(const VariableWithLabel(
+      testWidgets('should display an info button', (tester) async {
+        await tester.pumpWidget(getWidgetWithTestScaffold(VariableWithLabel(
           label: label,
-          value: value,
-          fractionDigits: fractionDigits,
-          unit: unit,
           additionalInfoText: additionalInfoText,
+          value: valueWidget,
         )));
 
         expect(find.byWidgetPredicate((Widget widget) => widget is InfoButton),
+            findsOneWidget);
+      });
+
+      testWidgets('should open bottom sheet when info button is pressed',
+          (tester) async {
+        await tester.pumpWidget(getWidgetWithTestScaffold(VariableWithLabel(
+          label: label,
+          additionalInfoText: additionalInfoText,
+          value: valueWidget,
+        )));
+
+        await tester.tap(
+            find.byWidgetPredicate((Widget widget) => widget is InfoButton));
+        await tester.pumpAndSettle();
+
+        expect(
+            find.descendant(
+                of: find.byType(InfoBottomSheet),
+                matching: find.widgetWithText(Header, label)),
+            findsOneWidget);
+        expect(
+            find.descendant(
+                of: find.byType(InfoBottomSheet),
+                matching: find.text(additionalInfoText)),
             findsOneWidget);
       });
     });

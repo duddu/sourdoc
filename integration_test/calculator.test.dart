@@ -51,48 +51,63 @@ void _expectCalculatorValues({
           widget.controller!.text == saltLevel),
       findsOneWidget);
   expect(
-      find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelFlour &&
-          widget.data == flour),
+      find.descendant(
+          of: find.byWidgetPredicate((Widget widget) =>
+              widget is Semantics &&
+              widget.properties.label ==
+                  locale.getA11yVariableValueLabel(locale.variableLabelFlour)),
+          matching: find.text(flour)),
       findsOneWidget);
   expect(
-      find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelWater &&
-          widget.data == water),
+      find.descendant(
+          of: find.byWidgetPredicate((Widget widget) =>
+              widget is Semantics &&
+              widget.properties.label ==
+                  locale.getA11yVariableValueLabel(locale.variableLabelWater)),
+          matching: find.text(water)),
       findsOneWidget);
   expect(
-      find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelLevain &&
-          widget.data == levain),
+      find.descendant(
+          of: find.byWidgetPredicate((Widget widget) =>
+              widget is Semantics &&
+              widget.properties.label ==
+                  locale.getA11yVariableValueLabel(locale.variableLabelLevain)),
+          matching: find.text(levain)),
       findsOneWidget);
   expect(
-      find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelSalt &&
-          widget.data == salt),
+      find.descendant(
+          of: find.byWidgetPredicate((Widget widget) =>
+              widget is Semantics &&
+              widget.properties.label ==
+                  locale.getA11yVariableValueLabel(locale.variableLabelSalt)),
+          matching: find.text(salt)),
       findsOneWidget);
   expect(
-      find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelInoculation &&
-          widget.data == inoculation),
+      find.descendant(
+          of: find.byWidgetPredicate((Widget widget) =>
+              widget is Semantics &&
+              widget.properties.label ==
+                  locale.getA11yVariableValueLabel(
+                      locale.variableLabelInoculation)),
+          matching: find.text(inoculation)),
       findsOneWidget);
   expect(
-      find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelDoughRise &&
-          widget.data == rise),
+      find.descendant(
+          of: find.byWidgetPredicate((Widget widget) =>
+              widget is Semantics &&
+              widget.properties.label ==
+                  locale.getA11yVariableValueLabel(
+                      locale.variableLabelDoughRise)),
+          matching: find.text(rise)),
       findsOneWidget);
 }
 
 Future<void> _scrollUntilEnd(WidgetTester tester) async {
   await tester.scrollUntilVisible(
       find.byWidgetPredicate((Widget widget) =>
-          widget is Text &&
-          widget.semanticsLabel == locale.variableLabelDoughRise),
+          widget is Semantics &&
+          widget.properties.label ==
+              locale.getA11yVariableValueLabel(locale.variableLabelDoughRise)),
       50,
       scrollable: find.byType(Scrollable).first);
   await tester.pumpAndSettle();

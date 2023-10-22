@@ -75,6 +75,7 @@ String getA11yTextFieldLabel(String fieldName) =>
 const String a11yTextFieldHint =
     'When this value is changed, all variables depending on it are automatically updated';
 const String a11yTextFieldErrorLabel = 'Error message for the input field';
+String getA11yVariableValueLabel(String variable) => '$variable value';
 const String a11yVariableInfoButtonLabel = 'Additional information';
 const String a11yVariableInfoButtonHint =
     'When pressed opens an overlay with the explanation of this variable';

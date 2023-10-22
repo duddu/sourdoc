@@ -286,70 +286,76 @@ class _CalculatorFormState extends State<CalculatorForm> {
 class IngredientsValues extends StatelessWidget {
   const IngredientsValues({super.key});
 
+  VariableWithLabelValue _getVariableWithLabelValue(double value) {
+    return VariableWithLabelValue(
+        value: value, fractionDigits: 1, unit: locale.unitGrams);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<IngredientsModel>(builder: (context, model, child) {
-      return Column(children: <Row>[
-        const Row(children: <Header>[
-          Header(
-            text: locale.headerIngredients,
-            paddingTop: 25,
-          )
-        ]),
-        Row(children: [
-          VariableWithLabel(
-            label: locale.variableLabelFlour,
-            value: model.flour,
-            fractionDigits: 1,
-            unit: locale.unitGrams,
+    return Column(children: <Row>[
+      const Row(children: <Header>[
+        Header(
+          text: locale.headerIngredients,
+          paddingTop: 25,
+        )
+      ]),
+      Row(children: <VariableWithLabel>[
+        VariableWithLabel(
             noMarginLeft: true,
-          ),
-          VariableWithLabel(
-              label: locale.variableLabelWater,
-              value: model.water,
-              fractionDigits: 1,
-              unit: locale.unitGrams),
-          VariableWithLabel(
-              label: locale.variableLabelLevain,
-              value: model.levain,
-              fractionDigits: 1,
-              unit: locale.unitGrams),
-          VariableWithLabel(
-              label: locale.variableLabelSalt,
-              value: model.salt,
-              fractionDigits: 1,
-              unit: locale.unitGrams)
-        ]),
-      ]);
-    });
+            label: locale.variableLabelFlour,
+            value: Consumer<IngredientsModel>(builder: (context, model, child) {
+              return _getVariableWithLabelValue(model.flour);
+            })),
+        VariableWithLabel(
+            label: locale.variableLabelWater,
+            value: Consumer<IngredientsModel>(builder: (context, model, child) {
+              return _getVariableWithLabelValue(model.water);
+            })),
+        VariableWithLabel(
+            label: locale.variableLabelLevain,
+            value: Consumer<IngredientsModel>(builder: (context, model, child) {
+              return _getVariableWithLabelValue(model.levain);
+            })),
+        VariableWithLabel(
+            label: locale.variableLabelSalt,
+            value: Consumer<IngredientsModel>(builder: (context, model, child) {
+              return _getVariableWithLabelValue(model.salt);
+            })),
+      ]),
+    ]);
   }
 }
 
 class FermentationValues extends StatelessWidget {
   const FermentationValues({super.key});
 
+  VariableWithLabelValue _getVariableWithLabelValue(double value) {
+    return VariableWithLabelValue(
+        value: value, fractionDigits: 0, unit: locale.unitPercent);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<FermentationModel>(builder: (context, model, child) {
-      return Column(children: <Row>[
-        const Row(children: <Header>[Header(text: locale.headerFermentation)]),
-        Row(children: <VariableWithLabel>[
-          VariableWithLabel(
-            label: locale.variableLabelInoculation,
-            value: model.inoculation,
-            fractionDigits: 0,
-            unit: locale.unitPercent,
-            additionalInfoText: locale.additionalInfoInoculation,
-            noMarginLeft: true,
-          ),
-          VariableWithLabel(
-              label: locale.variableLabelDoughRise,
-              value: model.bulkRise,
-              fractionDigits: 0,
-              unit: locale.unitPercent,
-              additionalInfoText: locale.additionalInfoDoughRise)
-        ]),
-      ]);
-    });
+    return Column(children: <Row>[
+      const Row(children: <Header>[Header(text: locale.headerFermentation)]),
+      Row(children: <VariableWithLabel>[
+        VariableWithLabel(
+          noMarginLeft: true,
+          label: locale.variableLabelInoculation,
+          additionalInfoText: locale.additionalInfoInoculation,
+          value: Consumer<FermentationModel>(builder: (context, model, child) {
+            return _getVariableWithLabelValue(model.inoculation);
+          }),
+        ),
+        VariableWithLabel(
+            label: locale.variableLabelDoughRise,
+            additionalInfoText: locale.additionalInfoDoughRise,
+            value:
+                Consumer<FermentationModel>(builder: (context, model, child) {
+              return _getVariableWithLabelValue(model.bulkRise);
+            }))
+      ]),
+    ]);
   }
 }

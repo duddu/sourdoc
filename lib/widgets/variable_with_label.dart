@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sourdoc/constants/locale.dart' as locale;
 import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/widgets/header.dart';
@@ -8,16 +9,12 @@ class VariableWithLabel extends StatelessWidget {
     super.key,
     required this.label,
     required this.value,
-    required this.fractionDigits,
-    required this.unit,
     this.additionalInfoText,
     this.noMarginLeft = false,
   });
 
   final String label;
-  final double value;
-  final int fractionDigits;
-  final String unit;
+  final Consumer value;
   final String? additionalInfoText;
   final bool noMarginLeft;
 
@@ -52,7 +49,6 @@ class VariableWithLabel extends StatelessWidget {
                           Text(
                             label,
                             style: TextStyle(
-                                overflow: TextOverflow.clip,
                                 fontSize: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -65,17 +61,9 @@ class VariableWithLabel extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '${value.toStringAsFixed(fractionDigits)}$unit',
-                            semanticsLabel: label,
-                            style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize,
-                                height: 1.35),
-                          ),
+                          Semantics(
+                              label: locale.getA11yVariableValueLabel(label),
+                              child: value)
                         ],
                       )
                     ])),
@@ -90,6 +78,29 @@ class VariableWithLabel extends StatelessWidget {
                         text: additionalInfoText!,
                       )),
               ]))),
+    );
+  }
+}
+
+class VariableWithLabelValue extends StatelessWidget {
+  const VariableWithLabelValue({
+    super.key,
+    required this.value,
+    required this.fractionDigits,
+    required this.unit,
+  });
+
+  final double value;
+  final int fractionDigits;
+  final String unit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '${value.toStringAsFixed(fractionDigits)}$unit',
+      style: TextStyle(
+          fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+          height: 1.35),
     );
   }
 }
