@@ -200,9 +200,10 @@ class _CalculatorFormState extends State<CalculatorForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('${locale.labelTemperatureUnit}:',
-              style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
-                  color: Colors.grey.shade800)),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .merge(TextStyle(color: Colors.grey.shade800))),
           UnitChoice<TemperatureUnit>(
               a11yLabel: locale.a11yTemperatureUnitChoiceLabel,
               unitList: temperatureUnitMap.entries

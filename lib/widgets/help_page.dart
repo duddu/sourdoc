@@ -99,13 +99,13 @@ class HelpPage extends StatelessWidget {
                             semanticsLabel:
                                 locale.a11yAppendixHowItWorksFormula,
                             style: TextStyle(
-                              fontFamily: 'serif',
+                              fontFamily: 'Georgia, Times New Roman, serif',
                               fontStyle: FontStyle.italic,
                               fontSize: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
                                   .fontSize,
-                              color: Colors.grey.shade800,
+                              color: Colors.grey.shade700,
                             ),
                             textAlign: TextAlign.center,
                           )))

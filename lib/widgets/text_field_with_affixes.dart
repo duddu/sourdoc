@@ -33,10 +33,10 @@ class TextFieldWithAffixes extends StatelessWidget {
                     label: locale.a11yTextFieldErrorLabel,
                     child: Text(locale.getInputErrorMessage(maxValue),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.bodySmall!.fontSize,
-                            color: Theme.of(context).colorScheme.error))))),
+                        style: Theme.of(context).textTheme.bodySmall!.merge(
+                            TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.error)))))),
         backgroundColor: Theme.of(context).colorScheme.errorContainer,
       ),
     );
@@ -79,15 +79,12 @@ class TextFieldWithAffixes extends StatelessWidget {
                         border: const OutlineInputBorder(),
                         isDense: true,
                         prefixText: '$prefixText:',
-                        prefixStyle: TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.bodyLarge!.fontSize,
-                            color: Colors.grey.shade800),
+                        prefixStyle: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .merge(TextStyle(color: Colors.grey.shade800)),
                         suffixText: suffixText,
-                        suffixStyle: TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.bodyLarge!.fontSize,
-                            color: Colors.black),
+                        suffixStyle: Theme.of(context).textTheme.bodyLarge,
                       ),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp('[0-9.]'))

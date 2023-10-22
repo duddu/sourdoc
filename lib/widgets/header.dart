@@ -14,14 +14,12 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Padding(
-      padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 5),
+      padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 10),
       child: Semantics(
           header: true,
           child: Text(
             text,
-            style: TextStyle(
-                fontSize: Theme.of(context).textTheme.headlineLarge!.fontSize,
-                color: Theme.of(context).colorScheme.primary),
+            style: Theme.of(context).textTheme.headlineLarge,
             textAlign: TextAlign.start,
           )),
     ));

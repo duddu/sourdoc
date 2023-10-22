@@ -38,6 +38,31 @@ void main() {
 class Sourdoc extends StatelessWidget {
   const Sourdoc({super.key});
 
+  ThemeData _getThemeData(BuildContext context) => ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple, background: Colors.white),
+      useMaterial3: true,
+      fontFamily: 'Roboto, sans-serif, Arial',
+      textTheme: TextTheme(
+        bodySmall: const TextStyle(
+            fontSize: 14.5,
+            letterSpacing: kIsWeb ? 0.3 : 0.1,
+            color: Colors.black87),
+        bodyMedium: TextStyle(
+            fontSize: style.isMobileScreenWidth(context) ? 14.5 : 16,
+            letterSpacing: kIsWeb ? 0.3 : 0.1,
+            color: Colors.black87),
+        bodyLarge: const TextStyle(
+            fontSize: 16,
+            letterSpacing: kIsWeb ? 0.3 : 0.1,
+            color: Colors.black87),
+        headlineLarge: TextStyle(
+            fontSize: 20,
+            letterSpacing: kIsWeb ? 0.1 : 0,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.primary),
+      ));
+
   PageRouteBuilder _getPageRouteBuilder(RouteSettings settings, Widget page) {
     return PageRouteBuilder(
         settings: settings,
@@ -60,16 +85,7 @@ class Sourdoc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: locale.title,
-        theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-            textTheme: TextTheme(
-              bodySmall: const TextStyle(fontSize: 14),
-              bodyMedium: TextStyle(
-                  fontSize: style.isMobileScreenWidth(context) ? 14 : 16),
-              bodyLarge: const TextStyle(fontSize: 16),
-              headlineLarge: const TextStyle(fontSize: 20),
-            )),
+        theme: _getThemeData(context),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case homePagePath:
