@@ -61,7 +61,7 @@ void main() {
       await tester.scrollUntilVisible(
           find.byType(BackToHomePageTextButton), 50);
       (find
-              .widgetWithText(TextButton, '< ${locale.backToHome}')
+              .widgetWithText(TextButton, ' ${locale.backToHome}')
               .evaluate()
               .first
               .widget as TextButton)
@@ -142,7 +142,7 @@ void main() {
       await tester.scrollUntilVisible(
           find.byType(BackToHomePageTextButton), 50);
       (find
-              .widgetWithText(TextButton, '< ${locale.backToHome}')
+              .widgetWithText(TextButton, ' ${locale.backToHome}')
               .evaluate()
               .first
               .widget as TextButton)

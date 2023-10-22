@@ -12,6 +12,8 @@ class SecondaryPage extends StatelessWidget {
   final AppBar appBar;
   final List<CenteredContainer> listViewChildren;
 
+  final int maxHeightFixedVersionInfo = 600;
+
   @override
   Widget build(BuildContext context) {
     final CenteredContainer versionInfoContainer =
@@ -36,10 +38,16 @@ class SecondaryPage extends StatelessWidget {
                           BackToHomePageTextButton()
                         ])
                       ])),
-                  if (style.isMobileScreenWidth(context)) versionInfoContainer
+                  if (style.isMobileScreenWidth(context) ||
+                      MediaQuery.of(context).size.height <=
+                          maxHeightFixedVersionInfo)
+                    versionInfoContainer
                 ],
               )),
-              if (!style.isMobileScreenWidth(context)) versionInfoContainer
+              if (!style.isMobileScreenWidth(context) &&
+                  MediaQuery.of(context).size.height >
+                      maxHeightFixedVersionInfo)
+                versionInfoContainer
             ]));
   }
 }
