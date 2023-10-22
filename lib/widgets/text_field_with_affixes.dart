@@ -6,7 +6,7 @@ import 'package:sourdoc/constants/style.dart' as style;
 class TextFieldWithAffixes extends StatelessWidget {
   const TextFieldWithAffixes({
     super.key,
-    required this.controller,
+    this.controller,
     required this.prefixText,
     required this.suffixText,
     required this.tooltip,
@@ -15,7 +15,7 @@ class TextFieldWithAffixes extends StatelessWidget {
     this.paddingTop = 5,
   });
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String prefixText;
   final String suffixText;
   final String tooltip;
@@ -43,11 +43,14 @@ class TextFieldWithAffixes extends StatelessWidget {
   }
 
   void _onChanged(String text, BuildContext context) {
+    if (controller == null) {
+      return;
+    }
     if (text.isEmpty) {
-      controller.text = '0';
+      controller?.text = '0';
       _selectAll();
     } else if (double.parse(text) > maxValue) {
-      controller.text = maxValue.toStringAsFixed(0);
+      controller?.text = maxValue.toStringAsFixed(0);
       _selectAll();
       _showErrorSnackBar(context);
     }
@@ -55,8 +58,11 @@ class TextFieldWithAffixes extends StatelessWidget {
   }
 
   void _selectAll() {
-    controller.selection = TextSelection(
-        baseOffset: 0, extentOffset: controller.value.text.length);
+    if (controller == null || controller!.value.text.isEmpty) {
+      return;
+    }
+    controller?.selection = TextSelection(
+        baseOffset: 0, extentOffset: controller!.value.text.length);
   }
 
   @override
@@ -70,7 +76,7 @@ class TextFieldWithAffixes extends StatelessWidget {
                     textField: true,
                     focusable: true,
                     label: tooltip,
-                    value: '${controller.text} $suffixText',
+                    value: '${controller?.text} $suffixText',
                     hint: locale.a11yTextFieldHint,
                     child: TextField(
                       controller: controller,

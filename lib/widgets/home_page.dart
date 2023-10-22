@@ -6,7 +6,8 @@ import 'package:sourdoc/constants/routes.dart';
 import 'package:sourdoc/constants/style.dart' as style;
 import 'package:sourdoc/methods/temperature_unit_helpers.dart';
 import 'package:sourdoc/methods/persist_initial_values.dart';
-import 'package:sourdoc/models/calculator_model.dart';
+import 'package:sourdoc/models/fermentation_model.dart';
+import 'package:sourdoc/models/ingredients_model.dart';
 import 'package:sourdoc/models/temperature_unit_model.dart';
 import 'package:sourdoc/widgets/app_bar_with_actions.dart';
 import 'package:sourdoc/widgets/centered_container.dart';
@@ -46,9 +47,28 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, helpPagePath);
                       })))),
-      body: ChangeNotifierProvider(
-          create: (context) => CalculatorModel(),
-          child: const HomePageListView()),
+      body: MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context) => TemperatureUnitModel()),
+        ChangeNotifierProxyProvider<TemperatureUnitModel, FermentationModel>(
+            create: (context) => FermentationModel(),
+            update: (context, temperatureUnitModel, fermentationModel) {
+              if (fermentationModel == null) {
+                throw ArgumentError.notNull('fermentationModel');
+              }
+              fermentationModel
+                  .updateTemperatureUnit(temperatureUnitModel.temperatureUnit);
+              return fermentationModel;
+            }),
+        ChangeNotifierProxyProvider<FermentationModel, IngredientsModel>(
+            create: (context) => IngredientsModel(),
+            update: (context, fermentationModel, ingredientsModel) {
+              if (ingredientsModel == null) {
+                throw ArgumentError.notNull('ingredientsModel');
+              }
+              ingredientsModel.updateInoculation(fermentationModel.inoculation);
+              return ingredientsModel;
+            }),
+      ], child: const HomePageListView()),
     );
   }
 }
@@ -60,7 +80,7 @@ class HomePageListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       primary: true,
-      padding: const EdgeInsets.only(bottom: 35),
+      padding: const EdgeInsets.only(bottom: 25),
       children: [
         CenteredContainer(
             decoration: BoxDecoration(
@@ -76,15 +96,13 @@ class HomePageListView extends StatelessWidget {
               textAlign: TextAlign.start,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
-        Card(
+        const Card(
             margin: EdgeInsets.zero,
             semanticContainer: false,
-            shape: const RoundedRectangleBorder(),
+            shape: RoundedRectangleBorder(),
             child: CenteredContainer(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: ChangeNotifierProvider(
-                    create: (context) => TemperatureUnitModel(),
-                    child: const CalculatorForm()))),
+                padding: EdgeInsets.symmetric(vertical: 12),
+                child: CalculatorForm())),
         const CenteredContainer(child: IngredientsValues()),
         const CenteredContainer(child: FermentationValues()),
       ],
@@ -100,10 +118,10 @@ class CalculatorForm extends StatefulWidget {
 }
 
 class _CalculatorFormState extends State<CalculatorForm> {
-  final temperatureController = TextEditingController();
-  final totalWeightController = TextEditingController();
-  final hydrationController = TextEditingController();
-  final saltController = TextEditingController();
+  TextEditingController? temperatureController;
+  TextEditingController? totalWeightController;
+  TextEditingController? hydrationController;
+  TextEditingController? saltController;
 
   final unitChoiceList = temperatureUnitSet
       .map((element) => UnitSingleChoiceDescriptor(
@@ -119,50 +137,41 @@ class _CalculatorFormState extends State<CalculatorForm> {
     return double.parse(controller.value.text);
   }
 
-  void _updateFermentationValues(TemperatureUnit temperatureUnit) {
-    Provider.of<CalculatorModel>(context, listen: false)
-        .updateFermentationValues(
-            _parseValue(temperatureController), temperatureUnit);
-  }
-
-  void _updateIngredientsValues() {
-    Provider.of<CalculatorModel>(context, listen: false)
-        .updateIngredientsValues(_parseValue(totalWeightController),
-            _parseValue(hydrationController), _parseValue(saltController));
-  }
-
   void _onTemperatureUnitSelectionChanged(TemperatureUnit selection) {
     Provider.of<TemperatureUnitModel>(context, listen: false)
         .updateTemperatureUnit(selection);
     storeInitialValue(temperatureUnitKey, getTemperatureUnitSymbol(selection));
-    if (temperatureController.text.isNotEmpty) {
-      temperatureController.text = convertTemperatureToUnit(
-              _parseValue(temperatureController), selection)
+    if (temperatureController!.text.isNotEmpty) {
+      temperatureController?.text = convertTemperatureToUnit(
+              _parseValue(temperatureController!), selection)
           .toStringAsFixed(1)
           .replaceFirst('.0', '');
-      storeInitialValue(temperatureKey, temperatureController.text);
+      storeInitialValue(temperatureKey, temperatureController!.text);
     }
   }
 
   void _onTemperatureChanged(TemperatureUnit temperatureUnit) {
-    _updateFermentationValues(temperatureUnit);
-    _updateIngredientsValues();
-    storeInitialValue(temperatureKey, temperatureController.text);
+    Provider.of<FermentationModel>(context, listen: false)
+        .updateFermentationValues();
+    storeInitialValue(temperatureKey, temperatureController!.text);
   }
 
   void _onTotalWeightChanged() {
-    _updateIngredientsValues();
-    storeInitialValue(totalWeightKey, totalWeightController.text);
+    Provider.of<IngredientsModel>(context, listen: false)
+        .updateIngredientsValues();
+    storeInitialValue(totalWeightKey, totalWeightController!.text);
   }
 
   void _onHydrationChanged() {
-    _updateIngredientsValues();
-    storeInitialValue(hydrationKey, hydrationController.text);
+    Provider.of<IngredientsModel>(context, listen: false)
+        .updateIngredientsValues();
+    storeInitialValue(hydrationKey, hydrationController!.text);
   }
 
   void _onSaltChanged() {
-    _updateIngredientsValues();
-    storeInitialValue(saltLevelKey, saltController.text);
+    Provider.of<IngredientsModel>(context, listen: false)
+        .updateIngredientsValues();
+    storeInitialValue(saltLevelKey, saltController!.text);
   }
 
   Future<TemperatureUnit> _getInitialTemperatureSymbol() async {
@@ -171,25 +180,40 @@ class _CalculatorFormState extends State<CalculatorForm> {
     return getTemperatureUnitName(initialValueUnit);
   }
 
-  Future<void> _loadInitialValues() async {
-    final TemperatureUnit initialTemperatureUnit =
-        await _getInitialTemperatureSymbol();
-    temperatureController.text = await getInitialOrDefaultValue(
-        temperatureKey, form.getDefaultTemperature(initialTemperatureUnit));
-    totalWeightController.text =
-        await getInitialOrDefaultValue(totalWeightKey, form.defaultTotalWeight);
-    hydrationController.text =
-        await getInitialOrDefaultValue(hydrationKey, form.defaultHydration);
-    saltController.text =
-        await getInitialOrDefaultValue(saltLevelKey, form.defaultSaltLevel);
-    _updateFermentationValues(initialTemperatureUnit);
-    _updateIngredientsValues();
-  }
-
   @override
   initState() {
     super.initState();
-    _loadInitialValues();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      final fermentationProvider =
+          Provider.of<FermentationModel>(context, listen: false);
+      final ingredientsProvider =
+          Provider.of<IngredientsModel>(context, listen: false);
+      temperatureController = fermentationProvider.temperatureController;
+      totalWeightController = ingredientsProvider.totalWeightController;
+      hydrationController = ingredientsProvider.hydrationController;
+      saltController = ingredientsProvider.saltController;
+      final TemperatureUnit initialTemperatureUnit =
+          await _getInitialTemperatureSymbol();
+      temperatureController?.text = await getInitialOrDefaultValue(
+          temperatureKey, form.getDefaultTemperature(initialTemperatureUnit));
+      totalWeightController?.text = await getInitialOrDefaultValue(
+          totalWeightKey, form.defaultTotalWeight);
+      hydrationController?.text =
+          await getInitialOrDefaultValue(hydrationKey, form.defaultHydration);
+      saltController?.text =
+          await getInitialOrDefaultValue(saltLevelKey, form.defaultSaltLevel);
+      setState(() {});
+      // fermentationProvider.updateFermentationValues();
+    });
+  }
+
+  @override
+  void dispose() {
+    temperatureController?.dispose();
+    totalWeightController?.dispose();
+    hydrationController?.dispose();
+    saltController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -272,7 +296,7 @@ class IngredientsValues extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CalculatorModel>(builder: (context, model, child) {
+    return Consumer<IngredientsModel>(builder: (context, model, child) {
       return Column(children: <Row>[
         const Row(children: <Header>[
           Header(
@@ -314,7 +338,7 @@ class FermentationValues extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CalculatorModel>(builder: (context, model, child) {
+    return Consumer<FermentationModel>(builder: (context, model, child) {
       return Column(children: <Row>[
         const Row(children: <Header>[Header(text: locale.headerFermentation)]),
         Row(children: <VariableWithLabel>[
