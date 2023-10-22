@@ -47,7 +47,7 @@ class TextFieldWithAffixes extends StatelessWidget {
       controller.text = '0';
       _selectAll();
     } else if (double.parse(text) > maxValue) {
-      controller.text = '$maxValue';
+      controller.text = maxValue.toStringAsFixed(0);
       _selectAll();
       _showErrorSnackBar(context);
     }

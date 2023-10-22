@@ -151,14 +151,14 @@ void main() {
         final testTextField = TestTextField();
         await tester.pumpWidget(getWidgetWithTestScaffold(testTextField));
         await tester.enterText(
-            find.byType(TextField), (testMaxValue + 1).toString());
+            find.byType(TextField), (testMaxValue + 1).toStringAsFixed(0));
         await tester.pump();
 
         expect(
             find.byWidgetPredicate((Widget widget) =>
                 widget is TextField &&
                 widget.controller?.text != null &&
-                widget.controller!.text == testMaxValue.toStringAsFixed(1)),
+                widget.controller!.text == testMaxValue.toStringAsFixed(0)),
             findsOneWidget);
       });
 

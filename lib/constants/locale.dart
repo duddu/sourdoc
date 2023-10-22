@@ -18,7 +18,7 @@ const String inputPrefixTemperature = 'Ambient temperature';
 const String inputTooltipTemperature =
     'The prevailing temperature of your kitchen';
 String getInputErrorMessage(double maxValue) =>
-    'The maximum value supported by this field is $maxValue';
+    'The maximum value supported by this field is ${maxValue.toStringAsFixed(0)}';
 const String additionalInfoInoculation =
     '''Refers to the proportion of sourdough starter (or levain) you use in relation to the total amount of flour in your dough.
 It's a key factor that influences the fermentation process and the characteristics of your bread. The inoculation level affects the fermentation rate, flavor profile, and texture of your sourdough bread. Higher percentages result in a faster and more pronounced fermentation, which can lead to a stronger sour flavor and more open crumb structure. Lower percentages result in a milder flavor and a slower fermentation.
