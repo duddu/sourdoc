@@ -14,7 +14,7 @@ import 'package:window_size/window_size.dart';
 void _setupWindow() async {
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     const double windowWidth = style.mobileMaxScreenWidth;
-    const double windowHeight = 850;
+    const double windowHeight = 730;
 
     WidgetsFlutterBinding.ensureInitialized();
     setWindowMinSize(const Size(windowWidth, windowHeight));
