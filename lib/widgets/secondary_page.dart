@@ -61,7 +61,13 @@ class BackToHomePageTextButton extends StatelessWidget {
               textStyle: MaterialStateProperty.all(
                   Theme.of(context).textTheme.bodyMedium),
               padding: const MaterialStatePropertyAll(EdgeInsets.zero)),
-          child: const Text('< ${locale.backToHome}'),
+          child: Row(children: [
+            Icon(
+              Icons.arrow_back_rounded,
+              size: Theme.of(context).textTheme.bodyMedium?.fontSize,
+            ),
+            const Text(' ${locale.backToHome}')
+          ]),
         ));
   }
 }
