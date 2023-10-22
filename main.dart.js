@@ -79891,18 +79891,15 @@ $1(a){var s=this.a
 return new A.qs(s.c,s.d,null)},
 $S:478}
 A.qs.prototype={
-I(a){var s,r,q=null,p=A.bt(a,q,t.w).w.a.a
-if(p>430)s=p>565?260:305
-else s=405
-r=t.D
-return A.f3(new A.c6(B.Co,A.alq(A.a([A.iw(A.a([A.d4(A.a([new A.iH(this.c,0,q)],r),B.z,B.G,B.D),A.d4(A.a([A.fM(new A.c6(B.C7,A.dV(this.d,q,q,q,A.N(a).p3.z,q,q),q))],r),B.z,B.G,B.D)],r),B.z,B.G,B.D)],r),q,q),q),s,q)}}
+I(a){var s=null,r=A.bt(a,s,t.w).w.a.a>430?340:400,q=t.D
+return A.f3(new A.c6(B.Co,A.alq(A.a([A.iw(A.a([A.d4(A.a([new A.iH(this.c,0,s)],q),B.z,B.G,B.D),A.d4(A.a([A.fM(new A.c6(B.C7,A.dV(this.d,s,s,s,A.N(a).p3.z,s,s),s))],q),B.z,B.G,B.D)],q),B.z,B.G,B.D)],q),s,s),s),r,565)}}
 A.oM.prototype={
 v_(a){return this.a4s(a)},
 a4s(a){var s=0,r=A.U(t.H)
 var $async$v_=A.V(function(b,c){if(b===1)return A.R(c,r)
 while(true)switch(s){case 0:s=2
 return A.a_(A.ane(A.jd(a,0,null),B.DS),$async$v_)
-case 2:if(!c)throw A.e(A.cl("Could not launch https://github.com/duddu/sourdoc/tree/4d8c7e505568cb8a9bf2b88fcc4c5d42da2d8cd5"))
+case 2:if(!c)throw A.e(A.cl("Could not launch https://github.com/duddu/sourdoc/tree/61695717f85d1a6822a057e59ff3323549c6db24"))
 return A.S(null,r)}})
 return A.T($async$v_,r)},
 I(a){var s,r=this,q=null,p=A.N(a),o=A.a([],t.VO),n=r.c
@@ -79924,7 +79921,7 @@ return A.S(null,r)}})
 return A.T($async$$0,r)},
 $S:35}
 A.LP.prototype={
-I(a){return A.as_(B.SE,A.a([new A.oM("\xa9"+B.h.k(A.aqL(new A.eU(Date.now(),!1)))+" Sourdoc ","v1.9.1","https://github.com/duddu/sourdoc/releases/tag/v1.9.1",null),B.SA,new A.oM("Commit: ",B.d.a6("4d8c7e505568cb8a9bf2b88fcc4c5d42da2d8cd5",0,7),"https://github.com/duddu/sourdoc/tree/4d8c7e505568cb8a9bf2b88fcc4c5d42da2d8cd5",null),B.Sz],t.D),2,9)}}
+I(a){return A.as_(B.SE,A.a([new A.oM("\xa9"+B.h.k(A.aqL(new A.eU(Date.now(),!1)))+" Sourdoc ","v1.9.2","https://github.com/duddu/sourdoc/releases/tag/v1.9.2",null),B.SA,new A.oM("Commit: ",B.d.a6("61695717f85d1a6822a057e59ff3323549c6db24",0,7),"https://github.com/duddu/sourdoc/tree/61695717f85d1a6822a057e59ff3323549c6db24",null),B.Sz],t.D),2,9)}}
 A.wB.prototype={
 G(){return"LaunchMode."+this.b}}
 A.ab2.prototype={}
@@ -85321,7 +85318,7 @@ B.Sy=new A.e1("dismissible",A.a9("e1<w>"))
 B.y4=new A.mp(B.f,0,B.r,B.f)
 B.k4=new A.mp(B.f,1,B.r,B.f)
 B.Sz=new A.oM(null,"Report an issue","https://github.com/duddu/sourdoc/issues/new/choose",null)
-B.SA=new A.oM("Build: ","1697940001",null,null)
+B.SA=new A.oM("Build: ","1697944049",null,null)
 B.SB=new A.LP(null)
 B.k5=new A.LQ(0,"up")
 B.d4=new A.kx(0,0)
