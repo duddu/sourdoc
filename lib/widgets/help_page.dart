@@ -45,7 +45,7 @@ class HelpPage extends StatelessWidget {
                     )))),
         listViewChildren: <CenteredContainer>[
           CenteredContainer(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 24),
               child: Column(children: <Row>[
                 Row(children: <Expanded>[
                   Expanded(
@@ -110,7 +110,6 @@ class HelpPage extends StatelessWidget {
                 const Row(children: <Header>[
                   Header(
                     text: locale.headerBakerFormulaDifference,
-                    paddingTop: 15,
                   )
                 ]),
                 Row(children: <Expanded>[

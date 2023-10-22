@@ -39,25 +39,24 @@ class GlossaryPage extends StatelessWidget {
                     )))),
         listViewChildren: <CenteredContainer>[
           CenteredContainer(
-              padding: const EdgeInsets.only(top: 4),
               child: Column(children: <Row>[
-                const Row(children: <Header>[
-                  Header(text: locale.variableLabelInoculation, paddingTop: 16)
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(locale.additionalInfoInoculation,
-                          style: Theme.of(context).textTheme.bodyMedium))
-                ]),
-                const Row(children: <Header>[
-                  Header(text: locale.variableLabelDoughRise)
-                ]),
-                Row(children: <Expanded>[
-                  Expanded(
-                      child: Text(locale.additionalInfoDoughRise,
-                          style: Theme.of(context).textTheme.bodyMedium))
-                ]),
-              ]))
+            const Row(children: <Header>[
+              Header(text: locale.variableLabelInoculation, paddingTop: 25)
+            ]),
+            Row(children: <Expanded>[
+              Expanded(
+                  child: Text(locale.additionalInfoInoculation,
+                      style: Theme.of(context).textTheme.bodyMedium))
+            ]),
+            const Row(children: <Header>[
+              Header(text: locale.variableLabelDoughRise)
+            ]),
+            Row(children: <Expanded>[
+              Expanded(
+                  child: Text(locale.additionalInfoDoughRise,
+                      style: Theme.of(context).textTheme.bodyMedium))
+            ]),
+          ]))
         ]);
   }
 }

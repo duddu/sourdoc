@@ -274,7 +274,12 @@ class IngredientsValues extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CalculatorModel>(builder: (context, model, child) {
       return Column(children: <Row>[
-        const Row(children: <Header>[Header(text: locale.headerIngredients)]),
+        const Row(children: <Header>[
+          Header(
+            text: locale.headerIngredients,
+            paddingTop: 25,
+          )
+        ]),
         Row(children: [
           VariableWithLabel(
             label: locale.variableLabelFlour,
