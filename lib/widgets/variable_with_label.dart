@@ -137,11 +137,8 @@ class InfoBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: screenWidth > 430
-          ? screenWidth > style.contentMaxWidth
-              ? 260
-              : 305
-          : 405,
+      width: style.contentMaxWidth,
+      height: screenWidth > 430 ? 340 : 400,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
             style.contentLateralPadding, 0, style.contentLateralPadding, 20),
