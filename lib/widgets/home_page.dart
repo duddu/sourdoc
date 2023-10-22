@@ -11,6 +11,7 @@ import 'package:sourdoc/widgets/calculator_form.dart';
 import 'package:sourdoc/widgets/centered_container.dart';
 import 'package:sourdoc/widgets/variable_with_label.dart';
 import 'package:sourdoc/widgets/header.dart';
+import 'package:sourdoc/widgets/version_info.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -56,37 +57,44 @@ class HomePageListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      primary: true,
-      padding: const EdgeInsets.only(bottom: 25),
-      children: [
-        CenteredContainer(
-            decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .inversePrimary
-                    .withAlpha(170)),
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              style.isMobileScreenWidth(context)
-                  ? locale.formIntro
-                  : locale.formIntroLarge,
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.bodyMedium,
-            )),
-        Card(
-            margin: EdgeInsets.zero,
-            semanticContainer: false,
-            shape: const RoundedRectangleBorder(),
-            child: CenteredContainer(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: ChangeNotifierProvider(
-                    create: (context) => TemperatureUnitModel(),
-                    child: const CalculatorForm()))),
-        const CenteredContainer(child: IngredientsValues()),
-        const CenteredContainer(child: FermentationValues()),
-      ],
-    );
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Expanded(
+              child: ListView(
+            primary: true,
+            padding: const EdgeInsets.only(bottom: 25),
+            children: [
+              CenteredContainer(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .inversePrimary
+                          .withAlpha(170)),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    locale.formIntro,
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )),
+              Card(
+                  margin: EdgeInsets.zero,
+                  semanticContainer: false,
+                  shape: const RoundedRectangleBorder(),
+                  child: CenteredContainer(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: ChangeNotifierProvider(
+                          create: (context) => TemperatureUnitModel(),
+                          child: const CalculatorForm()))),
+              const CenteredContainer(child: IngredientsValues()),
+              const CenteredContainer(child: FermentationValues()),
+            ],
+          )),
+          if (MediaQuery.of(context).size.height >
+              (style.isMobileScreenWidth(context) ? 880 : 770))
+            getVersionInfoContainer(context)
+        ]);
   }
 }
 

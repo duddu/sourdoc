@@ -2,8 +2,6 @@ const String title = 'Sourdoc';
 const String appBarHomeActionButtonTooltip = 'Open Help page';
 const String formIntro =
     'Change these settings, and the ingredients and fermentation values will automatically update.';
-const String formIntroLarge =
-    'Change the following settings, and the ingredients and fermentation values below will automatically update.';
 const String headerIngredients = 'Ingredients';
 const String headerFermentation = 'Fermentation';
 const String headerBakerFormulaDifference =
