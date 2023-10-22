@@ -21,7 +21,7 @@ The user provides ambient temperature, final bread desired weight, hydration and
 
 ### Notes about the calculation
 
-Sourdoc doesn't simply use the baker's formula to calculate the ingredients quantities, assince that doesn't take into account the ambient temperature; we use instead a more appropriate formula specific to sourdough baking: 
+Sourdoc doesn't simply use the baker's formula to calculate the ingredients quantities, since that doesn't take into account the ambient temperature; we use instead a more complete formula specific to sourdough baking: 
 
 ```go
 b = f - f * h - f * i - f * s
